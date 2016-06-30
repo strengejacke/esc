@@ -1,0 +1,15 @@
+Package: esc
+Type: Package
+Encoding: UTF-8
+Title: Effect Size Computation for Meta Analysis
+Version: 0.1.0
+Date: 2016-30-06
+Author: Daniel Lüdecke <d.luedecke@uke.de>
+Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: Creative Commons Attribution-Noncommercial 3.0 United States
+Depends:
+    R (>= 3.2),
+    stats
+LazyData: true
