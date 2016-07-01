@@ -23,7 +23,17 @@
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
 #' @examples
+#' # unequal sample size
 #' esc_t(t = 3.3, grp1n = 100, grp2n = 150)
+#'
+#' # equal sample size
+#' esc_t(t = 3.3, totaln = 200)
+#'
+#' # unequal sample size, with p-value
+#' esc_t(p = 0.03, grp1n = 100, grp2n = 150)
+#'
+#' # equal sample size, with p-value
+#' esc_t(p = 0.03, totaln = 200)
 #'
 #' @export
 esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r")) {
@@ -41,12 +51,20 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
     stop("Either `totaln` or both `grp1n` and `grp2n` must be specified.", call. = F)
   }
 
+  # if we have no total sample size, compute it from group sizes
+  if (missing(totaln) || is.null(totaln)) {
+    totaln <- grp1n + grp2n
+    equal.size <- F
+  } else {
+    equal.size <- T
+  }
+
   # if we have no t-value, compute it from p
   if (missing(t) || is.null(t))
     t <- qt(p = p, df = totaln - 2, lower.tail = F)
 
   # equal sample size?
-  if (!missing(totaln)) {
+  if (equal.size) {
     es <- 2 * t / sqrt(totaln)
     # manually get values for each group
     grp1n <- grp2n <- totaln / 2

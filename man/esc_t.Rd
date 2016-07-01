@@ -40,7 +40,17 @@ This function only applies to \emph{independent sample} t-tests, either
       (like regressions).
 }
 \examples{
+# unequal sample size
 esc_t(t = 3.3, grp1n = 100, grp2n = 150)
+
+# equal sample size
+esc_t(t = 3.3, totaln = 200)
+
+# unequal sample size, with p-value
+esc_t(p = 0.03, grp1n = 100, grp2n = 150)
+
+# equal sample size, with p-value
+esc_t(p = 0.03, totaln = 200)
 
 }
 \references{
