@@ -17,6 +17,9 @@
     \item The lower and upper confidence limits \code{ci.lo} and \code{ci.hi}.
     \item The weight factor, based on the inverse-variance, \code{w}.
   }
+  If the correlation effect size \code{r} is computed, the transformed Fisher's r and their confidence
+  intervals are returned. The variance and standard error for the correlation effect size r are always
+  transformed.
 }
 \details{
 \tabular{rl}{

@@ -166,7 +166,9 @@ esc_d2logit <- function(d, se, v, info = NULL) {
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower
 #'         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-#'         the weight factor \code{w}.
+#'         the weight factor \code{w}. Furthermore, and only for this function,
+#'         Fisher's transformation for the effect size \code{r} and their
+#'         confidence intervals are returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
@@ -190,11 +192,15 @@ esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL) {
   es <- d / sqrt(d ^ 2 + 1 / (p * (1 - p)))
   v <- v / (v + 1 / (p * (1 - p)))
 
+  # compute fisher's corrections for r
+  es.zr <- esc.zr(es)
+
   # return effect size d
   return(structure(
     class = c("esc", "esc_d2r"),
     list(es = es, se = sqrt(v), var = v,
-         ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
-         w = 1 / v, info = info)
+         ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
+         w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
+         info = info)
   ))
 }
