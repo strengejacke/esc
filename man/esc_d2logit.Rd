@@ -2,7 +2,7 @@
 % Please edit documentation in R/esc_d2or.R
 \name{esc_d2logit}
 \alias{esc_d2logit}
-\title{Compute logits from effect size d}
+\title{Convert effect size d into log odds}
 \usage{
 esc_d2logit(d, se, v, info = NULL)
 }
@@ -30,7 +30,7 @@ Compute effect size \code{log odds} from effect size \code{d}.
 \note{
 Effect size, variance, standard error and confidence intervals are
       returned on the log-scale. To get the odds ratios and exponentiated
-      values, use \code{\link{esc_d2or}}.
+      confidence intervals, use \code{\link{esc_d2or}}.
 }
 \examples{
 esc_d2logit(0.7, se = 0.5)

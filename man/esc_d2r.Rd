@@ -2,7 +2,7 @@
 % Please edit documentation in R/esc_d2or.R
 \name{esc_d2r}
 \alias{esc_d2r}
-\title{Compute correlation from effect size d}
+\title{Convert effect size d into correlation}
 \usage{
 esc_d2r(d, se, v, grp1n, grp2n, info = NULL)
 }
