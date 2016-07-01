@@ -1,6 +1,6 @@
 esc - Effect Size Computation for Meta Analysis
 ------------------------------------------------------------------------------
-This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. The original calculator can be found at http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-SMD3.php.
+This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. The original calculator can be found at http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-Home.php.
 
 ## Installation
 
