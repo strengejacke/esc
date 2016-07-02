@@ -9,6 +9,7 @@
   Based on the input, the effect size can be returned as standardized mean difference (\code{d}),
   the correlation coefficient effect size \code{r}, the odds ratio or log odds effect size.
   \cr \cr
+  \strong{Return values} \cr \cr
   The return value of all functions has the same structure:
   \itemize{
     \item The effect size, whether being \code{d}, \code{r}, odds ratios or logits, is always named \code{es}.
@@ -17,9 +18,13 @@
     \item The lower and upper confidence limits \code{ci.lo} and \code{ci.hi}.
     \item The weight factor, based on the inverse-variance, \code{w}.
   }
+  \strong{Correlation Effect Size} \cr \cr
   If the correlation effect size \code{r} is computed, the transformed Fisher's r and their confidence
-  intervals are returned. The variance and standard error for the correlation effect size r are always
-  transformed.
+  intervals are also returned. The variance and standard error for the correlation effect size r are always
+  based on Fisher's transformation.
+  \cr \cr
+  \strong{Odds Ratio Effect Size} \cr \cr
+  For odds ratios, the variance and standard error are always returned on the log-scale!
 }
 \details{
 \tabular{rl}{
