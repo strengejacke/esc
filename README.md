@@ -14,11 +14,11 @@ The return value of all functions has the same structure:
 * The lower and upper confidence limits `ci.lo` and `ci.hi`.
 * The weight factor, based on the inverse-variance, `w`.
 
-### Correlation Effect Size
+#### Correlation Effect Size
 
-If the correlation effect size \code{r} is computed, the transformed Fisher's r and their confidence intervals are also returned. The variance and standard error for the correlation effect size r are always based on Fisher's transformation.
+If the correlation effect size `r` is computed, the transformed Fisher's r and their confidence intervals are also returned. The variance and standard error for the correlation effect size r are always based on Fisher's transformation.
 
-### Odds Ratio Effect Size
+#### Odds Ratio Effect Size
 
 For odds ratios, the variance and standard error are always returned on the log-scale!
 
