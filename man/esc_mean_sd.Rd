@@ -34,6 +34,10 @@ The effect size \code{es}, the standard error \code{se}, the variance
 \description{
 Compute effect size from Mean and Standard Deviation.
 }
+\note{
+If \code{es.type = "r"}, Fisher's transformation for the effect size
+      \code{r} and their confidence intervals are also returned.
+}
 \examples{
 esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50,
             grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")

@@ -30,6 +30,10 @@ The effect size \code{es}, the standard error \code{se}, the variance
 \description{
 Compute effect size from Standardized Regression Coefficient.
 }
+\note{
+If \code{es.type = "r"}, Fisher's transformation for the effect size
+      \code{r} and their confidence intervals are also returned.
+}
 \examples{
 esc_beta(1.25, 3, 100, 150)
 esc_beta(1.25, 3, 100, 150, es.type = "logit")

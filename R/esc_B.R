@@ -11,6 +11,9 @@
 #'         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
 #'         the weight factor \code{w}.
 #'
+#' @note If \code{es.type = "r"}, Fisher's transformation for the effect size
+#'       \code{r} and their confidence intervals are also returned.
+#'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
 #' @examples

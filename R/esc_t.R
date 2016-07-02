@@ -14,6 +14,9 @@
 #'       equal or unequal sample sizes. It can't be used for t-values from
 #'       dependent or paired t-tests, or t-values from other statistical procedures
 #'       (like regressions).
+#'       \cr \cr
+#'       If \code{es.type = "r"}, Fisher's transformation for the effect size
+#'       \code{r} and their confidence intervals are also returned.
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower
@@ -59,9 +62,25 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
     equal.size <- T
   }
 
-  # if we have no t-value, compute it from p
+  # if we have no t-value, compute it from p.
+  # divide p by two, because two-tailed.
   if (missing(t) || is.null(t))
-    t <- qt(p = p, df = totaln - 2, lower.tail = F)
+    t <- qt(p = p / 2, df = totaln - 2, lower.tail = F)
+
+  # for t-test, directly estimate effect size
+  if (es.type == "r") {
+    es <- t / sqrt(t ^ 2 + totaln - 2)
+    es.zr <- esc.zr(es)
+    v <- 1 / (totaln - 3)
+    # return effect size d
+    return(structure(
+      class = c("esc", "esc_t2r"),
+      list(es = es, se = sqrt(v), var = v,
+           ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
+           w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
+           info = "t-value to effect size correlation")
+    ))
+  }
 
   # equal sample size?
   if (equal.size) {
@@ -80,9 +99,6 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
 
   # which es type to be returned?
   if (es.type == "logit") return(esc_d2logit(d = es, v = v, info = "t-value to effect size logit"))
-
-  # which es type to be returned?
-  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = grp1n, grp2n = grp2n, info = "t-value to effect size correlation"))
 
   # return effect size d
   return(structure(

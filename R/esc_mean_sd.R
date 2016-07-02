@@ -21,6 +21,9 @@
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
+#' @note If \code{es.type = "r"}, Fisher's transformation for the effect size
+#'       \code{r} and their confidence intervals are also returned.
+#'
 #' @examples
 #' esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50,
 #'             grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")
@@ -63,6 +66,9 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c(
 #'         of the effect size \code{var}, the lower
 #'         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
 #'         the weight factor \code{w}.
+#'
+#' @note If \code{es.type = "r"}, Fisher's transformation for the effect size
+#'       \code{r} and their confidence intervals are also returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'

@@ -38,6 +38,9 @@ This function only applies to \emph{independent sample} t-tests, either
       equal or unequal sample sizes. It can't be used for t-values from
       dependent or paired t-tests, or t-values from other statistical procedures
       (like regressions).
+      \cr \cr
+      If \code{es.type = "r"}, Fisher's transformation for the effect size
+      \code{r} and their confidence intervals are also returned.
 }
 \examples{
 # unequal sample size

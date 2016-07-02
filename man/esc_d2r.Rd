@@ -26,9 +26,8 @@ print-method. Usually, this argument can be ignored}
 The effect size \code{es}, the standard error \code{se}, the variance
         of the effect size \code{var}, the lower
         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}. Furthermore, and only for this function,
-        Fisher's transformation for the effect size \code{r} and their
-        confidence intervals are returned.
+        the weight factor \code{w}. Furthermore, Fisher's transformation for
+        the effect size \code{r} and their confidence intervals are returned.
 }
 \description{
 Compute effect size correlation from effect size \code{d}.
