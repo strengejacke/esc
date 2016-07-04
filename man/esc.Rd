@@ -12,14 +12,15 @@
   \strong{Return values} \cr \cr
   The return value of all functions has the same structure:
   \itemize{
-    \item The effect size, whether being \code{d}, \code{r}, (Cox) odds ratios or (Cox) logits, is always named \code{es}.
+    \item The effect size, whether being \code{d}, \code{g}, \code{r}, (Cox) odds ratios or (Cox) logits, is always named \code{es}.
     \item The standard error of the effect size, \code{se}.
     \item The variance of the effect size, \code{var}.
     \item The lower and upper confidence limits \code{ci.lo} and \code{ci.hi}.
     \item The weight factor, based on the inverse-variance, \code{w}.
+    \item The total sample size \code{totaln}.
   }
   \strong{Correlation Effect Size} \cr \cr
-  If the correlation effect size \code{r} is computed, the transformed Fisher's r and their confidence
+  If the correlation effect size \code{r} is computed, the transformed Fisher's z and their confidence
   intervals are also returned. The variance and standard error for the correlation effect size r are always
   based on Fisher's transformation.
   \cr \cr
