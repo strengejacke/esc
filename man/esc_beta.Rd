@@ -4,7 +4,8 @@
 \alias{esc_beta}
 \title{Compute effect size from Standardized Regression Coefficient}
 \usage{
-esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r"))
+esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
+  "cox.or", "cox.log"))
 }
 \arguments{
 \item{beta}{The standardized beta coefficient.}
@@ -15,11 +16,15 @@ esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r"))
 
 \item{grp2n}{Control group sample size.}
 
-\item{es.type}{Type of effect size that should be returned. By default,
-this is \code{"d"}, i.e. effect size \code{d} is returned.
-Use \code{es.type = "OR"} to return effect size as odds ratios,
-\code{es.type = "logit"} to return effect size as log odds and
-\code{es.type = "r"} to return effect size as correlation.}
+\item{es.type}{Type of effect size that should be returned.
+\describe{
+  \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"or"}}{returns effect size as odds ratio}
+  \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
+  \item{\code{"logit"}}{returns effect size as log odds}
+  \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
+  \item{\code{"r"}}{returns correlation effect size \code{r}}
+}}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -36,7 +41,7 @@ If \code{es.type = "r"}, Fisher's transformation for the effect size
 }
 \examples{
 esc_beta(1.25, 3, 100, 150)
-esc_beta(1.25, 3, 100, 150, es.type = "logit")
+esc_beta(1.25, 3, 100, 150, es.type = "cox.log")
 
 }
 \references{

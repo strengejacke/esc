@@ -7,11 +7,8 @@
 #' @param grp1no Size of treatment group with non-successes (outcome = no).
 #' @param grp2yes Size of control group with successes (outcome = yes).
 #' @param grp2no Size of control group with non-successes (outcome = no).
-#' @param es.type Type of effect size that should be returned. By default,
-#'        this is \code{"d"}, i.e. effect size \code{d} is returned.
-#'        Use \code{es.type = "OR"} to return effect size as odds ratios,
-#'        \code{es.type = "logit"} to return effect size as log odds and
-#'        \code{es.type = "r"} to return effect size as correlation.
+#'
+#' @inheritParams esc_beta
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower
@@ -24,26 +21,33 @@
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
 #' @examples
+#' # effect size d
 #' esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45)
 #'
+#' # effect size odds ratio
+#' esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45, es.type = "or")
+#'
 #' @export
-esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "OR", "logit", "r")) {
+esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "or", "logit", "r", "cox.d")) {
   es.type <- match.arg(es.type)
 
   es <- (grp1yes * grp2no) / (grp1no * grp2yes)
   v <- 1 / grp1yes + 1 / grp1no + 1 / grp2yes + 1 / grp2no
 
   # which es type to be returned?
-  if (es.type == "OR") {
+  if (es.type == "or") {
     return(structure(
       class = c("esc", "esc_2x2"),
       list(es = es, se = sqrt(v), var = v, ci.lo = exp(lower_d(log(es), v)), ci.hi = exp(upper_d(log(es), v)),
-           w = 1 / v, info = "2x2 table (OR) coefficient to effect size odds ratio")
+           w = 1 / v, measure = "or", info = "2x2 table (OR) coefficient to effect size odds ratio")
     ))
   }
 
   # which es type to be returned?
-  if (es.type == "d") return(esc_or2d(or = es, v = v, info = "2x2 table (OR) to effect size d"))
+  if (es.type == "d") return(esc_or2d(or = es, v = v, es.type = "d", info = "2x2 table (OR) to effect size d"))
+
+  # which es type to be returned?
+  if (es.type == "cox.d") return(esc_or2d(or = es, v = v, es.type = "cox.d", info = "2x2 table (OR) to effect size Cox d"))
 
   # convert to plain d
   es <- log(es) * sqrt(3) / pi

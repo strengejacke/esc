@@ -4,8 +4,8 @@
 \alias{esc_mean_sd}
 \title{Compute effect size from Mean and Standard Deviation}
 \usage{
-esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "OR",
-  "logit", "r"))
+esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "or",
+  "logit", "r", "cox.or", "cox.log"))
 }
 \arguments{
 \item{grp1m}{The mean of the first group.}
@@ -20,10 +20,15 @@ esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "OR",
 
 \item{grp2n}{The sample size of the second group.}
 
-\item{es.type}{Type of effect size that should be returned. By default,
-this is \code{"d"}, i.e. effect size \code{d} is returned.
-Use \code{es.type = "OR"} to return effect size as odds ratios or
-\code{es.type = "logit"} to return effect size as log odds,}
+\item{es.type}{Type of effect size that should be returned.
+\describe{
+  \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"or"}}{returns effect size as odds ratio}
+  \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
+  \item{\code{"logit"}}{returns effect size as log odds}
+  \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
+  \item{\code{"r"}}{returns correlation effect size \code{r}}
+}}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance

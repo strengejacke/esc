@@ -4,7 +4,7 @@
 \alias{esc_d2or}
 \title{Convert effect size d into OR}
 \usage{
-esc_d2or(d, se, v, info = NULL)
+esc_d2or(d, se, v, es.type = c("logit", "cox"), info = NULL)
 }
 \arguments{
 \item{d}{The effect size \code{d}.}
@@ -14,6 +14,10 @@ must be specified.}
 
 \item{v}{The variance of \code{d}. One of \code{se} or \code{v} must be
 specified.}
+
+\item{es.type}{Type of effect size odds ratio that should be returned.
+May be \code{es.type = "logit"} or \code{es.type = "cox"}
+(see 'Details').}
 
 \item{info}{String with information on the transformation. Used for the
 print-method. Usually, this argument can be ignored}
@@ -27,20 +31,35 @@ The effect size \code{es}, the standard error \code{se}, the variance
 \description{
 Compute effect size \code{OR} from effect size \code{d}.
 }
+\details{
+Conversion from \code{d} to odds ratios can be done with two
+         methods:
+         \describe{
+           \item{\code{es.type = "logit"}}{uses the Hasselblad and Hedges logit method.}
+           \item{\code{es.type = "cox"}}{uses the modified logit method as proposed by Cox.
+                 This method performs slightly better for rare or frequent events, i.e.
+                 if the success rate is close to 0 or 1.}
+         }
+}
 \note{
 Effect size is returned as \code{exp(log_values)} (odds ratio),
       confidence intervals are also exponentiated. To get the log-values,
       use \code{\link{esc_d2logit}}.
-      \cr \cr
       \strong{However}, variance and standard error of this function
       are returned on the log-scale!
 }
 \examples{
+# d to odds ratio
 esc_d2or(0.7, se = 0.5)
+# odds ratio to d
 esc_or2d(3.56, se = 0.91)
 
 }
 \references{
 Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+            \cr \cr
+            Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
+            \cr \cr
+            Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
 }
 

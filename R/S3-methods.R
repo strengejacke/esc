@@ -11,5 +11,4 @@ print.esc <- function(x, ...) {
   if (!is.null(x$zr)) cat(sprintf("     Fisher's r: %8.4f\n", x$zr))
   if (!is.null(x$ci.lo.zr)) cat(sprintf("       Lower CI: %8.4f\n", x$ci.lo.zr))
   if (!is.null(x$ci.hi.zr)) cat(sprintf("       Upper CI: %8.4f\n", x$ci.hi.zr))
-
 }

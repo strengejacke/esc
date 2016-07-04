@@ -12,7 +12,7 @@
   \strong{Return values} \cr \cr
   The return value of all functions has the same structure:
   \itemize{
-    \item The effect size, whether being \code{d}, \code{r}, odds ratios or logits, is always named \code{es}.
+    \item The effect size, whether being \code{d}, \code{r}, (Cox) odds ratios or (Cox) logits, is always named \code{es}.
     \item The standard error of the effect size, \code{se}.
     \item The variance of the effect size, \code{var}.
     \item The lower and upper confidence limits \code{ci.lo} and \code{ci.hi}.

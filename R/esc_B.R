@@ -20,7 +20,7 @@
 #' esc_B(3.3, 5, 100, 150)
 #'
 #' @export
-esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r")) {
+esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
@@ -28,19 +28,7 @@ esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r")) {
   es <- b / sdpooled
   v <- esc.vd(es, grp1n, grp2n)
 
-  # which es type to be returned?
-  if (es.type == "OR") return(esc_d2or(d = es, v = v, info = "unstandardized regression coefficient to effect size odds ratio"))
-
-  # which es type to be returned?
-  if (es.type == "logit") return(esc_d2logit(d = es, v = v, info = "unstandardized regression coefficient to effect size logit"))
-
-  # which es type to be returned?
-  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = grp1n, grp2n = grp2n, info = "unstandardized regression coefficient to effect size correlation"))
-
-  # return effect size d
-  return(structure(
-    class = c("esc", "esc_B"),
-    list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
-         w = 1 / v, info = "unstandardized regression coefficient to effect size d")
-  ))
+  # return effect size
+  return(esc_generic(es = es, v = v, es.type = es.type,
+                     info = "unstandardized regression coefficient"))
 }

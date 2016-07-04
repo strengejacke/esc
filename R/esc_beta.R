@@ -7,11 +7,15 @@
 #' @param sdy The standard deviation of the dependent variable.
 #' @param grp1n Treatment group sample size.
 #' @param grp2n Control group sample size.
-#' @param es.type Type of effect size that should be returned. By default,
-#'        this is \code{"d"}, i.e. effect size \code{d} is returned.
-#'        Use \code{es.type = "OR"} to return effect size as odds ratios,
-#'        \code{es.type = "logit"} to return effect size as log odds and
-#'        \code{es.type = "r"} to return effect size as correlation.
+#' @param es.type Type of effect size that should be returned.
+#'        \describe{
+#'          \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+#'          \item{\code{"or"}}{returns effect size as odds ratio}
+#'          \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
+#'          \item{\code{"logit"}}{returns effect size as log odds}
+#'          \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
+#'          \item{\code{"r"}}{returns correlation effect size \code{r}}
+#'        }
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower
@@ -25,10 +29,10 @@
 #'
 #' @examples
 #' esc_beta(1.25, 3, 100, 150)
-#' esc_beta(1.25, 3, 100, 150, es.type = "logit")
+#' esc_beta(1.25, 3, 100, 150, es.type = "cox.log")
 #'
 #' @export
-esc_beta <- function(beta, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r")) {
+esc_beta <- function(beta, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
@@ -39,18 +43,7 @@ esc_beta <- function(beta, sdy, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
   es <- b / sdpooled
   v <- esc.vd(es, grp1n, grp2n)
 
-  # which es type to be returned?
-  if (es.type == "OR") return(esc_d2or(d = es, v = v, info = "standardized regression coefficient to effect size odds ratios"))
-
-  # which es type to be returned?
-  if (es.type == "logit") return(esc_d2logit(d = es, v = v, info = "standardized regression coefficient to effect size logits"))
-
-  # which es type to be returned?
-  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = grp1n, grp2n = grp2n, info = "standardized regression coefficient to effect size correlation"))
-
-  return(structure(
-    class = c("esc", "esc_beta"),
-    list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
-         w = 1 / v, info = "standardized regression coefficient to effect size d")
-  ))
+  # return effect size
+  return(esc_generic(es = es, v = v, es.type = es.type,
+                     info = "standardized regression coefficient"))
 }

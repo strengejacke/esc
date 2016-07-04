@@ -4,8 +4,8 @@
 \alias{esc_2x2}
 \title{Compute effect size from 2 by 2 Contingency Table}
 \usage{
-esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "OR", "logit",
-  "r"))
+esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "or", "logit", "r",
+  "cox.d"))
 }
 \arguments{
 \item{grp1yes}{Size of treatment group with successes (outcome = yes).}
@@ -16,11 +16,15 @@ esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "OR", "logit",
 
 \item{grp2no}{Size of control group with non-successes (outcome = no).}
 
-\item{es.type}{Type of effect size that should be returned. By default,
-this is \code{"d"}, i.e. effect size \code{d} is returned.
-Use \code{es.type = "OR"} to return effect size as odds ratios,
-\code{es.type = "logit"} to return effect size as log odds and
-\code{es.type = "r"} to return effect size as correlation.}
+\item{es.type}{Type of effect size that should be returned.
+\describe{
+  \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"or"}}{returns effect size as odds ratio}
+  \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
+  \item{\code{"logit"}}{returns effect size as log odds}
+  \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
+  \item{\code{"r"}}{returns correlation effect size \code{r}}
+}}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -36,7 +40,11 @@ If \code{es.type = "r"}, Fisher's transformation for the effect size
       \code{r} and their confidence intervals are also returned.
 }
 \examples{
+# effect size d
 esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45)
+
+# effect size odds ratio
+esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45, es.type = "or")
 
 }
 \references{

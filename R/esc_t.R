@@ -38,8 +38,9 @@
 #' # equal sample size, with p-value
 #' esc_t(p = 0.03, totaln = 200)
 #'
+#' @importFrom stats qt
 #' @export
-esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r")) {
+esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -65,7 +66,7 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
   # if we have no t-value, compute it from p.
   # divide p by two, because two-tailed.
   if (missing(t) || is.null(t))
-    t <- qt(p = p / 2, df = totaln - 2, lower.tail = F)
+    t <- stats::qt(p = p / 2, df = totaln - 2, lower.tail = F)
 
   # for t-test, directly estimate effect size
   if (es.type == "r") {
@@ -78,7 +79,7 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
       list(es = es, se = sqrt(v), var = v,
            ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
            w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
-           info = "t-value to effect size correlation")
+           measure = "r", info = "t-value to effect size correlation")
     ))
   }
 
@@ -94,16 +95,7 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "OR", "logit", "r
   # get variance
   v <- esc.vd(es, grp1n, grp2n)
 
-  # which es type to be returned?
-  if (es.type == "OR") return(esc_d2or(d = es, v = v, info = "t-value to effect size odds ratio"))
-
-  # which es type to be returned?
-  if (es.type == "logit") return(esc_d2logit(d = es, v = v, info = "t-value to effect size logit"))
-
-  # return effect size d
-  return(structure(
-    class = c("esc", "esc_t"),
-    list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
-         w = 1 / v, info = "t-value to effect size d")
-  ))
+  # return effect size
+  return(esc_generic(es = es, v = v, es.type = es.type,
+                     info = "t-value"))
 }
