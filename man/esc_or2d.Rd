@@ -15,6 +15,8 @@ must be specified.}
 \item{v}{The variance of \code{d}. One of \code{se} or \code{v} must be
 specified.}
 
+\item{totaln}{The total sample size.}
+
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns effect size \code{d}}

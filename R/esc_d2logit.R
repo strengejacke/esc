@@ -5,6 +5,7 @@
 #'
 #' @inheritParams esc_d2or
 #' @inheritParams esc_beta
+#' @inheritParams hedges_g
 #'
 #' @note Effect size, variance, standard error and confidence intervals are
 #'       returned on the log-scale. To get the odds ratios and exponentiated

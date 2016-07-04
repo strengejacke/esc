@@ -13,7 +13,9 @@
 #'        (see 'Details').
 #' @param info String with information on the transformation. Used for the
 #'        print-method. Usually, this argument can be ignored
+#'
 #' @inheritParams esc_beta
+#' @inheritParams hedges_g
 #'
 #' @note Effect size is returned as \code{exp(log_values)} (odds ratio),
 #'       confidence intervals are also exponentiated. To get the log-values,
