@@ -4,8 +4,8 @@
 \alias{esc_mean_sd}
 \title{Compute effect size from Mean and Standard Deviation}
 \usage{
-esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "or",
-  "logit", "r", "cox.or", "cox.log"))
+esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "g",
+  "or", "logit", "r", "cox.or", "cox.log"))
 }
 \arguments{
 \item{grp1m}{The mean of the first group.}
@@ -23,6 +23,7 @@ esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "or",
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}

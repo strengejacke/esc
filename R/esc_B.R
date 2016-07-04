@@ -7,9 +7,9 @@
 #' @inheritParams esc_beta
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
-#'         of the effect size \code{var}, the lower
-#'         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-#'         the weight factor \code{w}.
+#'         of the effect size \code{var}, the lower and upper confidence limits
+#'         \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+#'         total sample size \code{totaln}.
 #'
 #' @note If \code{es.type = "r"}, Fisher's transformation for the effect size
 #'       \code{r} and their confidence intervals are also returned.
@@ -20,7 +20,7 @@
 #' esc_B(3.3, 5, 100, 150)
 #'
 #' @export
-esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
@@ -29,6 +29,6 @@ esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "co
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type,
+  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
                      info = "unstandardized regression coefficient"))
 }

@@ -4,7 +4,7 @@
 \alias{esc_beta}
 \title{Compute effect size from Standardized Regression Coefficient}
 \usage{
-esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
+esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
   "cox.or", "cox.log"))
 }
 \arguments{
@@ -19,6 +19,7 @@ esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
@@ -28,9 +29,9 @@ esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size from Standardized Regression Coefficient.

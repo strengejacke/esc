@@ -28,8 +28,9 @@
 #' @inheritParams esc_beta
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
-#'   of the effect size \code{var}, the lower and upper confidence limits
-#'   \code{ci.lo} and \code{ci.hi} as well as the weight factor \code{w}.
+#'         of the effect size \code{var}, the lower and upper confidence limits
+#'         \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+#'         total sample size \code{totaln}.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand
 #'   Oaks, Calif: Sage Publications
@@ -64,7 +65,7 @@
 #' @export
 esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd, grp1r,
                           pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
-                          es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
+                          es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   # check if arguments are complete
@@ -154,7 +155,8 @@ esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean
   v <- (2 * (1 - grp1r)) / grp1n + (2 * (1 - grp2r)) / grp2n + es ^ 2 / (2 * (grp1n + grp2n))
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, info = "mean gain score"))
+  return(esc_generic(es = es, v = v, grp1n = grp1n, grp2n = grp2n,
+                     es.type = es.type, info = "mean gain score"))
 }
 
 

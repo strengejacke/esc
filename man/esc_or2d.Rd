@@ -4,7 +4,7 @@
 \alias{esc_or2d}
 \title{Convert effect size OR from d}
 \usage{
-esc_or2d(or, se, v, es.type = c("d", "cox.d"), info = NULL)
+esc_or2d(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL)
 }
 \arguments{
 \item{or}{The effect size as odds ratio.}
@@ -18,7 +18,8 @@ specified.}
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns effect size \code{d}}
-  \item{\code{"cox.d"}}{returns effect \code{d}, based on Cox method}
+  \item{\code{"cox.d"}}{returns effect size \code{d}, based on Cox method}
+  \item{\code{"g"}}{returns effect size Hedge's \code{g} (see \code{\link{hedges_g}})}
 }}
 
 \item{info}{String with information on the transformation. Used for the
@@ -26,9 +27,9 @@ print-method. Usually, this argument can be ignored}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size \code{d} from effect size \code{OR}.

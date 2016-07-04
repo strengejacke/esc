@@ -6,7 +6,7 @@
 \usage{
 esc_mean_gain(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd,
   grp1r, pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
-  es.type = c("d", "or", "logit", "r", "cox.or", "cox.log"))
+  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"))
 }
 \arguments{
 \item{pre1mean}{The mean of the first group at pre-test.}
@@ -48,6 +48,7 @@ group.}
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
@@ -57,8 +58,9 @@ group.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-  of the effect size \code{var}, the lower and upper confidence limits
-  \code{ci.lo} and \code{ci.hi} as well as the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size from Mean Gain Scores and Standard

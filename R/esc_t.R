@@ -40,7 +40,7 @@
 #'
 #' @importFrom stats qt
 #' @export
-esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -96,6 +96,6 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "or", "logit", "r
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type,
+  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
                      info = "t-value"))
 }

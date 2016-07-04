@@ -4,7 +4,7 @@
 \alias{esc_d2logit}
 \title{Convert effect size d into log odds}
 \usage{
-esc_d2logit(d, se, v, es.type = c("logit", "cox"), info = NULL)
+esc_d2logit(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL)
 }
 \arguments{
 \item{d}{The effect size \code{d}.}
@@ -24,9 +24,9 @@ print-method. Usually, this argument can be ignored}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size \code{log odds} from effect size \code{d}.

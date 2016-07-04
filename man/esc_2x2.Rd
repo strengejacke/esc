@@ -4,8 +4,8 @@
 \alias{esc_2x2}
 \title{Compute effect size from 2 by 2 Contingency Table}
 \usage{
-esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "or", "r",
-  "cox.d"))
+esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g", "or",
+  "r", "cox.d"))
 }
 \arguments{
 \item{grp1yes}{Size of treatment group with successes (outcome = yes).}
@@ -19,6 +19,7 @@ esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "or", "r",
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
@@ -28,9 +29,9 @@ esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "or", "r",
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size from a 2 by 2 frequency table.

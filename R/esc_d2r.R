@@ -44,6 +44,6 @@ esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL) {
     list(es = es, se = sqrt(v), var = v,
          ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
          w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
-         measure = "r", info = info)
+         totaln = (grp1n + grp2n), measure = "r", info = info)
   ))
 }

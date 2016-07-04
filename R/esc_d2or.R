@@ -31,9 +31,9 @@
 #'          }
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
-#'         of the effect size \code{var}, the lower
-#'         and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-#'         the weight factor \code{w}.
+#'         of the effect size \code{var}, the lower and upper confidence limits
+#'         \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+#'         total sample size \code{totaln}.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'             \cr \cr
@@ -48,7 +48,7 @@
 #' esc_or2d(3.56, se = 0.91)
 #'
 #' @export
-esc_d2or <- function(d, se, v, es.type = c("logit", "cox"), info = NULL) {
+esc_d2or <- function(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -58,6 +58,9 @@ esc_d2or <- function(d, se, v, es.type = c("logit", "cox"), info = NULL) {
 
   # do we have se?
   if (!missing(se) && !is.null(se)) v <- se ^ 2
+
+  # do we have total n?
+  if (missing(totaln)) totaln <- NULL
 
   # do we have a separate info string?
   if (is.null(info)) {
@@ -80,9 +83,9 @@ esc_d2or <- function(d, se, v, es.type = c("logit", "cox"), info = NULL) {
   # return effect size d
   return(structure(
     class = c("esc", "esc_d2or"),
-    list(es = exp(es), se = sqrt(v), var = v,
-         ci.lo = exp(lower_d(es, v)), ci.hi = exp(upper_d(es, v)),
-         w = 1 / v, measure = measure, info = info)
+    list(es = exp(es), se = sqrt(v), var = v, ci.lo = exp(lower_d(es, v)),
+         ci.hi = exp(upper_d(es, v)), w = 1 / v, totaln = totaln,
+         measure = measure, info = info)
   ))
 }
 

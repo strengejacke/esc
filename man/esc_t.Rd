@@ -4,7 +4,7 @@
 \alias{esc_t}
 \title{Compute effect size from Student's t-test}
 \usage{
-esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
+esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
   "cox.or", "cox.log"))
 }
 \arguments{
@@ -22,6 +22,7 @@ esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "or", "logit", "r",
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}

@@ -44,10 +44,18 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info) {
     return(esc_d2r(d = es, v = v, grp1n = grp1n, grp2n = grp2n,
                    info = paste0(info, " to effect size correlation")))
 
-  # return effect size as standardized mean difference d
+  # return d or Hedge's g
+  if (es.type == "d") {
+    info.suffix <- " to effect size d"
+  } else if (es.type == "g") {
+    info.suffix <- " to effect size Hedge's g"
+    es <- hedges_g(es, grp1n + grp2n)
+  }
+
+  # return effect size as standardized mean difference d or Hedge's g
   return(structure(
     class = c("esc", "esc_d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
-         w = 1 / v, measure = "d", info = paste0(info, " to effect size d")
+         w = 1 / v, totaln = (grp1n + grp2n), measure = es.type, info = paste0(info, info.suffix)
   )))
 }
