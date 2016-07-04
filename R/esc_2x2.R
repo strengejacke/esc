@@ -21,14 +21,14 @@
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'
 #' @examples
-#' # effect size d
+#' # effect size log odds
 #' esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45)
 #'
 #' # effect size odds ratio
 #' esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45, es.type = "or")
 #'
 #' @export
-esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "or", "logit", "r", "cox.d")) {
+esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "or", "r", "cox.d")) {
   es.type <- match.arg(es.type)
 
   es <- (grp1yes * grp2no) / (grp1no * grp2yes)

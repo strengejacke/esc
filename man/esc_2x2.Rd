@@ -4,7 +4,7 @@
 \alias{esc_2x2}
 \title{Compute effect size from 2 by 2 Contingency Table}
 \usage{
-esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("d", "or", "logit", "r",
+esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "or", "r",
   "cox.d"))
 }
 \arguments{
@@ -40,7 +40,7 @@ If \code{es.type = "r"}, Fisher's transformation for the effect size
       \code{r} and their confidence intervals are also returned.
 }
 \examples{
-# effect size d
+# effect size log odds
 esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45)
 
 # effect size odds ratio
