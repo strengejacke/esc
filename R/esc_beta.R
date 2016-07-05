@@ -10,13 +10,16 @@
 #' @param es.type Type of effect size that should be returned.
 #'        \describe{
 #'          \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
-#'          \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
+#'          \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
 #'          \item{\code{"or"}}{returns effect size as odds ratio}
 #'          \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
 #'          \item{\code{"logit"}}{returns effect size as log odds}
 #'          \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
 #'          \item{\code{"r"}}{returns correlation effect size \code{r}}
 #'        }
+#' @param study Optional string with the study name. Using \code{rbind} or
+#'        \code{as.data.frame} on \code{esc}-objects will add this as column
+#'        in the returned data frame.
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower and upper confidence limits
@@ -27,13 +30,18 @@
 #'       \code{r} and their confidence intervals are also returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' esc_beta(1.25, 3, 100, 150)
 #' esc_beta(1.25, 3, 100, 150, es.type = "cox.log")
 #'
 #' @export
-esc_beta <- function(beta, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_beta <- function(beta, sdy, grp1n, grp2n,
+                     es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+                     study = NULL) {
+  # match  arguments
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
@@ -46,5 +54,5 @@ esc_beta <- function(beta, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "standardized regression coefficient"))
+                     info = "standardized regression coefficient", study = study))
 }

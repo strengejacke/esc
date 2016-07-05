@@ -14,12 +14,14 @@
 #'         confidence intervals are returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' esc_d2r(d = 0.7, se = 0.5, grp1n = 70, grp2n = 80)
 #'
 #' @export
-esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL) {
+esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
   # check if parameter are complete
   if ((missing(se) || is.null(se)) && (missing(v) || is.null(v))) {
     stop("Either `se` or `v` must be specified.", call. = F)
@@ -44,6 +46,6 @@ esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL) {
     list(es = es, se = sqrt(v), var = v,
          ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
          w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
-         totaln = (grp1n + grp2n), measure = "r", info = info)
+         totaln = (grp1n + grp2n), measure = "r", info = info, study = study)
   ))
 }

@@ -15,12 +15,17 @@
 #'       \code{r} and their confidence intervals are also returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' esc_B(3.3, 5, 100, 150)
 #'
 #' @export
-esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_B <- function(b, sdy, grp1n, grp2n,
+                  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+                  study = NULL) {
+  # match  arguments
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
@@ -30,5 +35,5 @@ esc_B <- function(b, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r"
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "unstandardized regression coefficient"))
+                     info = "unstandardized regression coefficient", study = study))
 }

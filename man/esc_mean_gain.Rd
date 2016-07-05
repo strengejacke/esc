@@ -6,7 +6,8 @@
 \usage{
 esc_mean_gain(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd,
   grp1r, pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
-  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"))
+  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+  study = NULL)
 }
 \arguments{
 \item{pre1mean}{The mean of the first group at pre-test.}
@@ -48,13 +49,17 @@ group.}
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
-  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedge's \code{g}}
+  \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
   \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
   \item{\code{"r"}}{returns correlation effect size \code{r}}
 }}
+
+\item{study}{Optional string with the study name. Using \code{rbind} or
+\code{as.data.frame} on \code{esc}-objects will add this as column
+in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -97,7 +102,8 @@ esc_mean_gain(pre1mean = 13.07, pre1sd = 11.95, post1mean = 6.1, grp1r = .5,
 
 }
 \references{
-Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand
-  Oaks, Calif: Sage Publications
+Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+            \cr \cr
+            Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 }
 

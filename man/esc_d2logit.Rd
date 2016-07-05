@@ -4,7 +4,8 @@
 \alias{esc_d2logit}
 \title{Convert effect size d into log odds}
 \usage{
-esc_d2logit(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL)
+esc_d2logit(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL,
+  study = NULL)
 }
 \arguments{
 \item{d}{The effect size \code{d}.}
@@ -23,6 +24,10 @@ May be \code{es.type = "logit"} or \code{es.type = "cox"}
 
 \item{info}{String with information on the transformation. Used for the
 print-method. Usually, this argument can be ignored}
+
+\item{study}{Optional string with the study name. Using \code{rbind} or
+\code{as.data.frame} on \code{esc}-objects will add this as column
+in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -58,6 +63,8 @@ esc_d2logit(0.7, se = 0.5, es.type = "cox")
 }
 \references{
 Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+            \cr \cr
+            Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
             \cr \cr
             Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
             \cr \cr

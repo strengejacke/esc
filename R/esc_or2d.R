@@ -8,7 +8,7 @@
 #'        \describe{
 #'          \item{\code{"d"}}{returns effect size \code{d}}
 #'          \item{\code{"cox.d"}}{returns effect size \code{d}, based on Cox method}
-#'          \item{\code{"g"}}{returns effect size Hedge's \code{g} (see \code{\link{hedges_g}})}
+#'          \item{\code{"g"}}{returns effect size Hedges' \code{g} (see \code{\link{hedges_g}})}
 #'        }
 #'
 #' @inheritParams esc_beta
@@ -23,13 +23,15 @@
 #'         total sample size \code{totaln}.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' esc_or2d(3.56, se = 0.91)
 #' esc_d2or(0.7, se = 0.5)
 #'
 #' @export
-esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL) {
+esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL, study = NULL) {
   # check if parameter are complete
   if ((missing(se) || is.null(se)) && (missing(v) || is.null(v))) {
     stop("Either `se` or `v` must be specified.", call. = F)
@@ -48,7 +50,7 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = N
     else if (es.type == "d")
       info <- "effect size OR to effect size d"
     else if (es.type == "g")
-      info <- "effect size OR to effect size Hedge's g"
+      info <- "effect size OR to effect size Hedges' g"
   }
 
   if (es.type == "d" || es.type == "g") {
@@ -59,7 +61,7 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = N
     if (es.type == "g") {
       # do we have total n?
       if (is.null(totaln))
-        warning("`totaln` is needed to calculate Hedge's g.", call. = F)
+        warning("`totaln` is needed to calculate Hedges' g.", call. = F)
       else
         es <- hedges_g(es, totaln)
     }
@@ -74,6 +76,6 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = N
     class = c("esc", "esc_or2d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v),
          ci.hi = upper_d(es, v), w = 1 / v, totaln = totaln,
-         measure = measure, info = info)
+         measure = measure, info = info, study = study)
   ))
 }

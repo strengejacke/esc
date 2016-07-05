@@ -4,7 +4,7 @@
 \alias{esc_d2r}
 \title{Convert effect size d into correlation}
 \usage{
-esc_d2r(d, se, v, grp1n, grp2n, info = NULL)
+esc_d2r(d, se, v, grp1n, grp2n, info = NULL, study = NULL)
 }
 \arguments{
 \item{d}{The effect size \code{d}.}
@@ -21,6 +21,10 @@ specified.}
 
 \item{info}{String with information on the transformation. Used for the
 print-method. Usually, this argument can be ignored}
+
+\item{study}{Optional string with the study name. Using \code{rbind} or
+\code{as.data.frame} on \code{esc}-objects will add this as column
+in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -38,5 +42,7 @@ esc_d2r(d = 0.7, se = 0.5, grp1n = 70, grp2n = 80)
 }
 \references{
 Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+            \cr \cr
+            Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 }
 

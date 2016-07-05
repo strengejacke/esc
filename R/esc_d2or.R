@@ -39,6 +39,8 @@
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
 #'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
+#'             \cr \cr
 #'             Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
 #'             \cr \cr
 #'             Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
@@ -50,7 +52,10 @@
 #' esc_or2d(3.56, se = 0.91)
 #'
 #' @export
-esc_d2or <- function(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL) {
+esc_d2or <- function(d, se, v, totaln,
+                     es.type = c("logit", "cox"),
+                     info = NULL, study = NULL) {
+  # match  arguments
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -87,7 +92,7 @@ esc_d2or <- function(d, se, v, totaln, es.type = c("logit", "cox"), info = NULL)
     class = c("esc", "esc_d2or"),
     list(es = exp(es), se = sqrt(v), var = v, ci.lo = exp(lower_d(es, v)),
          ci.hi = exp(upper_d(es, v)), w = 1 / v, totaln = totaln,
-         measure = measure, info = info)
+         measure = measure, info = info, study = study)
   ))
 }
 

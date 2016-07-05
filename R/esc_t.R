@@ -24,6 +24,8 @@
 #'         the weight factor \code{w}.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' # unequal sample size
@@ -40,7 +42,7 @@
 #'
 #' @importFrom stats qt
 #' @export
-esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -79,7 +81,7 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit
       list(es = es, se = sqrt(v), var = v,
            ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
            w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
-           measure = "r", info = "t-value to effect size correlation")
+           measure = "r", info = "t-value to effect size correlation", study = study)
     ))
   }
 
@@ -97,5 +99,5 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "t-value"))
+                     info = "t-value", study = study))
 }

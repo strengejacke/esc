@@ -3,11 +3,13 @@ Type: Package
 Encoding: UTF-8
 Title: Effect Size Computation for Meta Analysis
 Version: 0.1.0
-Date: 2016-30-06
+Date: 2016-06-07
 Author: Daniel Lüdecke <d.luedecke@uke.de>
 Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
-Description: Implementation of the web-based 'Practical Meta-
-    Analysis Effect Size Calculator' from David B. Wilson in R.
+Description: Implementation of the web-based 'Practical Meta-Analysis Effect Size
+    Calculator' from David B. Wilson in R. Based on the input, the effect size
+    can be returned as standardized mean difference Hedges' g, correlation
+    coefficient r or Fisher's transformation z, odds ratio or log odds effect size.
 License: GPL-3
 Depends:
     R (>= 3.2),

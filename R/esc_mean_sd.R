@@ -18,6 +18,8 @@
 #'         the weight factor \code{w}.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @note If \code{es.type = "r"}, Fisher's transformation for the effect size
 #'       \code{r} and their confidence intervals are also returned.
@@ -27,7 +29,8 @@
 #'             grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")
 #'
 #' @export
-esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n,
+                        es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
@@ -36,7 +39,7 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c(
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "mean and sd"))
+                     info = "mean and sd", study = study))
 }
 
 
@@ -58,13 +61,16 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c(
 #'       \code{r} and their confidence intervals are also returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' esc_mean_se(grp1m = 7, grp1se = 1.5, grp1n = 50,
 #'             grp2m = 9, grp2se = 1.8, grp2n = 60, es.type = "or")
 #'
 #' @export
-esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n,
+                        es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   grp1sd <- grp1se * sqrt(grp1n - 1)
@@ -76,5 +82,5 @@ esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n, es.type = c(
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "mean and se"))
+                     info = "mean and se", study = study))
 }

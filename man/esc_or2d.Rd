@@ -4,7 +4,8 @@
 \alias{esc_or2d}
 \title{Convert effect size OR from d}
 \usage{
-esc_or2d(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL)
+esc_or2d(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL,
+  study = NULL)
 }
 \arguments{
 \item{or}{The effect size as odds ratio.}
@@ -21,11 +22,15 @@ specified.}
 \describe{
   \item{\code{"d"}}{returns effect size \code{d}}
   \item{\code{"cox.d"}}{returns effect size \code{d}, based on Cox method}
-  \item{\code{"g"}}{returns effect size Hedge's \code{g} (see \code{\link{hedges_g}})}
+  \item{\code{"g"}}{returns effect size Hedges' \code{g} (see \code{\link{hedges_g}})}
 }}
 
 \item{info}{String with information on the transformation. Used for the
 print-method. Usually, this argument can be ignored}
+
+\item{study}{Optional string with the study name. Using \code{rbind} or
+\code{as.data.frame} on \code{esc}-objects will add this as column
+in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
@@ -47,5 +52,7 @@ esc_d2or(0.7, se = 0.5)
 }
 \references{
 Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+            \cr \cr
+            Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 }
 

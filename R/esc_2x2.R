@@ -19,6 +19,8 @@
 #'       \code{r} and their confidence intervals are also returned.
 #'
 #' @references Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage Publications
+#'             \cr \cr
+#'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
 #' # effect size log odds
@@ -28,7 +30,13 @@
 #' esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45, es.type = "or")
 #'
 #' @export
-esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g", "or", "r", "cox.d")) {
+esc_2x2 <- function(grp1yes,
+                    grp1no,
+                    grp2yes,
+                    grp2no,
+                    es.type = c("logit", "d", "g", "or", "r", "cox.d"),
+                    study = NULL) {
+  # match  arguments
   es.type <- match.arg(es.type)
 
   es <- (grp1yes * grp2no) / (grp1no * grp2yes)
@@ -42,26 +50,27 @@ esc_2x2 <- function(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", 
       class = c("esc", "esc_2x2"),
       list(es = es, se = sqrt(v), var = v, ci.lo = exp(lower_d(log(es), v)),
            ci.hi = exp(upper_d(log(es), v)), w = 1 / v, totaln = totaln,
-           measure = "or", info = "2x2 table (OR) coefficient to effect size odds ratio")
+           measure = "or", info = "2x2 table (OR) coefficient to effect size odds ratio",
+           study = study)
     ))
   }
 
   # which es type to be returned?
-  if (es.type == "d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "d", info = "2x2 table (OR) to effect size d"))
+  if (es.type == "d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "d", info = "2x2 table (OR) to effect size d", study = study))
 
   # which es type to be returned?
-  if (es.type == "cox.d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "cox.d", info = "2x2 table (OR) to effect size Cox d"))
+  if (es.type == "cox.d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "cox.d", info = "2x2 table (OR) to effect size Cox d", study = study))
 
   # which es type to be returned?
-  if (es.type == "g") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "g", info = "2x2 table (OR) to effect size Hedge's g"))
+  if (es.type == "g") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "g", info = "2x2 table (OR) to effect size Hedges' g", study = study))
 
   # convert to plain d
   es <- log(es) * sqrt(3) / pi
   v <- v * 3 / pi ^ 2
 
   # which es type to be returned?
-  if (es.type == "logit") return(esc_d2logit(d = es, v = v, totaln = totaln, info = "2x2 table (OR) to effect size logits"))
+  if (es.type == "logit") return(esc_d2logit(d = es, v = v, totaln = totaln, info = "2x2 table (OR) to effect size logits", study = study))
 
   # which es type to be returned?
-  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = (grp1yes + grp1no), grp2n = (grp2yes + grp2no), info = "2x2 table (OR) coefficient to effect size correlation"))
+  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = (grp1yes + grp1no), grp2n = (grp2yes + grp2no), info = "2x2 table (OR) coefficient to effect size correlation", study = study))
 }

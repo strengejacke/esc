@@ -7,7 +7,8 @@
 \description{
   This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. \cr \cr
   Based on the input, the effect size can be returned as standardized mean difference (\code{d}),
-  the correlation coefficient effect size \code{r}, the odds ratio or log odds effect size.
+  Hedges' \code{g}, correlation coefficient effect size \code{r} or Fisher's transformation \code{z},
+  odds ratio or log odds effect size.
   \cr \cr
   \strong{Return values} \cr \cr
   The return value of all functions has the same structure:
@@ -32,7 +33,7 @@
 Package: \tab esc\cr
 Type: \tab Package\cr
 Version: \tab 0.1.0\cr
-Date: \tab 2016-06-30\cr
+Date: \tab 2016-06-07\cr
 License: \tab GPL-3\cr
 }
 }
