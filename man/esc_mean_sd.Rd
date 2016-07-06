@@ -4,8 +4,9 @@
 \alias{esc_mean_sd}
 \title{Compute effect size from Mean and Standard Deviation}
 \usage{
-esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "g",
-  "or", "logit", "r", "cox.or", "cox.log"), study = NULL)
+esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
+  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+  study = NULL)
 }
 \arguments{
 \item{grp1m}{The mean of the first group.}
@@ -19,6 +20,9 @@ esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, es.type = c("d", "g",
 \item{grp2sd}{The standard deviation of the second group.}
 
 \item{grp2n}{The sample size of the second group.}
+
+\item{totalsd}{The full sample standard deviation. Either \code{grp1sd} and
+\code{grp2sd}, or \code{totalsd} must be specified.}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{
@@ -37,20 +41,25 @@ in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
-Compute effect size from Mean and Standard Deviation.
+Compute effect size from mean and either group-based standard
+             deviations or full sample standard deviation.
 }
 \note{
 If \code{es.type = "r"}, Fisher's transformation for the effect size
       \code{r} and their confidence intervals are also returned.
 }
 \examples{
+# with standard deviations for each group
 esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50,
             grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")
+
+# with full sample standard deviations
+esc_mean_sd(grp1m = 7, grp1n = 50, grp2m = 9, grp2n = 60, totalsd = 4)
 
 }
 \references{

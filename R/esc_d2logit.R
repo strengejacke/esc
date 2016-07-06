@@ -38,7 +38,7 @@
 #' esc_d2logit(0.7, se = 0.5)
 #'
 #' # to Cox-logits
-#' esc_d2logit(0.7, se = 0.5, es.type = "cox")
+#' esc_d2logit(0.7, v = 0.25, es.type = "cox")
 #'
 #' @export
 esc_d2logit <- function(d, se, v, totaln,

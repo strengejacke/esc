@@ -38,5 +38,5 @@ esc_bin_prop <- function(prop1event, grp1n, prop2event, grp2n,
   # compute 2x2 effect size
   return(esc_2x2(grp1yes = round(prop1event * grp1n), grp1no = round((1 - prop1event) * grp1n),
                  grp2yes = round(prop2event * grp2n), grp2no = round((1 - prop2event) * grp2n),
-                 es.type = es.type, study = study))
+                 es.type = es.type, study = study, info = "binary proportion"))
 }

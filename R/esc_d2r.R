@@ -38,13 +38,13 @@ esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
   v <- v / (v + 1 / (p * (1 - p)))
 
   # compute fisher's corrections for r
-  es.zr <- esc.zr(es)
+  es.zr <- esc_r2z(es)
 
   # return effect size d
   return(structure(
     class = c("esc", "esc_d2r"),
     list(es = es, se = sqrt(v), var = v,
-         ci.lo = esc.inv.zr(lower_d(es.zr, v)), ci.hi = esc.inv.zr(upper_d(es.zr, v)),
+         ci.lo = esc_z2r(lower_d(es.zr, v)), ci.hi = esc_z2r(upper_d(es.zr, v)),
          w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
          totaln = (grp1n + grp2n), measure = "r", info = info, study = study)
   ))

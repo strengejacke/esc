@@ -14,6 +14,9 @@ The return value of all functions has the same structure:
 * The lower and upper confidence limits `ci.lo` and `ci.hi`.
 * The weight factor, based on the inverse-variance, `w`.
 * The total sample size `totaln`.
+* The effect size measure, `measure`, which is typically specified via the `es.type`-argument.
+* Information on the effect-size conversion, `info`.
+* A string with the study name, if the `study`-argument was specified in function calls.
 
 #### Correlation Effect Size
 

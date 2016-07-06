@@ -5,7 +5,7 @@
 \title{Compute effect size from Student's t-test}
 \usage{
 esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
-  "cox.or", "cox.log"), study = NULL)
+  "cox.or", "cox.log"), study = NULL, ...)
 }
 \arguments{
 \item{t}{The t-value of the t-test. One of \code{t} or \code{p} must be specified.}
@@ -33,12 +33,15 @@ esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
 \item{study}{Optional string with the study name. Using \code{rbind} or
 \code{as.data.frame} on \code{esc}-objects will add this as column
 in the returned data frame.}
+
+\item{...}{Other parameters, passed down to further functions. For internal
+use only, can be ignored.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size from Student's t-test for \emph{independent samples}.

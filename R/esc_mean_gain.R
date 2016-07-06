@@ -63,6 +63,11 @@
 #'               post1sd = 8.33, grp1n = 78, pre2mean = 10.77, pre2sd = 10.73,
 #'               post2mean = 8.83, post2sd = 9.67, grp2n = 83, grp2r = .5)
 #'
+#' # effect size based on gain scores for mean and sd. note that the
+#' # pre-post correlations must be given
+#' esc_mean_gain(gain1mean = 1.5, gain1sd = 1, grp1n = 40, grp1r = .5,
+#'               gain2mean = .7, gain2sd = .8, grp2n = 50, grp2r = .5)
+#'
 #' @export
 esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd, grp1r,
                           pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
