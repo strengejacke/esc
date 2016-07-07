@@ -34,9 +34,9 @@ in the returned data frame.}
 }
 \value{
 The effect size \code{es}, the standard error \code{se}, the variance
-        of the effect size \code{var}, the lower
-        and upper confidence limits \code{ci.lo} and \code{ci.hi} as well as
-        the weight factor \code{w}.
+        of the effect size \code{var}, the lower and upper confidence limits
+        \code{ci.lo} and \code{ci.hi}, the weight factor \code{w} and the
+        total sample size \code{totaln}.
 }
 \description{
 Compute effect size from One-way Anova with two independent groups.

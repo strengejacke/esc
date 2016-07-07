@@ -50,10 +50,16 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
   # compute totaln, better overview
   totaln <- grp1n + grp2n
 
+  # compute mean difference
+  dm <- grp1m - grp2m
+
   # compute pooled standard deviation.
   if (!missing(totalsd) && !is.null(totalsd))
-    # pooled sd from full sample sd
-    sd_pooled <- sqrt((totalsd ^ 2 * (totaln - 1) - ((grp1m ^ 2 + grp2m ^ 2 - 2 * grp1m * grp2m) / totaln)) / totaln)
+    # pooled sd from full sample sd, formula from book
+    sd_pooled <- sqrt(((totalsd ^ 2 * (totaln - 1) - ((dm ^ 2 * grp1n * grp2n) / totaln)) / (totaln - 1)))
+    # pooled sd from full sample sd, formula from unpublished manuscript. formulas vary,
+    # email-correspondence with author suggests that book-formula should be correct
+    # sd_pooled <- sqrt((totalsd ^ 2 * (totaln - 1) - ((grp1m ^ 2 + grp2m ^ 2 - 2 * grp1m * grp2m) / totaln)) / totaln)
   else
     # pooled sd from group sd's
     sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
