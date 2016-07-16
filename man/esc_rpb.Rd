@@ -30,7 +30,7 @@ esc_rpb(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit",
   \item{\code{"r"}}{returns correlation effect size \code{r}}
 }}
 
-\item{study}{Optional string with the study name. Using \code{rbind} or
+\item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or
 \code{as.data.frame} on \code{esc}-objects will add this as column
 in the returned data frame.}
 }

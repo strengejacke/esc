@@ -35,7 +35,7 @@
   \strong{Preparing an Effect Size Data Frame for Meta-Analysis} \cr \cr
   The results of the effect size calculation functions in this package are returned as list with
   a \code{esc}-class attribute. The \code{\link{combine_esc}}-function takes one or more
-  of these\code{esc}-objects and combines them into a \code{data.frame} that can be
+  of these \code{esc}-objects and combines them into a \code{data.frame} that can be
   used as argument for further use, for instance with the \code{\link[metafor]{rma}}-function.
   \preformatted{
     e1 <- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40,

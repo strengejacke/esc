@@ -25,7 +25,7 @@ May be \code{es.type = "logit"} or \code{es.type = "cox"}
 \item{info}{String with information on the transformation. Used for the
 print-method. Usually, this argument can be ignored}
 
-\item{study}{Optional string with the study name. Using \code{rbind} or
+\item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or
 \code{as.data.frame} on \code{esc}-objects will add this as column
 in the returned data frame.}
 }

@@ -17,7 +17,7 @@
 #'          \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
 #'          \item{\code{"r"}}{returns correlation effect size \code{r}}
 #'        }
-#' @param study Optional string with the study name. Using \code{rbind} or
+#' @param study Optional string with the study name. Using \code{\link{combine_esc}} or
 #'        \code{as.data.frame} on \code{esc}-objects will add this as column
 #'        in the returned data frame.
 #'

@@ -35,7 +35,7 @@ esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
   \item{\code{"r"}}{returns correlation effect size \code{r}}
 }}
 
-\item{study}{Optional string with the study name. Using \code{rbind} or
+\item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or
 \code{as.data.frame} on \code{esc}-objects will add this as column
 in the returned data frame.}
 }
