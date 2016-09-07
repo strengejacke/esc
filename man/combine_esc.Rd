@@ -32,4 +32,7 @@ e4 <- esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50, grp2m = 9, grp2sd = 3,
 combine_esc(e1, e2, e3, e4)
 
 }
+\seealso{
+\code{\link{write_esc}}
+}
 

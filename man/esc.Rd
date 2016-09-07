@@ -55,8 +55,8 @@
 \tabular{rl}{
 Package: \tab esc\cr
 Type: \tab Package\cr
-Version: \tab 0.1.0\cr
-Date: \tab 2016-06-07\cr
+Version: \tab 0.2.0\cr
+Date: \tab 2016-09-07\cr
 License: \tab GPL-3\cr
 }
 }

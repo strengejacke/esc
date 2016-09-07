@@ -1,5 +1,5 @@
-# esc 0.1.0
+# esc 0.2.0
 
-## General
+## New functions
 
-* Initial release on CRAN.
+* `write_esc()` as a convenient wrapper to write results to an Excel csv-file.
