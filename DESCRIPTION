@@ -17,6 +17,6 @@ Depends:
 Imports:
     readr,
     utils
-URL: https://github.com/sjPlot/esc
-BugReports: https://github.com/sjPlot/esc/issues
+URL: https://github.com/strengejacke/esc
+BugReports: https://github.com/strengejacke/esc/issues
 RoxygenNote: 5.0.1

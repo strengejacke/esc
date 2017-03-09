@@ -61,7 +61,7 @@ To install the latest development snapshot (see latest changes below), type foll
 
 ```r
 library(devtools)
-devtools::install_github("sjPlot/esc")
+devtools::install_github("strengejacke/esc")
 ```
 
 ## Citation

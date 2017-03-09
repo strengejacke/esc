@@ -65,7 +65,7 @@ Daniel Lüdecke \email{d.luedecke@uke.de}
 }
 \references{
   \itemize{
-    \item Github: \url{https://github.com/sjPlot/esc}
-    \item Bug reports: \url{https://github.com/sjPlot/esc/issues}
+    \item Github: \url{https://github.com/strengejacke/esc}
+    \item Bug reports: \url{https://github.com/strengejacke/esc/issues}
   }
 }
