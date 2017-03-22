@@ -33,6 +33,15 @@
 #'
 #'
 #' tmp <- data.frame(
+#'   tvalue = c(3.3, 2.9, NA, 2.3),
+#'   n = c(250, 200, 210, 210),
+#'   studyname = c("Study 1", "Study 2", NA, "Study 4")
+#' )
+#'
+#' effect_sizes(t = tvalue, totaln = n, study = studyname, type = "esc_t", data = tmp)
+#'
+#'
+#' tmp <- data.frame(
 #'   coefficient = c(0.4, 0.2, 0.6),
 #'   se = c(.15, .1, .2),
 #'   treat = c(50, 60, 50),
@@ -63,12 +72,22 @@ effect_sizes <- function(..., data, type, es.type = c("d", "g", "or", "logit", "
   for (i in 1:nrow(data)) {
     # get required data row
     datarow <- data[i, cols]
-    # copy values as list, for do.call
-    callparams <- as.list(datarow)
-    # give argument proper names
-    names(callparams) <- argnames
-    # call esc-method
-    results[[length(results) + 1]] <- do.call(eval(type), args = c(callparams, es.type))
+    # make sure we have no missing, else es can't be computed
+    if (anyNA(datarow)) {
+      warning(sprintf(
+        "Row %i has missing values in columns '%s' and was dropped.",
+        i,
+        paste0(colnames(data)[which(is.na(datarow))], collapse = ", ")
+      ),
+      call. = F)
+    } else {
+      # copy values as list, for do.call
+      callparams <- as.list(datarow)
+      # give argument proper names
+      names(callparams) <- argnames
+      # call esc-method
+      results[[length(results) + 1]] <- do.call(eval(type), args = c(callparams, es.type))
+    }
   }
 
   # returned results as combined tibble

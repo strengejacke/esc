@@ -55,6 +55,15 @@ effect_sizes(t = tvalue, totaln = n, study = studyname, type = "esc_t", data = t
 
 
 tmp <- data.frame(
+  tvalue = c(3.3, 2.9, NA, 2.3),
+  n = c(250, 200, 210, 210),
+  studyname = c("Study 1", "Study 2", NA, "Study 4")
+)
+
+effect_sizes(t = tvalue, totaln = n, study = studyname, type = "esc_t", data = tmp)
+
+
+tmp <- data.frame(
   coefficient = c(0.4, 0.2, 0.6),
   se = c(.15, .1, .2),
   treat = c(50, 60, 50),
