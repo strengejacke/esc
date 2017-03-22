@@ -47,4 +47,3 @@ write_esc(e1, e2, e3, e4, path = "EffSizes")}
 \seealso{
 \code{\link{combine_esc}}
 }
-

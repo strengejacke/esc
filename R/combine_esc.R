@@ -25,34 +25,32 @@
 #'
 #' combine_esc(e1, e2, e3, e4)
 #'
+#' @importFrom purrr map map_df
+#' @importFrom sjmisc remove_empty_cols
 #' @export
 combine_esc <- function(...) {
   # get input
   obj <- list(...)
-  # do we have any object with correlation effect size?
-  any.res <- unlist(lapply(obj, function(x) any(class(x) == "esc_d2r")))
-  # if yes, add this class attribute to each object
-  if (any(any.res)) {
-    # iterate all esc-objects
-    for (i in seq_len(length(obj))) {
-      # add class attribute
-      if (!any(class(obj[[i]]) == "esc_d2r")) {
-        class(obj[[i]]) <- c(class(obj[[i]]), "esc_d2r")
-        # fill non existing values
-        obj[[i]]$zr <- NA
-        obj[[i]]$ci.lo.zr <- NA
-        obj[[i]]$ci.hi.zr <- NA
-      }
+
+  # make sure we have same columns for all effects. for correlation effect sizes,
+  # we have columns zr, ci.lo.zr and ci.hi.zr
+  obj <- lapply(obj, function(x) {
+    if (!inherits(x, "esc_d2r")) {
+      class(x) <- c(class(x), "esc_d2r")
+      # fill non existing values
+      x$zr <- NA
+      x$ci.lo.zr <- NA
+      x$ci.hi.zr <- NA
     }
-  }
-  # create new data frame
-  ret.val <- data.frame()
-  # iterate objects again
-  for (i in seq_len(length(obj))) {
-    # bind converted data frame to each row
-    ret.val <- rbind(ret.val, as.data.frame(obj[[i]]))
-  }
-  ret.val
+
+    x
+  })
+
+  # remove empty columns if we did not have any correlations
+  result <- sjmisc::remove_empty_cols(do.call(rbind, purrr::map(obj, ~as.data.frame(.x))))
+
+  # make factor columns character
+  purrr::map_df(result, function(x) if (is.factor(x)) as.character(x) else x)
 }
 
 
@@ -99,24 +97,30 @@ write_esc <- function(..., path, sep = ",") {
   # check if file extension exists
   has.extension <- (regexpr("\\.[^\\.]*$", path) != -1)
   if (!has.extension) path <- paste0(path, ".csv")
+
   # check fir valid file extention
   dot.start <- regexpr("\\.[^\\.]*$", path) + 1
   ext <- tolower(substring(path, dot.start, nchar(path)))
+
   # correct wrong file extension
   if (ext != "csv") {
     warning("Data can only be written to csv-files. Changing file extension to `.csv`.", call. = F)
     path <- paste0(substring(path, 0, last = dot.start - 1), "csv")
   }
+
   # combine esc-results
   x <- combine_esc(...)
+
   # tell user what's going on...
   cat("Writing Excel csv-file to:\n")
   cat(normalizePath(path = path, winslash = "/", mustWork = F))
+
   # write to excel
   if (sep == ";")
     utils::write.csv2(x, file = path, fileEncoding = "UTF-8")
   else
     readr::write_excel_csv(x = x, path = path)
+
   # return data frame
   invisible(x)
 }

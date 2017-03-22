@@ -32,6 +32,9 @@
 #'
 #' @export
 esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL, study = NULL) {
+  # match arguments
+  es.type <- match.arg(es.type)
+
   # check if parameter are complete
   if ((missing(se) || is.null(se)) && (missing(v) || is.null(v))) {
     stop("Either `se` or `v` must be specified.", call. = F)

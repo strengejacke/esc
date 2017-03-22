@@ -71,4 +71,3 @@ Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage 
             \cr \cr
             Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
 }
-

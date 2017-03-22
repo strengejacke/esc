@@ -54,10 +54,10 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   }
 
   # return effect size as standardized mean difference d or Hedges' g
-  return(structure(
+  structure(
     class = c("esc", "esc_d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),
          w = 1 / v, totaln = totaln, measure = es.type,
          info = paste0(info, info.suffix), study = study
-  )))
+  ))
 }

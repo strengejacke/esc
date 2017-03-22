@@ -34,6 +34,13 @@ esc_B <- function(b, sdy, grp1n, grp2n,
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "unstandardized regression coefficient", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    es.type = es.type,
+    grp1n = grp1n,
+    grp2n = grp2n,
+    info = "unstandardized regression coefficient",
+    study = study
+  )
 }

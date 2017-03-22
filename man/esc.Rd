@@ -51,21 +51,3 @@
     metafor::rma(yi = es, sei = se, method = "REML", data = mydat)
   }
 }
-\details{
-\tabular{rl}{
-Package: \tab esc\cr
-Type: \tab Package\cr
-Version: \tab 0.2.0\cr
-Date: \tab 2016-09-07\cr
-License: \tab GPL-3\cr
-}
-}
-\author{
-Daniel Lüdecke \email{d.luedecke@uke.de}
-}
-\references{
-  \itemize{
-    \item Github: \url{https://github.com/strengejacke/esc}
-    \item Bug reports: \url{https://github.com/strengejacke/esc/issues}
-  }
-}
