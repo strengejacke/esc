@@ -26,7 +26,7 @@
 #' combine_esc(e1, e2, e3, e4)
 #'
 #' @importFrom purrr map map_df
-#' @importFrom sjmisc remove_empty_cols
+#' @importFrom sjmisc remove_empty_cols is_empty empty_cols
 #' @export
 combine_esc <- function(...) {
   # get input
@@ -47,7 +47,11 @@ combine_esc <- function(...) {
   })
 
   # remove empty columns if we did not have any correlations
-  result <- sjmisc::remove_empty_cols(do.call(rbind, purrr::map(obj, ~as.data.frame(.x))))
+  result <- do.call(rbind, purrr::map(obj, ~as.data.frame(.x)))
+
+  # remove empty cols, if any
+  if (!sjmisc::is_empty(sjmisc::empty_cols(result)))
+    result <- sjmisc::remove_empty_cols(result)
 
   # make factor columns character
   purrr::map_df(result, function(x) if (is.factor(x)) as.character(x) else x)
