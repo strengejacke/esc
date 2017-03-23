@@ -110,18 +110,23 @@ effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "
     # give argument proper names
     names(callparams) <- argnames
     # call esc-method
-    results[[length(results) + 1]] <- do.call(eval(type), args = c(callparams, es.type = es.type))
+    results[[length(results) + 1]] <-
+      suppressWarnings(do.call(eval(type), args = c(callparams, es.type = es.type)))
   }
 
   # returned results as combined tibble
-  results <- purrr::map_df(results, function(x) tibble::as_tibble(x))
+  results <- suppressWarnings(purrr::map_df(results, function(x) tibble::as_tibble(x)))
 
   # do we have any missing effect sizes?
-  if (anyNA(results$es)) {
-    # get studies with missing
-    mes <- which(is.na(results$es))
+  if (anyNA(results$es) || any(is.infinite(results$es))) {
+    # get studies with missing or Inf effect sizes
+    mes <- which(is.na(results$es) | is.infinite(results$es))
     # warn user that some entries have been dropped
-    warning(sprintf("Row(s) %i in `data` had missing values and were removed.", mes), call. = F)
+    warning(sprintf(
+      "Row(s) %s in `data` had missing values and were removed.",
+      paste0(mes, collapse = ", ")
+    ),
+    call. = F)
     # remove missings
     results <- dplyr::slice(results, -mes)
   }
