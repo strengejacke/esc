@@ -29,7 +29,7 @@ esc_B <- function(b, sdy, grp1n, grp2n,
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
-  sdpooled <- sqrt(((sdy ^ 2 * (totaln - 1)) - (b ^ 2 * ((grp1n * grp2n) / (grp1n + grp2n)))) / (totaln - 2))
+  sdpooled <- sqrt(abs(((sdy ^ 2 * (totaln - 1)) - (b ^ 2 * ((grp1n * grp2n) / (grp1n + grp2n)))) / (totaln - 2)))
   es <- b / sdpooled
   v <- esc.vd(es, grp1n, grp2n)
 

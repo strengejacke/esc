@@ -23,12 +23,13 @@
 #' @export
 esc_d2r <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
   # check if parameter are complete
-  if ((missing(se) || is.null(se)) && (missing(v) || is.null(v))) {
-    stop("Either `se` or `v` must be specified.", call. = F)
+  if ((missing(se) || is.null(se) || is.na(se)) && (missing(v) || is.null(v) || is.na(v))) {
+    warning("Either `se` or `v` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = NA, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # do we have se?
-  if (!missing(se) && !is.null(se)) v <- se ^ 2
+  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se ^ 2
 
   # do we have a separate info string?
   if (is.null(info)) info <- "effect size d to effect size correlation"

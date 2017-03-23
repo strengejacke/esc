@@ -15,6 +15,7 @@ Depends:
     R (>= 3.2),
     stats
 Imports:
+    dplyr,
     purrr,
     readr,
     sjmisc (>= 2.3.1),

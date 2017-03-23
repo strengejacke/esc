@@ -75,47 +75,57 @@ esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean
   es.type <- match.arg(es.type)
 
   # check if arguments are complete
-  if ((missing(gain1mean) || is.null(gain1mean)) &&
-      ((missing(pre1mean) || is.null(pre1mean)) || (missing(post1mean) || is.null(post1mean)))) {
-    stop("Either `pre1mean` and `post1mean` or `gain1mean` must be specified.", call. = F)
+  if ((missing(gain1mean) || is.null(gain1mean) || is.na(gain1mean)) &&
+      ((missing(pre1mean) || is.null(pre1mean) || is.na(pre1mean)) ||
+       (missing(post1mean) || is.null(post1mean) || is.na(post1mean)))) {
+    warning("Either `pre1mean` and `post1mean` or `gain1mean` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if arguments are complete
-  if ((missing(gain2mean) || is.null(gain2mean)) &&
-      ((missing(pre2mean) || is.null(pre2mean)) || (missing(post2mean) || is.null(post2mean)))) {
-    stop("Either `pre2mean` and `post2mean` or `gain2mean` must be specified.", call. = F)
+  if ((missing(gain2mean) || is.null(gain2mean) || is.na(gain2mean)) &&
+      ((missing(pre2mean) || is.null(pre2mean) || is.na(pre2mean)) ||
+       (missing(post2mean) || is.null(post2mean) || is.na(post2mean)))) {
+    warning("Either `pre2mean` and `post2mean` or `gain2mean` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if arguments are complete
-  if ((missing(gain1sd) || is.null(gain1sd)) &&
-      ((missing(pre1sd) || is.null(pre1sd)) || (missing(post1sd) || is.null(post1sd)))) {
-    stop("Either `pre1sd` and `post1sd` or `gain1sd` must be specified.", call. = F)
+  if ((missing(gain1sd) || is.null(gain1sd) || is.na(gain1sd)) &&
+      ((missing(pre1sd) || is.null(pre1sd) || is.na(pre1sd)) ||
+       (missing(post1sd) || is.null(post1sd) || is.na(post1sd)))) {
+    warning("Either `pre1sd` and `post1sd` or `gain1sd` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if arguments are complete
-  if ((missing(gain2sd) || is.null(gain2sd)) &&
-      ((missing(pre2sd) || is.null(pre2sd)) || (missing(post2sd) || is.null(post2sd)))) {
-    stop("Either `pre2sd` and `post2sd` or `gain2sd` must be specified.", call. = F)
+  if ((missing(gain2sd) || is.null(gain2sd) || is.na(gain2sd)) &&
+      ((missing(pre2sd) || is.null(pre2sd) || is.na(pre2sd)) ||
+       (missing(post2sd) || is.null(post2sd) || is.na(post2sd)))) {
+    warning("Either `pre2sd` and `post2sd` or `gain2sd` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if arguments are complete
-  if (!missing(pre1sd) && !is.null(pre1sd) && !missing(post1sd) && !is.null(post1sd) && !missing(grp1r) && !is.null(grp1r)) {
-    warning("Pre-post correlation `grp1r` is specified, although it could be computed from `pre1sd` and `post1sd`. If `grp1r` is missing, correlation of pre-post scores will be computed automatically.", call. = F)
+  if (!missing(pre1sd) && !is.null(pre1sd) && !is.na(pre1sd) && !missing(post1sd) && !is.null(post1sd) && !is.na(post1sd) && !missing(grp1r) && !is.null(grp1r) && !is.na(grp1r)) {
+    message("Pre-post correlation `grp1r` is specified, although it could be computed from `pre1sd` and `post1sd`. If `grp1r` is missing, correlation of pre-post scores will be computed automatically.", call. = F)
   }
 
   # check if arguments are complete
-  if (!missing(pre2sd) && !is.null(pre2sd) && !missing(post2sd) && !is.null(post2sd) && !missing(grp2r) && !is.null(grp2r)) {
-    warning("Pre-post correlation `grp2r` is specified, although it could be computed from `pre2sd` and `post2sd`. If `grp2r` is missing, correlation of pre-post scores will be computed automatically.", call. = F)
+  if (!missing(pre2sd) && !is.null(pre2sd) && !is.na(pre2sd) && !missing(post2sd) && !is.null(post2sd) && !is.na(post2sd) && !missing(grp2r) && !is.null(grp2r) && !is.na(grp2r)) {
+    message("Pre-post correlation `grp2r` is specified, although it could be computed from `pre2sd` and `post2sd`. If `grp2r` is missing, correlation of pre-post scores will be computed automatically.", call. = F)
   }
 
   # check if arguments are complete
-  if (((missing(pre1sd) || is.null(pre1sd)) || (missing(post1sd) || is.null(post1sd))) && (missing(grp1r) || is.null(grp1r))) {
-    stop("`grp1r` must be specified.", call. = F)
+  if (((missing(pre1sd) || is.null(pre1sd) || is.na(pre1sd)) || (missing(post1sd) || is.null(post1sd) || is.na(post1sd))) && (missing(grp1r) || is.null(grp1r) || is.na(grp1r))) {
+    warning("`grp1r` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if arguments are complete
-  if (((missing(pre2sd) || is.null(pre2sd)) || (missing(post2sd) || is.null(post2sd))) && (missing(grp2r) || is.null(grp2r))) {
-    stop("`grp2r` must be specified.", call. = F)
+  if (((missing(pre2sd) || is.null(pre2sd) || is.na(pre2sd)) || (missing(post2sd) || is.null(post2sd) || is.na(post2sd))) && (missing(grp2r) || is.null(grp2r) || is.na(grp2r))) {
+    warning("`grp2r` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # compute r for group 1, based on t-test

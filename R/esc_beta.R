@@ -34,8 +34,8 @@
 #'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
-#' esc_beta(1.25, 3, 100, 150)
-#' esc_beta(1.25, 3, 100, 150, es.type = "cox.log")
+#' esc_beta(.7, 3, 100, 150)
+#' esc_beta(.7, 3, 100, 150, es.type = "cox.log")
 #'
 #' @export
 esc_beta <- function(beta, sdy, grp1n, grp2n,
@@ -45,10 +45,10 @@ esc_beta <- function(beta, sdy, grp1n, grp2n,
   es.type <- match.arg(es.type)
 
   totaln <- grp1n + grp2n
-  sdx <- sqrt((grp1n - (grp1n ^ 2 / totaln)) / (totaln - 1))
+  sdx <- sqrt(abs((grp1n - (grp1n ^ 2 / totaln)) / (totaln - 1)))
   b <- beta * (sdy / sdx)
 
-  sdpooled <- sqrt(((sdy ^ 2 * (totaln - 1)) - (b ^ 2 * ((grp1n * grp2n) / (grp1n + grp2n)))) / (totaln - 2))
+  sdpooled <- sqrt(abs(((sdy ^ 2 * (totaln - 1)) - (b ^ 2 * ((grp1n * grp2n) / (grp1n + grp2n)))) / (totaln - 2)))
   es <- b / sdpooled
   v <- esc.vd(es, grp1n, grp2n)
 

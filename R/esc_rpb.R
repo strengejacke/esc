@@ -37,19 +37,21 @@ esc_rpb <- function(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "log
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
-  if ((missing(r) || is.null(r)) && (missing(p) || is.null(p))) {
-    stop("Either `r` or `p` must be specified.", call. = F)
+  if ((missing(r) || is.null(r) || is.na(r)) && (missing(p) || is.null(p) || is.na(p))) {
+    warning("Either `r` or `p` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # check if parameter are complete
-  if ((missing(totaln) || is.null(totaln)) &&
-      ((missing(grp1n) || is.null(grp1n)) ||
-       (missing(grp2n) || is.null(grp2n)))) {
-    stop("Either `totaln` or both `grp1n` and `grp2n` must be specified.", call. = F)
+  if ((missing(totaln) || is.null(totaln) || is.na(totaln)) &&
+      ((missing(grp1n) || is.null(grp1n) || is.na(grp1n)) ||
+       (missing(grp2n) || is.null(grp2n) || is.na(grp2n)))) {
+    warning("Either `totaln` or both `grp1n` and `grp2n` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # if we have no total sample size, compute it from group sizes
-  if (missing(totaln) || is.null(totaln)) {
+  if (missing(totaln) || is.null(totaln) || is.na(totaln)) {
     totaln <- grp1n + grp2n
     equal.size <- F
   } else {
@@ -61,7 +63,7 @@ esc_rpb <- function(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "log
 
   # if we have no t-value, compute it from p.
   # divide p by two, because two-tailed.
-  if (missing(r) || is.null(r))
+  if (missing(r) || is.null(r) || is.na(r))
     t <- stats::qt(p = p / 2, df = totaln - 2, lower.tail = F)
 
   # if t is not NULL, p is given

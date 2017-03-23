@@ -59,15 +59,16 @@ esc_d2or <- function(d, se, v, totaln,
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
-  if ((missing(se) || is.null(se)) && (missing(v) || is.null(v))) {
-    stop("Either `se` or `v` must be specified.", call. = F)
+  if ((missing(se) || is.null(se) || is.na(se)) && (missing(v) || is.null(v) || is.na(v))) {
+    warning("Either `se` or `v` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # do we have se?
-  if (!missing(se) && !is.null(se)) v <- se ^ 2
+  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se ^ 2
 
   # do we have total n?
-  if (missing(totaln)) totaln <- NULL
+  if (missing(totaln) || is.na(totaln)) totaln <- NULL
 
   # do we have a separate info string?
   if (is.null(info)) {

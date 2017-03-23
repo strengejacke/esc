@@ -45,8 +45,8 @@ If \code{es.type = "r"}, Fisher's transformation for the effect size
       \code{r} and their confidence intervals are also returned.
 }
 \examples{
-esc_beta(1.25, 3, 100, 150)
-esc_beta(1.25, 3, 100, 150, es.type = "cox.log")
+esc_beta(.7, 3, 100, 150)
+esc_beta(.7, 3, 100, 150, es.type = "cox.log")
 
 }
 \references{

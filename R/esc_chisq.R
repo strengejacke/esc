@@ -38,13 +38,14 @@ esc_chisq <- function(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r"
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
-  if ((missing(chisq) || is.null(chisq)) && (missing(p) || is.null(p))) {
-    stop("Either `chisq` or `p` must be specified.", call. = F)
+  if ((missing(chisq) || is.null(chisq) || is.na(chisq)) && (missing(p) || is.null(p) || is.na(p))) {
+    warning("Either `chisq` or `p` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # if we have no phi-value, compute it from p.
   # divide p by two, because two-tailed.
-  if (missing(chisq) || is.null(chisq)) chisq <- stats::qnorm(p / 2, lower.tail = F) ^ 2
+  if (missing(chisq) || is.null(chisq) || is.na(chisq)) chisq <- stats::qnorm(p / 2, lower.tail = F) ^ 2
 
   # compute effect size
   es <- 2 * sqrt(chisq / (totaln - chisq))
@@ -97,7 +98,8 @@ esc_phi <- function(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "c
 
   # check if parameter are complete
   if ((missing(phi) || is.null(phi)) && (missing(p) || is.null(p))) {
-    stop("Either `phi` or `p` must be specified.", call. = F)
+    warning("Either `phi` or `p` must be specified.", call. = F)
+    return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
   # if we have no phi-value, compute it from p.
