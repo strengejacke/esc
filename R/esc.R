@@ -12,8 +12,10 @@
 #'          \pkg{esc} functions' argument, the argument (right-hand side) is the
 #'          name of the column in \code{data} that holds the data values.
 #'          See 'Examples'.
-#' @param type Name of one of the \pkg{esc}-functions, where arguments in \code{...}
-#'          are passed to.
+#' @param fun Name of one of the \pkg{esc}-functions, as string, where arguments
+#'          in \code{...} are passed to. May either be the full function name
+#'          (like \code{"esc_t"} or \code{"esc_2x2"}) or the funcion name
+#'          \emph{without} the suffix \code{"esc_"} (like \code{"t"} or \code{"2x2"}).
 #' @inheritParams esc_beta
 #'
 #' @details This function rowwise iterates \code{data} and calls the function named
@@ -40,15 +42,16 @@
 #'   n = c(250, 200, 210),
 #'   studyname = c("Study 1", "Study 2", "Study 3")
 #' )
-#' effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, type = "esc_t")
+#' effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, fun = "esc_t")
 #'
-#' # missing effect size results are dropped
+#' # missing effect size results are dropped,
+#' # shorter function name, calls "esc_t()"
 #' tmp <- data.frame(
 #'   tvalue = c(3.3, 2.9, NA, 2.3),
 #'   n = c(250, 200, 210, 210),
 #'   studyname = c("Study 1", "Study 2", NA, "Study 4")
 #' )
-#' effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, type = "esc_t")
+#' effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, fun = "t")
 #'
 #'
 #' tmp <- data.frame(
@@ -59,7 +62,7 @@
 #'   author = c("Smith 2000", "Smith 2010 2", "Smith 2012")
 #' )
 #' effect_sizes(tmp, beta = coefficient, sdy = se, grp1n = treat, grp2n = cntrl,
-#'     study = author, type = "esc_beta", es.type = "or")
+#'     study = author, fun = "esc_beta", es.type = "or")
 #'
 #' # the "esc_chisq" function requires *either* the chisq-argument *or*
 #' # the pval-argument. If at least one of these values is present,
@@ -72,7 +75,7 @@
 #'   studyname = c("Study 1", "Study 2", "Study 3", "Study 4", "Study 5")
 #' )
 #' effect_sizes(tmp, chisq = chisqquared, p = pval, totaln = n,
-#'              study = studyname, type = "esc_chisq")
+#'              study = studyname, fun = "esc_chisq")
 #'
 #' # if all required information are missing, data will be removed
 #' tmp <- data.frame(
@@ -82,15 +85,18 @@
 #'   studyname = c("Study 1", "Study 2", "Study 3", "Study 4", "Study 5")
 #' )
 #' effect_sizes(tmp, chisq = chisqquared, p = pval, totaln = n,
-#'              study = studyname, type = "esc_chisq")
+#'              study = studyname, fun = "chisq")
 #'
 #'
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr slice_
 #' @importFrom purrr map_df
 #' @export
-effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
+
+  # check function name
+  if (substr(fun, 1, 4) != "esc_") fun <- paste0("esc_", fun)
 
   # get arguments
   params <- match.call(expand.dots = FALSE)$`...`
@@ -123,7 +129,7 @@ effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "
     names(callparams) <- argnames
     # call esc-method
     results[[length(results) + 1]] <-
-      suppressWarnings(do.call(eval(type), args = c(callparams, es.type = es.type)))
+      suppressWarnings(do.call(eval(fun), args = c(callparams, es.type = es.type)))
   }
 
   # returned results as combined tibble

@@ -4,7 +4,7 @@
 \alias{effect_sizes}
 \title{Generate effect size data frame from other data}
 \usage{
-effect_sizes(data, ..., type, es.type = c("d", "g", "or", "logit", "r",
+effect_sizes(data, ..., fun, es.type = c("d", "g", "or", "logit", "r",
   "cox.or", "cox.log"))
 }
 \arguments{
@@ -16,8 +16,10 @@ to one of the \pkg{esc}-functions.}
 name of the column in \code{data} that holds the data values.
 See 'Examples'.}
 
-\item{type}{Name of one of the \pkg{esc}-functions, where arguments in \code{...}
-are passed to.}
+\item{fun}{Name of one of the \pkg{esc}-functions, as string, where arguments
+in \code{...} are passed to. May either be the full function name
+(like \code{"esc_t"} or \code{"esc_2x2"}) or the funcion name
+\emph{without} the suffix \code{"esc_"} (like \code{"t"} or \code{"2x2"}).}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{
@@ -62,15 +64,16 @@ tmp <- data.frame(
   n = c(250, 200, 210),
   studyname = c("Study 1", "Study 2", "Study 3")
 )
-effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, type = "esc_t")
+effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, fun = "esc_t")
 
-# missing effect size results are dropped
+# missing effect size results are dropped,
+# shorter function name, calls "esc_t()"
 tmp <- data.frame(
   tvalue = c(3.3, 2.9, NA, 2.3),
   n = c(250, 200, 210, 210),
   studyname = c("Study 1", "Study 2", NA, "Study 4")
 )
-effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, type = "esc_t")
+effect_sizes(tmp, t = tvalue, totaln = n, study = studyname, fun = "t")
 
 
 tmp <- data.frame(
@@ -81,7 +84,7 @@ tmp <- data.frame(
   author = c("Smith 2000", "Smith 2010 2", "Smith 2012")
 )
 effect_sizes(tmp, beta = coefficient, sdy = se, grp1n = treat, grp2n = cntrl,
-    study = author, type = "esc_beta", es.type = "or")
+    study = author, fun = "esc_beta", es.type = "or")
 
 # the "esc_chisq" function requires *either* the chisq-argument *or*
 # the pval-argument. If at least one of these values is present,
@@ -94,7 +97,7 @@ tmp <- data.frame(
   studyname = c("Study 1", "Study 2", "Study 3", "Study 4", "Study 5")
 )
 effect_sizes(tmp, chisq = chisqquared, p = pval, totaln = n,
-             study = studyname, type = "esc_chisq")
+             study = studyname, fun = "esc_chisq")
 
 # if all required information are missing, data will be removed
 tmp <- data.frame(
@@ -104,7 +107,7 @@ tmp <- data.frame(
   studyname = c("Study 1", "Study 2", "Study 3", "Study 4", "Study 5")
 )
 effect_sizes(tmp, chisq = chisqquared, p = pval, totaln = n,
-             study = studyname, type = "esc_chisq")
+             study = studyname, fun = "chisq")
 
 
 }
