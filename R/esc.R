@@ -87,6 +87,7 @@
 #'
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr slice_
+#' @importFrom purrr map_df
 #' @export
 effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
@@ -97,6 +98,17 @@ effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "
   # and get columns names
   cols <- unname(unlist(lapply(params, function(x) as.character(x))))
 
+  # make sure all numerics are numeric! and, only
+  # return necessary data rows
+  data <- suppressWarnings(
+    purrr::map_df(data[, cols], function(x) {
+      if (!all(is.na(as.numeric(x))))
+        as.numeric(x)
+      else
+        x
+    })
+  )
+
   results <- list()
 
   # iterate data frame rowwise
@@ -104,7 +116,7 @@ effect_sizes <- function(data, ..., type, es.type = c("d", "g", "or", "logit", "
     # get argument names
     argnames <- names(params)
     # get required data row
-    datarow <- data[i, cols]
+    datarow <- data[i, ]
     # copy values as list, for do.call
     callparams <- as.list(datarow)
     # give argument proper names
