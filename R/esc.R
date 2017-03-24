@@ -19,7 +19,7 @@
 #' @inheritParams esc_beta
 #'
 #' @details This function rowwise iterates \code{data} and calls the function named
-#'         in \code{type} for the values taken from each row of \code{data}.
+#'         in \code{fun} for the values taken from each row of \code{data}.
 #'         The column names in \code{data} that contain the necessary values to compute
 #'         the effect sizes should be passed as unquoted value for the arguments.
 #'         The argument names should match those arguments for the esc-function
@@ -28,7 +28,7 @@
 #'         Example: \cr
 #'         If you want to compute effect sizes from chi-squared values, you
 #'         would call \code{esc_chisq()}. This function name is used for the
-#'         \code{type}-argument: \code{type = "esc_chisq"}. \code{esc_chisq()}
+#'         \code{fun}-argument: \code{fun = "esc_chisq"}. \code{esc_chisq()}
 #'         requires one of \code{chisq} or \code{p} as arguments, and \code{totaln}.
 #'         Now \code{data} must have columns with values for either \code{chisq}
 #'         or \code{p}, and \code{effect_sizes()} automatically selects the
