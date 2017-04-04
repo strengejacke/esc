@@ -1,4 +1,4 @@
-Version 0.2.1
+Version 0.3.0
 ------------------------------------------------------------------------------
 New functions:
 * `effect_sizes()` to generate a data frame with results of multiple effect size computations, based on data from another data frame.
