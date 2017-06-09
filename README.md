@@ -1,5 +1,5 @@
-esc - Effect Size Computation for Meta Analysis
-------------------------------------------------------------------------------
+# esc - Effect Size Computation for Meta Analysis <img src="man/figures/logo.png" align="right" />
+
 This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. The original calculator can be found at http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-Home.php.
 
 Based on the input, the effect size can be returned as standardized mean difference (`d`), Hedges' `g`, correlation coefficient effect size `r` or Fisher's transformation `z`, odds ratio or log odds effect size.
