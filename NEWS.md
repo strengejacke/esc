@@ -1,3 +1,9 @@
+# esc 0.3.1
+
+## Bug fixes
+
+* `effect_sizes()` did not always properly extract study names and used numeric indices instead character values.
+
 # esc 0.3.0
 
 ## New functions

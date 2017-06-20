@@ -108,7 +108,7 @@ effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r
   # return necessary data rows
   data <- suppressWarnings(
     purrr::map_df(data[, cols], function(x) {
-      if (!all(is.na(as.numeric(x))))
+      if (!is.factor(x) && !all(is.na(as.numeric(x))))
         as.numeric(x)
       else
         x
