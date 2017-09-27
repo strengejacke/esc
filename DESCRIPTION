@@ -2,8 +2,8 @@ Package: esc
 Type: Package
 Encoding: UTF-8
 Title: Effect Size Computation for Meta Analysis
-Version: 0.3.1
-Date: 2017-06-29
+Version: 0.3.2
+Date: 2017-09-27
 Author: Daniel Lüdecke <d.luedecke@uke.de>
 Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
 Description: Implementation of the web-based 'Practical Meta-Analysis Effect Size
@@ -19,7 +19,7 @@ Imports:
     dplyr,
     purrr,
     readr,
-    sjmisc (>= 2.5.0),
+    sjmisc (>= 2.6.1),
     tibble,
     utils
 URL: https://github.com/strengejacke/esc

@@ -1,3 +1,9 @@
+# esc 0.3.2
+
+## Bug fixes
+
+* `combine_esc()` did not work for effect sizes computed with `esc_t()`, when the returned effect size was `r`.
+
 # esc 0.3.1
 
 ## Bug fixes

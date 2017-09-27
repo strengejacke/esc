@@ -91,7 +91,7 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit
     # return effect size d
     return(structure(
       class = c("esc", "esc_t2r"),
-      list(es = es, se = sqrt(v), var = v,
+      list(es = es, se = sqrt(v), var = v, totaln = totaln,
            ci.lo = esc_z2r(lower_d(es.zr, v)), ci.hi = esc_z2r(upper_d(es.zr, v)),
            w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
            measure = "r", info = paste0(info, " to effect size correlation"), study = study)
