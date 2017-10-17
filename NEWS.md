@@ -1,3 +1,9 @@
+# esc 0.3.3
+
+## Bug fixes
+
+* In rare cases, `esc_mean_sd()` tried to calculate the square root of negative values when computing the pooled standard deviance. In such cases, an alternative formular for the pooled SD is used.
+
 # esc 0.3.2
 
 ## Bug fixes
