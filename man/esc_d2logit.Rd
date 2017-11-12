@@ -16,7 +16,7 @@ must be specified.}
 \item{v}{The variance of \code{d}. One of \code{se} or \code{v} must be
 specified.}
 
-\item{totaln}{The total sample size.}
+\item{totaln}{A vector of total sample size(s).}
 
 \item{es.type}{Type of effect size odds ratio that should be returned.
 May be \code{es.type = "logit"} or \code{es.type = "cox"}

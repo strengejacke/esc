@@ -35,7 +35,7 @@ esc_2x2 <- function(grp1yes,
                     grp1no,
                     grp2yes,
                     grp2no,
-                    es.type = c("logit", "d", "g", "or", "r", "cox.d"),
+                    es.type = c("logit", "d", "g", "or", "r", "f", "eta", "cox.d"),
                     study = NULL,
                     ...) {
   # match  arguments
@@ -44,6 +44,7 @@ esc_2x2 <- function(grp1yes,
 
   # evaluate ellipses
   ell <- match.call(expand.dots = FALSE)$`...`
+
   # do we have info string?
   if (!is.null(ell$info))
     info <- ell$info
@@ -76,6 +77,7 @@ esc_2x2 <- function(grp1yes,
 
   # which es type to be returned?
   if (es.type == "g") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "g", info = paste0(info, " to effect size Hedges' g"), study = study))
+
 
   # convert to plain d
   es <- log(es) * sqrt(3) / pi

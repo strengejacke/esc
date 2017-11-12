@@ -80,8 +80,15 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "mean and sd", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    es.type = es.type,
+    grp1n = grp1n,
+    grp2n = grp2n,
+    info = "mean and sd",
+    study = study
+  )
 }
 
 
@@ -112,7 +119,7 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
 #'
 #' @export
 esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n,
-                        es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
+                        es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   grp1sd <- grp1se * sqrt(grp1n - 1)

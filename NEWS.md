@@ -1,4 +1,12 @@
-# esc 0.3.3
+# esc 0.4.0
+
+## General
+
+* Functions now also return effect sizes Cohen's f or eta squared.
+
+## New functions
+
+* More functions to convert effect size into other effect size measures (`cohens_f()`, `odds_ratio()`, `log_odds()`, `pearsons_r()`, `eta_squared()` and `cohens_d()`).
 
 ## Bug fixes
 

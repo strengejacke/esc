@@ -44,6 +44,8 @@
 #'             Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
 #'             \cr \cr
 #'             Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
+#'             \cr \cr
+#'             Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. 2009. Introduction to Meta-Analysis. Chichester, West Sussex, UK: Wiley
 #'
 #' @examples
 #' # d to odds ratio
@@ -89,11 +91,20 @@ esc_d2or <- function(d, se, v, totaln,
   }
 
   # return effect size d
-  return(structure(
+  structure(
     class = c("esc", "esc_d2or"),
-    list(es = exp(es), se = sqrt(v), var = v, ci.lo = exp(lower_d(es, v)),
-         ci.hi = exp(upper_d(es, v)), w = 1 / v, totaln = totaln,
-         measure = measure, info = info, study = study)
-  ))
+    list(
+      es = exp(es),
+      se = sqrt(v),
+      var = v,
+      ci.lo = exp(lower_d(es, v)),
+      ci.hi = exp(upper_d(es, v)),
+      w = 1 / v,
+      totaln = totaln,
+      measure = measure,
+      info = info,
+      study = study
+    )
+  )
 }
 

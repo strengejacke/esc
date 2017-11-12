@@ -89,10 +89,10 @@
 #'
 #'
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr slice_
+#' @importFrom dplyr slice
 #' @importFrom purrr map_df
 #' @export
-effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log")) {
+effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
 
   # check function name
@@ -146,7 +146,7 @@ effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r
     ),
     call. = F)
     # remove missings
-    results <- dplyr::slice(results, -mes)
+    results <- dplyr::slice(results, !! -mes)
   }
 
   purrr::map_df(results, function(x) if (is.factor(x)) as.character(x) else x)

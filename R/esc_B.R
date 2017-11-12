@@ -23,7 +23,7 @@
 #'
 #' @export
 esc_B <- function(b, sdy, grp1n, grp2n,
-                  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+                  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
                   study = NULL) {
   # match  arguments
   es.type <- match.arg(es.type)

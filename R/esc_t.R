@@ -44,7 +44,7 @@
 #'
 #' @importFrom stats qt
 #' @export
-esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL, ...) {
+esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL, ...) {
   es.type <- match.arg(es.type)
 
   # evaluate ellipses

@@ -31,7 +31,7 @@
 #' esc_d2or(0.7, se = 0.5)
 #'
 #' @export
-esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL, study = NULL) {
+esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta"), info = NULL, study = NULL) {
   # match arguments
   es.type <- match.arg(es.type)
 
@@ -55,20 +55,32 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = N
       info <- "effect size OR to effect size d"
     else if (es.type == "g")
       info <- "effect size OR to effect size Hedges' g"
+    else if (es.type == "f")
+      info <- "effect size OR to effect size Cohen's f"
+    else if (es.type == "eta")
+      info <- "effect size OR to effect size eta squared"
   }
 
-  if (es.type == "d" || es.type == "g") {
+  if (es.type %in% c("d", "g", "f", "eta")) {
     es <- log(or) / (pi / sqrt(3))
     v <- v / ((pi  ^ 2) / 3)
     measure <- es.type
+
     # hedges g?
     if (es.type == "g") {
       # do we have total n?
       if (is.null(totaln))
         warning("`totaln` is needed to calculate Hedges' g.", call. = F)
       else
-        es <- hedges_g(es, totaln)
+        es <- hedges_g(d = es, totaln = totaln)
     }
+
+    # f?
+    if (es.type == "f") es <- cohens_f(d = es)
+
+    # eta squared?
+    if (es.type == "eta") es <- eta_squared(d = es)
+
   } else {
     es <- log(or) / 1.65
     v <- v / (1.65  ^ 2)
@@ -76,10 +88,10 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = N
   }
 
   # return effect size d
-  return(structure(
+  structure(
     class = c("esc", "esc_or2d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v),
          ci.hi = upper_d(es, v), w = 1 / v, totaln = totaln,
          measure = measure, info = info, study = study)
-  ))
+  )
 }

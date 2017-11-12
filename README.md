@@ -2,13 +2,13 @@
 
 This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. The original calculator can be found at http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-Home.php.
 
-Based on the input, the effect size can be returned as standardized mean difference (`d`), Hedges' `g`, correlation coefficient effect size `r` or Fisher's transformation `z`, odds ratio or log odds effect size.
+Based on the input, the effect size can be returned as standardized mean difference (`d`), Cohen's `f`, `eta` squared, Hedges' `g`, correlation coefficient effect size `r` or Fisher's transformation `z`, odds ratio or log odds effect size.
 
 ### Return values
 
 The return value of all functions has the same structure:
 
-* The effect size, whether being `d`, `g`, `r`, (Cox) odds ratios or (Cox) logits, is always named `es`.
+* The effect size, whether being `d`, `g`, `r`, `f`, (Cox) odds ratios or (Cox) logits, is always named `es`.
 * The standard error of the effect size, `se`.
 * The variance of the effect size, `var`.
 * The lower and upper confidence limits `ci.lo` and `ci.hi`.

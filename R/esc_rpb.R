@@ -33,7 +33,7 @@
 #'
 #' @importFrom stats qt
 #' @export
-esc_rpb <- function(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "cox.or", "cox.log"), study = NULL) {
+esc_rpb <- function(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -95,6 +95,13 @@ esc_rpb <- function(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "log
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "point-biserial r", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    es.type = es.type,
+    grp1n = grp1n,
+    grp2n = grp2n,
+    info = "point-biserial r",
+    study = study
+  )
 }

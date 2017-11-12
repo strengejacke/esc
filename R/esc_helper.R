@@ -16,45 +16,109 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # compute total n
   totaln <- grp1n + grp2n
 
+
   # return effect size as odds ratio
+
   if (es.type == "or")
-    return(esc_d2or(d = es, v = v, totaln = totaln, es.type = "logit",
-                    info = paste0(info, " to effect size odds ratios"),
-                    study = study))
+    return(esc_d2or(
+      d = es,
+      v = v,
+      totaln = totaln,
+      es.type = "logit",
+      info = paste0(info, " to effect size odds ratios"),
+      study = study
+    ))
+
 
   # return effect size as cox odds ratio
+
   if (es.type == "cox.or")
-    return(esc_d2or(d = es, v = v, totaln = totaln, es.type = "cox",
-                    info = paste0(info, " to effect size Cox odds ratios"),
-                    study = study))
+    return(esc_d2or(
+      d = es,
+      v = v,
+      totaln = totaln,
+      es.type = "cox",
+      info = paste0(info, " to effect size Cox odds ratios"),
+      study = study
+    ))
+
+
+  # return effect size as f
+
+  if (es.type == "f")
+    return(esc_d2f(
+      d = es,
+      v = v,
+      totaln = totaln,
+      info = paste0(info, " to effect size f"),
+      study = study
+    ))
+
+
+  # return effect size as eta squared
+
+  if (es.type == "eta")
+    return(esc_d2etasq(
+      d = es,
+      v = v,
+      grp1n = grp1n,
+      grp2n = grp2n,
+      info = paste0(info, " to effect size eta squared"),
+      study = study
+    ))
+
 
   # return effect size as log odds
+
   if (es.type == "logit")
-    return(esc_d2logit(d = es, v = v, totaln = totaln, es.type = "logit",
-                       info = paste0(info, " to effect size logits"),
-                       study = study))
+    return(esc_d2logit(
+      d = es,
+      v = v,
+      totaln = totaln,
+      es.type = "logit",
+      info = paste0(info, " to effect size logits"),
+      study = study
+    ))
+
 
   # return effect size as cox log odds
+
   if (es.type == "cox.log")
-    return(esc_d2logit(d = es, v = v, totaln = totaln, es.type = "cox",
-                       info = paste0(info, " to effect size Cox logits"),
-                       study = study))
+    return(esc_d2logit(
+      d = es,
+      v = v,
+      totaln = totaln,
+      es.type = "cox",
+      info = paste0(info, " to effect size Cox logits"),
+      study = study
+    ))
+
 
   # return effect size as correlation
+
   if (es.type == "r")
-    return(esc_d2r(d = es, v = v, grp1n = grp1n, grp2n = grp2n,
-                   info = paste0(info, " to effect size correlation"),
-                   study = study))
+    return(esc_d2r(
+      d = es,
+      v = v,
+      grp1n = grp1n,
+      grp2n = grp2n,
+      info = paste0(info, " to effect size correlation"),
+      study = study
+    ))
+
 
   # return d or Hedges' g
+
   if (es.type == "d") {
     info.suffix <- " to effect size d"
   } else if (es.type == "g") {
     info.suffix <- " to effect size Hedges' g"
-    es <- hedges_g(es, grp1n + grp2n)
+    es <- hedges_g(d = es, totaln = grp1n + grp2n)
   }
 
+
   # return effect size as standardized mean difference d or Hedges' g
+
   structure(
     class = c("esc", "esc_d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v), ci.hi = upper_d(es, v),

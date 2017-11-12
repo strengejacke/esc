@@ -33,7 +33,7 @@
 #'
 #' @importFrom stats qnorm
 #' @export
-esc_chisq <- function(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
+esc_chisq <- function(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   # match  arguments
   es.type <- match.arg(es.type)
 
@@ -93,7 +93,7 @@ esc_chisq <- function(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r"
 #' esc_phi(p = .003, totaln = 100)
 #'
 #' @export
-esc_phi <- function(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
+esc_phi <- function(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
@@ -116,6 +116,13 @@ esc_phi <- function(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "c
   v = es ^ 2 / chisq
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = totaln / 2, grp2n = totaln / 2,
-                     info = "phi-value", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    es.type = es.type,
+    grp1n = totaln / 2,
+    grp2n = totaln / 2,
+    info = "phi-value",
+    study = study
+  )
 }

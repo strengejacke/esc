@@ -5,7 +5,7 @@
 \title{Compute effect size from 2 by 2 Contingency Table}
 \usage{
 esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g", "or",
-  "r", "cox.d"), study = NULL, ...)
+  "r", "f", "eta", "cox.d"), study = NULL, ...)
 }
 \arguments{
 \item{grp1yes}{Size of treatment group with successes (outcome = yes).}
@@ -19,12 +19,14 @@ esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g", "or",
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"f"}}{returns effect size Cohen's \code{f}}
   \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
   \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
   \item{\code{"r"}}{returns correlation effect size \code{r}}
+  \item{\code{"eta"}}{returns effect size eta squared}
 }}
 
 \item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or

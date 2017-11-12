@@ -4,25 +4,27 @@
 \alias{esc_chisq}
 \title{Compute effect size from Chi-Square coefficient}
 \usage{
-esc_chisq(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r",
-  "cox.or", "cox.log"), study = NULL)
+esc_chisq(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f",
+  "eta", "cox.or", "cox.log"), study = NULL)
 }
 \arguments{
 \item{chisq}{The chi-squared value. One of \code{chisq} or \code{p} must be reported.}
 
 \item{p}{The p-value of the chi-squared or phi-value.}
 
-\item{totaln}{The total sample size.}
+\item{totaln}{A vector of total sample size(s).}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"f"}}{returns effect size Cohen's \code{f}}
   \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
   \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
   \item{\code{"r"}}{returns correlation effect size \code{r}}
+  \item{\code{"eta"}}{returns effect size eta squared}
 }}
 
 \item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or

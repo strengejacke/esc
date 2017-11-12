@@ -16,7 +16,7 @@ must be specified.}
 \item{v}{The variance of \code{d}. One of \code{se} or \code{v} must be
 specified.}
 
-\item{totaln}{The total sample size.}
+\item{totaln}{A vector of total sample size(s).}
 
 \item{es.type}{Type of effect size odds ratio that should be returned.
 May be \code{es.type = "logit"} or \code{es.type = "cox"}
@@ -70,4 +70,6 @@ Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage 
             Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
             \cr \cr
             Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
+            \cr \cr
+            Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. 2009. Introduction to Meta-Analysis. Chichester, West Sussex, UK: Wiley
 }

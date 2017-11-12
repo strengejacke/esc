@@ -2,23 +2,54 @@
 % Please edit documentation in R/hedges_g.R
 \name{hedges_g}
 \alias{hedges_g}
-\title{Compute Hedges' g from effect size d}
+\alias{eta_squared}
+\alias{cohens_f}
+\alias{cohens_d}
+\alias{pearsons_r}
+\alias{log_odds}
+\alias{odds_ratio}
+\title{Convert effect sizes}
 \usage{
-hedges_g(es, totaln)
+hedges_g(d, totaln)
+
+eta_squared(d, r, f, or, logit)
+
+cohens_f(d, r, eta, or, logit)
+
+cohens_d(f, r, eta, or, logit)
+
+pearsons_r(d, eta, f, or, logit)
+
+log_odds(d, eta, f, or, r)
+
+odds_ratio(d, eta, f, logit, r)
 }
 \arguments{
-\item{es}{The effect size \code{d}.}
+\item{d, r, f, eta, or, logit}{A scalar or vector with effect size(s).}
 
-\item{totaln}{The total sample size.}
+\item{totaln}{A vector of total sample size(s).}
 }
 \value{
-The Hedges' g coefficient.
+The requested effect size.
 }
 \description{
-Compute Hedges' g from effect size d.
+Convert between different effect sized.
 }
 \examples{
-hedges_g(0.75, 50)
+# convert from d to Hedges' g or odds ratio
+hedges_g(d = 0.75, totaln = 50)
+odds_ratio(d = .3)
+
+# convert from odds ratio to eta_squared
+eta_squared(or = 2.3)
+
+# convert from f or r to d
+cohens_d(f = .3)
+cohens_d(r = .25)
+
+# functions are vectorized
+hedges_g(c(0.75, .3), c(50, 70))
+cohens_f(r = c(.1, .2, .3))
 
 }
 \references{
@@ -27,4 +58,8 @@ Lipsey MW, Wilson DB. 2001. Practical meta-analysis. Thousand Oaks, Calif: Sage 
             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
             \cr \cr
             Hedges LV. 1981. Distribution theory for Glass's estimator of effect size and related estimators. Journal of Educational Statistics 6: 107–128.
+            \cr \cr
+            Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. 2009. Introduction to Meta-Analysis. Chichester, West Sussex, UK: Wiley
+            \cr \cr
+            Cohen J. 1988. Statistical Power Analysis for the Behavioral Sciences. 2nd ed. Hillsdale, NJ: Erlbaum
 }

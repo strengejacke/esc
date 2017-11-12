@@ -6,7 +6,7 @@
 \usage{
 esc_mean_gain(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd,
   grp1r, pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
-  es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
+  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
   study = NULL)
 }
 \arguments{
@@ -49,12 +49,14 @@ group.}
 \item{es.type}{Type of effect size that should be returned.
 \describe{
   \item{\code{"d"}}{returns standardized mean difference effect size \code{d}}
+  \item{\code{"f"}}{returns effect size Cohen's \code{f}}
   \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
   \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
   \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
   \item{\code{"r"}}{returns correlation effect size \code{r}}
+  \item{\code{"eta"}}{returns effect size eta squared}
 }}
 
 \item{study}{Optional string with the study name. Using \code{\link{combine_esc}} or

@@ -31,6 +31,6 @@
 #' esc_f(f = 5.5, totaln = 200)
 #'
 #' @export
-esc_f <- function(f, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
-  return(esc_t(t = sqrt(f), totaln = totaln, grp1n = grp1n, grp2n = grp2n, es.type = es.type, study = study, info = "F-value (one-way-Anova)"))
+esc_f <- function(f, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
+  esc_t(t = sqrt(f), totaln = totaln, grp1n = grp1n, grp2n = grp2n, es.type = es.type, study = study, info = "F-value (one-way-Anova)")
 }

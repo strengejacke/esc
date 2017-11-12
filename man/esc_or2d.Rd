@@ -4,8 +4,8 @@
 \alias{esc_or2d}
 \title{Convert effect size OR from d}
 \usage{
-esc_or2d(or, se, v, totaln, es.type = c("d", "cox.d", "g"), info = NULL,
-  study = NULL)
+esc_or2d(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta"),
+  info = NULL, study = NULL)
 }
 \arguments{
 \item{or}{The effect size as odds ratio.}
@@ -16,7 +16,7 @@ must be specified.}
 \item{v}{The variance of \code{d}. One of \code{se} or \code{v} must be
 specified.}
 
-\item{totaln}{The total sample size.}
+\item{totaln}{A vector of total sample size(s).}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{

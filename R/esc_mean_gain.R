@@ -71,7 +71,7 @@
 #' @export
 esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd, grp1r,
                           pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
-                          es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
+                          es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   # check if arguments are complete
