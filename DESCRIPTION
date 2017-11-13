@@ -2,8 +2,8 @@ Package: esc
 Type: Package
 Encoding: UTF-8
 Title: Effect Size Computation for Meta Analysis
-Version: 0.3.2.9000
-Date: 2017-09-27
+Version: 0.4.0
+Date: 2017-11-13
 Author: Daniel Lüdecke <d.luedecke@uke.de>
 Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
 Description: Implementation of the web-based 'Practical Meta-Analysis Effect Size
