@@ -1,3 +1,9 @@
+# esc 0.4.1
+
+## Bug fixes
+
+* Fix issue with wrong computation of confidence intervals when converting effect sizes from _d_ to _f_ (`esc_d2f()`).
+
 # esc 0.4.0
 
 ## General
