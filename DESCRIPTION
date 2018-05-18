@@ -5,7 +5,7 @@ Title: Effect Size Computation for Meta Analysis
 Version: 0.4.1
 Date: 2018-05-06
 Author: Daniel Lüdecke <d.luedecke@uke.de>
-Authors@R: person("Daniel", "Lüdecke", role = c("aut", "cre"), email = "d.luedecke@uke.de")
+Authors@R: person("Daniel", "Lüdecke", role = c("aut", "cre"), email = "d.luedecke@uke.de", comment = c(ORCID = "0000-0002-8895-3206"))
 Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
 Description: Implementation of the web-based 'Practical Meta-Analysis Effect Size
     Calculator' from David B. Wilson (<http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-Home.php>)
