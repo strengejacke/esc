@@ -1,5 +1,7 @@
 # esc - Effect Size Computation for Meta Analysis <img src="man/figures/logo.png" align="right" />
 
+[![DOI](https://zenodo.org/badge/62336116.svg)](https://zenodo.org/badge/latestdoi/62336116)
+
 This is an R implementation of the web-based 'Practical Meta-Analysis Effect Size Calculator' from David B. Wilson. The original calculator can be found at http://www.campbellcollaboration.org/escalc/html/EffectSizeCalculator-Home.php.
 
 Based on the input, the effect size can be returned as standardized mean difference (`d`), Cohen's `f`, `eta` squared, Hedges' `g`, correlation coefficient effect size `r` or Fisher's transformation `z`, odds ratio or log odds effect size.
@@ -81,3 +83,5 @@ install.packages("esc")
 ## Citation
 
 In case you want / have to cite my package, please use `citation('esc')` for citation information.
+
+[![DOI](https://zenodo.org/badge/62336116.svg)](https://zenodo.org/badge/latestdoi/62336116)
