@@ -20,7 +20,7 @@ Imports:
     dplyr,
     purrr,
     readr,
-    sjmisc (>= 2.6.1),
+    sjmisc (>= 2.7.4),
     tibble,
     utils
 URL: https://github.com/strengejacke/esc
