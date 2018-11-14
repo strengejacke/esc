@@ -62,8 +62,8 @@ combine_esc(e1, e2, e3, e4)
 To install the latest development snapshot (see latest changes below), type following commands into the R console:
 
 ```r
-library(devtools)
-devtools::install_github("strengejacke/esc")
+library(githubinstall)
+githubinstall::githubinstall("esc")
 ```
 
 ### Officiale, stable release
