@@ -27,7 +27,7 @@ This method is a small wrapper to write csv-files. It writes
 For Western European locales, the \code{sep}-argument probably needs to
       be set to semicolon (\code{sep = ";"}), so Excel reads the csv-file properly.
       If \code{sep = ";"}, \code{\link[utils]{write.csv2}} is used to write the
-      file. Else, \code{\link[readr]{write_excel_csv}} is used.
+      file. Else, \code{\link[utils]{write.csv}} is used.
 }
 \examples{
 e1 <- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40,

@@ -1,4 +1,4 @@
-# esc 0.4.2
+# esc 0.5.0
 
 ## General
 

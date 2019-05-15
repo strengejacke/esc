@@ -71,7 +71,7 @@ combine_esc <- function(...) {
 #' @note For Western European locales, the \code{sep}-argument probably needs to
 #'       be set to semicolon (\code{sep = ";"}), so Excel reads the csv-file properly.
 #'       If \code{sep = ";"}, \code{\link[utils]{write.csv2}} is used to write the
-#'       file. Else, \code{\link[readr]{write_excel_csv}} is used.
+#'       file. Else, \code{\link[utils]{write.csv}} is used.
 #'
 #' @return Invisibly returns the combined data frame that is written to
 #'         the csv-file (see \code{\link{combine_esc}}).
