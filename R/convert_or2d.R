@@ -1,5 +1,5 @@
 #' @title Convert effect size OR from d
-#' @name esc_or2d
+#' @name convert_or2d
 #'
 #' @description Compute effect size \code{d} from effect size \code{OR}.
 #'
@@ -12,7 +12,7 @@
 #'        }
 #'
 #' @inheritParams esc_beta
-#' @inheritParams esc_d2or
+#' @inheritParams convert_d2or
 #'
 #' @note While \code{or} is the exponentiated log odds, the variance or standard
 #'       error need to be on the log-scale!
@@ -27,11 +27,11 @@
 #'             Wilson DB. 2016. Formulas Used by the "Practical Meta-Analysis Effect Size Calculator". Unpublished manuscript: George Mason University
 #'
 #' @examples
-#' esc_or2d(3.56, se = 0.91)
-#' esc_d2or(0.7, se = 0.5)
+#' convert_or2d(3.56, se = 0.91)
+#' convert_d2or(0.7, se = 0.5)
 #'
 #' @export
-esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta"), info = NULL, study = NULL) {
+convert_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta"), info = NULL, study = NULL) {
   # match arguments
   es.type <- match.arg(es.type)
 
@@ -42,7 +42,7 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta
   }
 
   # do we have se?
-  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se ^ 2
+  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se^2
 
   # do we have total n?
   if (missing(totaln) || is.na(totaln)) totaln <- NULL
@@ -63,7 +63,7 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta
 
   if (es.type %in% c("d", "g", "f", "eta")) {
     es <- log(or) / (pi / sqrt(3))
-    v <- v / ((pi  ^ 2) / 3)
+    v <- v / ((pi^2) / 3)
     measure <- es.type
 
     # hedges g?
@@ -83,13 +83,13 @@ esc_or2d <- function(or, se, v, totaln, es.type = c("d", "cox.d", "g", "f", "eta
 
   } else {
     es <- log(or) / 1.65
-    v <- v / (1.65  ^ 2)
+    v <- v / (1.65^2)
     measure <- "cox d"
   }
 
   # return effect size d
   structure(
-    class = c("esc", "esc_or2d"),
+    class = c("esc", "convert_or2d"),
     list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v),
          ci.hi = upper_d(es, v), w = 1 / v, totaln = totaln,
          measure = measure, info = info, study = study)

@@ -70,22 +70,22 @@ esc_2x2 <- function(grp1yes,
   }
 
   # which es type to be returned?
-  if (es.type == "d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "d", info = paste0(info, " to effect size d"), study = study))
+  if (es.type == "d") return(convert_or2d(or = es, v = v, totaln = totaln, es.type = "d", info = paste0(info, " to effect size d"), study = study))
 
   # which es type to be returned?
-  if (es.type == "cox.d") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "cox.d", info = paste0(info, " to effect size Cox d"), study = study))
+  if (es.type == "cox.d") return(convert_or2d(or = es, v = v, totaln = totaln, es.type = "cox.d", info = paste0(info, " to effect size Cox d"), study = study))
 
   # which es type to be returned?
-  if (es.type == "g") return(esc_or2d(or = es, v = v, totaln = totaln, es.type = "g", info = paste0(info, " to effect size Hedges' g"), study = study))
+  if (es.type == "g") return(convert_or2d(or = es, v = v, totaln = totaln, es.type = "g", info = paste0(info, " to effect size Hedges' g"), study = study))
 
 
   # convert to plain d
   es <- log(es) * sqrt(3) / pi
-  v <- v * 3 / pi ^ 2
+  v <- v * 3 / pi^2
 
   # which es type to be returned?
-  if (es.type == "logit") return(esc_d2logit(d = es, v = v, totaln = totaln, info = paste0(info, " to effect size logits"), study = study))
+  if (es.type == "logit") return(convert_d2logit(d = es, v = v, totaln = totaln, info = paste0(info, " to effect size logits"), study = study))
 
   # which es type to be returned?
-  if (es.type == "r") return(esc_d2r(d = es, v = v, grp1n = (grp1yes + grp1no), grp2n = (grp2yes + grp2no), info = paste0(info, " coefficient to effect size correlation"), study = study))
+  if (es.type == "r") return(convert_d2r(d = es, v = v, grp1n = (grp1yes + grp1no), grp2n = (grp2yes + grp2no), info = paste0(info, " coefficient to effect size correlation"), study = study))
 }

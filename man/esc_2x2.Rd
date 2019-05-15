@@ -22,9 +22,9 @@ esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g",
   \item{\code{"f"}}{returns effect size Cohen's \code{f}}
   \item{\code{"g"}}{returns adjusted standardized mean difference effect size Hedges' \code{g}}
   \item{\code{"or"}}{returns effect size as odds ratio}
-  \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{esc_d2or}} for details)}
+  \item{\code{"cox.or"}}{returns effect size as Cox-odds ratio (see \code{\link{convert_d2or}} for details)}
   \item{\code{"logit"}}{returns effect size as log odds}
-  \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{esc_d2logit}} for details)}
+  \item{\code{"cox.log"}}{returns effect size as Cox-log odds (see \code{\link{convert_d2logit}} for details)}
   \item{\code{"r"}}{returns correlation effect size \code{r}}
   \item{\code{"eta"}}{returns effect size eta squared}
 }}

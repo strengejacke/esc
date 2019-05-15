@@ -35,8 +35,8 @@ combine_esc <- function(...) {
   # make sure we have same columns for all effects. for correlation effect sizes,
   # we have columns zr, ci.lo.zr and ci.hi.zr
   obj <- lapply(obj, function(x) {
-    if (!inherits(x, "esc_d2r")) {
-      class(x) <- c(class(x), "esc_d2r")
+    if (!inherits(x, "convert_d2r")) {
+      class(x) <- c(class(x), "convert_d2r")
       # fill non existing values
       x$zr <- NA
       x$ci.lo.zr <- NA

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute effect size from Standardized Regression Coefficient — esc_beta • esc</title>
+<title>Convert correlation coefficient r into Fisher's z — esc_r2z • esc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Compute effect size from Standardized Regression Coefficient — esc_beta" />
+<meta property="og:title" content="Convert correlation coefficient r into Fisher's z — esc_r2z" />
 
-<meta property="og:description" content="Compute effect size from Standardized Regression Coefficient." />
+<meta property="og:description" content="Convert correlation coefficient r into Fisher's z." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,72 +104,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute effect size from Standardized Regression Coefficient</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/esc_beta.R'><code>R/esc_beta.R</code></a></small>
-    <div class="hidden name"><code>esc_beta.Rd</code></div>
+    <h1>Convert correlation coefficient r into Fisher's z</h1>
+    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/Deprecated.R'><code>R/Deprecated.R</code></a>, <a href='https://github.com/strengejacke/esc/blob/master/R/convert_z2r.R'><code>R/convert_z2r.R</code></a></small>
+    <div class="hidden name"><code>convert_r2z.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute effect size from Standardized Regression Coefficient.</p>
+    <p>Convert correlation coefficient r into Fisher's z.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>esc_beta</span>(<span class='no'>beta</span>, <span class='no'>sdy</span>, <span class='no'>grp1n</span>, <span class='no'>grp2n</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='st'>"g"</span>, <span class='st'>"or"</span>, <span class='st'>"logit"</span>,
-  <span class='st'>"r"</span>, <span class='st'>"f"</span>, <span class='st'>"eta"</span>, <span class='st'>"cox.or"</span>, <span class='st'>"cox.log"</span>), <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>esc_r2z</span>(<span class='no'>r</span>)
+
+<span class='fu'>convert_r2z</span>(<span class='no'>r</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>beta</th>
-      <td><p>The standardized beta coefficient.</p></td>
-    </tr>
-    <tr>
-      <th>sdy</th>
-      <td><p>The standard deviation of the dependent variable.</p></td>
-    </tr>
-    <tr>
-      <th>grp1n</th>
-      <td><p>Treatment group sample size.</p></td>
-    </tr>
-    <tr>
-      <th>grp2n</th>
-      <td><p>Control group sample size.</p></td>
-    </tr>
-    <tr>
-      <th>es.type</th>
-      <td><p>Type of effect size that should be returned.</p><dl class='dl-horizontal'>
-  <dt><code>"d"</code></dt><dd><p>returns standardized mean difference effect size <code>d</code></p></dd>
-  <dt><code>"f"</code></dt><dd><p>returns effect size Cohen's <code>f</code></p></dd>
-  <dt><code>"g"</code></dt><dd><p>returns adjusted standardized mean difference effect size Hedges' <code>g</code></p></dd>
-  <dt><code>"or"</code></dt><dd><p>returns effect size as odds ratio</p></dd>
-  <dt><code>"cox.or"</code></dt><dd><p>returns effect size as Cox-odds ratio (see <code><a href='convert_d2or.html'>convert_d2or</a></code> for details)</p></dd>
-  <dt><code>"logit"</code></dt><dd><p>returns effect size as log odds</p></dd>
-  <dt><code>"cox.log"</code></dt><dd><p>returns effect size as Cox-log odds (see <code><a href='convert_d2logit.html'>convert_d2logit</a></code> for details)</p></dd>
-  <dt><code>"r"</code></dt><dd><p>returns correlation effect size <code>r</code></p></dd>
-  <dt><code>"eta"</code></dt><dd><p>returns effect size eta squared</p></dd>
-</dl></td>
-    </tr>
-    <tr>
-      <th>study</th>
-      <td><p>Optional string with the study name. Using <code><a href='combine_esc.html'>combine_esc</a></code> or
-<code>as.data.frame</code> on <code>esc</code>-objects will add this as column
-in the returned data frame.</p></td>
+      <th>r</th>
+      <td><p>The correlation coefficient.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The effect size <code>es</code>, the standard error <code>se</code>, the variance
-        of the effect size <code>var</code>, the lower and upper confidence limits
-        <code>ci.lo</code> and <code>ci.hi</code>, the weight factor <code>w</code> and the
-        total sample size <code>totaln</code>.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>If <code>es.type = "r"</code>, Fisher's transformation for the effect size
-      <code>r</code> and their confidence intervals are also returned.</p>
+    <p>The transformed Fisher's <code>z</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -179,25 +140,7 @@ in the returned data frame.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>esc_beta</span>(<span class='fl'>.7</span>, <span class='fl'>3</span>, <span class='fl'>100</span>, <span class='fl'>150</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: standardized regression coefficient to effect size d
-#&gt;     Effect Size:   1.9928
-#&gt;  Standard Error:   0.1569
-#&gt;        Variance:   0.0246
-#&gt;        Lower CI:   1.6853
-#&gt;        Upper CI:   2.3003
-#&gt;          Weight:  40.6353</div><div class='input'><span class='fu'>esc_beta</span>(<span class='fl'>.7</span>, <span class='fl'>3</span>, <span class='fl'>100</span>, <span class='fl'>150</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"cox.log"</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: standardized regression coefficient to effect size Cox logits
-#&gt;     Effect Size:   3.2881
-#&gt;  Standard Error:   0.2589
-#&gt;        Variance:   0.0671
-#&gt;        Lower CI:   2.7806
-#&gt;        Upper CI:   3.7956
-#&gt;          Weight:  14.9132</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>convert_r2z</span>(<span class='fl'>.03</span>)</div><div class='output co'>#&gt; [1] 0.030009</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -206,8 +149,6 @@ in the returned data frame.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#note">Note</a></li>
 
       <li><a href="#references">References</a></li>
       

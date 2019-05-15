@@ -86,13 +86,13 @@ esc_t <- function(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit
   # for t-test, directly estimate effect size
   if (es.type == "r") {
     es <- t / sqrt(t ^ 2 + totaln - 2)
-    es.zr <- esc_r2z(es)
+    es.zr <- convert_r2z(es)
     v <- 1 / (totaln - 3)
     # return effect size d
     return(structure(
       class = c("esc", "esc_t2r"),
       list(es = es, se = sqrt(v), var = v, totaln = totaln,
-           ci.lo = esc_z2r(lower_d(es.zr, v)), ci.hi = esc_z2r(upper_d(es.zr, v)),
+           ci.lo = convert_z2r(lower_d(es.zr, v)), ci.hi = convert_z2r(upper_d(es.zr, v)),
            w = 1 / v, zr = es.zr, ci.lo.zr = lower_d(es.zr, v), ci.hi.zr = upper_d(es.zr, v),
            measure = "r", info = paste0(info, " to effect size correlation"), study = study)
     ))

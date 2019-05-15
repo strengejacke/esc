@@ -1,5 +1,5 @@
 #' @title Convert effect size d into Eta Squared
-#' @name esc_d2etasq
+#' @name convert_d2etasq
 #'
 #' @description Compute effect size Eta Squared from effect size \code{d}.
 #'
@@ -11,8 +11,8 @@
 #' @param info String with information on the transformation. Used for the
 #'        print-method. Usually, this argument can be ignored
 #'
-#' @inheritParams esc_d2r
-#' @inheritParams esc_d2or
+#' @inheritParams convert_d2r
+#' @inheritParams convert_d2or
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower and upper confidence limits
@@ -23,10 +23,10 @@
 #'
 #' @examples
 #' # d to eta squared
-#' esc_d2etasq(d = 0.7, se = 0.5, grp1n = 70, grp2n = 80)
+#' convert_d2etasq(d = 0.7, se = 0.5, grp1n = 70, grp2n = 80)
 #'
 #' @export
-esc_d2etasq <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
+convert_d2etasq <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
 
   # check if parameter are complete
   if ((missing(se) || is.null(se) || is.na(se)) && (missing(v) || is.null(v) || is.na(v))) {
@@ -35,7 +35,7 @@ esc_d2etasq <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
   }
 
   # do we have se?
-  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se ^ 2
+  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se^2
 
   # do we have a separate info string?
   if (is.null(info)) info <- "effect size d to effect size eta squared"
@@ -46,7 +46,7 @@ esc_d2etasq <- function(d, se, v, grp1n, grp2n, info = NULL, study = NULL) {
 
   # return effect size f
   structure(
-    class = c("esc", "esc_d2etasq"),
+    class = c("esc", "convert_d2etasq"),
     list(
       es = es,
       se = sqrt(v),

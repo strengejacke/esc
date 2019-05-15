@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute effect size from Student's t-test — esc_t • esc</title>
+<title>Convert effect size OR from d — esc_or2d • esc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Compute effect size from Student's t-test — esc_t" />
+<meta property="og:title" content="Convert effect size OR from d — esc_or2d" />
 
-<meta property="og:description" content="Compute effect size from Student's t-test for independent samples." />
+<meta property="og:description" content="Compute effect size d from effect size OR." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,68 +104,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute effect size from Student's t-test</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/esc_t.R'><code>R/esc_t.R</code></a></small>
-    <div class="hidden name"><code>esc_t.Rd</code></div>
+    <h1>Convert effect size OR from d</h1>
+    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/Deprecated.R'><code>R/Deprecated.R</code></a>, <a href='https://github.com/strengejacke/esc/blob/master/R/convert_or2d.R'><code>R/convert_or2d.R</code></a></small>
+    <div class="hidden name"><code>convert_or2d.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute effect size from Student's t-test for <em>independent samples</em>.</p>
+    <p>Compute effect size <code>d</code> from effect size <code>OR</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>esc_t</span>(<span class='no'>t</span>, <span class='no'>p</span>, <span class='no'>totaln</span>, <span class='no'>grp1n</span>, <span class='no'>grp2n</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='st'>"g"</span>, <span class='st'>"or"</span>, <span class='st'>"logit"</span>,
-  <span class='st'>"r"</span>, <span class='st'>"f"</span>, <span class='st'>"eta"</span>, <span class='st'>"cox.or"</span>, <span class='st'>"cox.log"</span>), <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>esc_or2d</span>(<span class='no'>or</span>, <span class='no'>se</span>, <span class='no'>v</span>, <span class='no'>totaln</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='st'>"cox.d"</span>, <span class='st'>"g"</span>, <span class='st'>"f"</span>, <span class='st'>"eta"</span>),
+  <span class='kw'>info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>convert_or2d</span>(<span class='no'>or</span>, <span class='no'>se</span>, <span class='no'>v</span>, <span class='no'>totaln</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='st'>"cox.d"</span>, <span class='st'>"g"</span>, <span class='st'>"f"</span>,
+  <span class='st'>"eta"</span>), <span class='kw'>info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>t</th>
-      <td><p>The t-value of the t-test. One of <code>t</code> or <code>p</code> must be specified.</p></td>
+      <th>or</th>
+      <td><p>The effect size as odds ratio.</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>The p-value of the t-test. One of <code>t</code> or <code>p</code> must be specified.</p></td>
+      <th>se</th>
+      <td><p>The standard error of <code>d</code>. One of <code>se</code> or <code>v</code>
+must be specified.</p></td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td><p>The variance of <code>d</code>. One of <code>se</code> or <code>v</code> must be
+specified.</p></td>
     </tr>
     <tr>
       <th>totaln</th>
-      <td><p>Total sample size. Either <code>totaln</code>, or <code>grp1n</code> and
-<code>grp2n</code> must be specified.</p></td>
-    </tr>
-    <tr>
-      <th>grp1n</th>
-      <td><p>Treatment group sample size.</p></td>
-    </tr>
-    <tr>
-      <th>grp2n</th>
-      <td><p>Control group sample size.</p></td>
+      <td><p>A vector of total sample size(s).</p></td>
     </tr>
     <tr>
       <th>es.type</th>
       <td><p>Type of effect size that should be returned.</p><dl class='dl-horizontal'>
-  <dt><code>"d"</code></dt><dd><p>returns standardized mean difference effect size <code>d</code></p></dd>
-  <dt><code>"f"</code></dt><dd><p>returns effect size Cohen's <code>f</code></p></dd>
-  <dt><code>"g"</code></dt><dd><p>returns adjusted standardized mean difference effect size Hedges' <code>g</code></p></dd>
-  <dt><code>"or"</code></dt><dd><p>returns effect size as odds ratio</p></dd>
-  <dt><code>"cox.or"</code></dt><dd><p>returns effect size as Cox-odds ratio (see <code><a href='convert_d2or.html'>convert_d2or</a></code> for details)</p></dd>
-  <dt><code>"logit"</code></dt><dd><p>returns effect size as log odds</p></dd>
-  <dt><code>"cox.log"</code></dt><dd><p>returns effect size as Cox-log odds (see <code><a href='convert_d2logit.html'>convert_d2logit</a></code> for details)</p></dd>
-  <dt><code>"r"</code></dt><dd><p>returns correlation effect size <code>r</code></p></dd>
-  <dt><code>"eta"</code></dt><dd><p>returns effect size eta squared</p></dd>
+  <dt><code>"d"</code></dt><dd><p>returns effect size <code>d</code></p></dd>
+  <dt><code>"cox.d"</code></dt><dd><p>returns effect size <code>d</code>, based on Cox method</p></dd>
+  <dt><code>"g"</code></dt><dd><p>returns effect size Hedges' <code>g</code> (see <code><a href='hedges_g.html'>hedges_g</a></code>)</p></dd>
 </dl></td>
+    </tr>
+    <tr>
+      <th>info</th>
+      <td><p>String with information on the transformation. Used for the
+print-method. Usually, this argument can be ignored</p></td>
     </tr>
     <tr>
       <th>study</th>
       <td><p>Optional string with the study name. Using <code><a href='combine_esc.html'>combine_esc</a></code> or
 <code>as.data.frame</code> on <code>esc</code>-objects will add this as column
 in the returned data frame.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other parameters, passed down to further functions. For internal
-use only, can be ignored.</p></td>
     </tr>
     </table>
     
@@ -178,13 +172,8 @@ use only, can be ignored.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>This function only applies to <em>independent sample</em> t-tests, either
-      equal or unequal sample sizes. It can't be used for t-values from
-      dependent or paired t-tests, or t-values from other statistical procedures
-      (like regressions).
-      <br /> <br />
-      If <code>es.type = "r"</code>, Fisher's transformation for the effect size
-      <code>r</code> and their confidence intervals are also returned.</p>
+    <p>While <code>or</code> is the exponentiated log odds, the variance or standard
+      error need to be on the log-scale!</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -194,50 +183,25 @@ use only, can be ignored.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># unequal sample size</span>
-<span class='fu'>esc_t</span>(<span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>3.3</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>150</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>convert_or2d</span>(<span class='fl'>3.56</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>0.91</span>)</div><div class='output co'>#&gt; 
 #&gt; Effect Size Calculation for Meta Analysis
 #&gt; 
-#&gt;      Conversion: t-value to effect size d
-#&gt;     Effect Size:   0.4260
-#&gt;  Standard Error:   0.1305
-#&gt;        Variance:   0.0170
-#&gt;        Lower CI:   0.1703
-#&gt;        Upper CI:   0.6818
-#&gt;          Weight:  58.7211</div><div class='input'>
-<span class='co'># equal sample size</span>
-<span class='fu'>esc_t</span>(<span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>3.3</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='output co'>#&gt; 
+#&gt;      Conversion: effect size OR to effect size d
+#&gt;     Effect Size:   0.7001
+#&gt;  Standard Error:   0.5017
+#&gt;        Variance:   0.2517
+#&gt;        Lower CI:  -0.2833
+#&gt;        Upper CI:   1.6834
+#&gt;          Weight:   3.9728</div><div class='input'><span class='fu'><a href='convert_d2or.html'>convert_d2or</a></span>(<span class='fl'>0.7</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; 
 #&gt; Effect Size Calculation for Meta Analysis
 #&gt; 
-#&gt;      Conversion: t-value to effect size d
-#&gt;     Effect Size:   0.4667
-#&gt;  Standard Error:   0.1433
-#&gt;        Variance:   0.0205
-#&gt;        Lower CI:   0.1858
-#&gt;        Upper CI:   0.7476
-#&gt;          Weight:  48.6748</div><div class='input'>
-<span class='co'># unequal sample size, with p-value</span>
-<span class='fu'>esc_t</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.03</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>150</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: t-value to effect size d
-#&gt;     Effect Size:   0.2818
-#&gt;  Standard Error:   0.1297
-#&gt;        Variance:   0.0168
-#&gt;        Lower CI:   0.0275
-#&gt;        Upper CI:   0.5360
-#&gt;          Weight:  59.4337</div><div class='input'>
-<span class='co'># equal sample size, with p-value</span>
-<span class='fu'>esc_t</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.03</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: t-value to effect size d
-#&gt;     Effect Size:   0.3091
-#&gt;  Standard Error:   0.1423
-#&gt;        Variance:   0.0202
-#&gt;        Lower CI:   0.0303
-#&gt;        Upper CI:   0.5880
-#&gt;          Weight:  49.4098</div><div class='input'>
+#&gt;      Conversion: effect size d to effect size OR
+#&gt;     Effect Size:   3.5596
+#&gt;  Standard Error:   0.9069
+#&gt;        Variance:   0.8225
+#&gt;        Lower CI:   0.6018
+#&gt;        Upper CI:  21.0553
+#&gt;          Weight:   1.2159</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

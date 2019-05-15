@@ -1,5 +1,5 @@
 #' @title Convert effect size d into f
-#' @name esc_d2f
+#' @name convert_d2f
 #'
 #' @description Compute effect size \code{f} from effect size \code{d}.
 #'
@@ -11,7 +11,7 @@
 #' @param info String with information on the transformation. Used for the
 #'        print-method. Usually, this argument can be ignored
 #'
-#' @inheritParams esc_d2or
+#' @inheritParams convert_d2or
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower and upper confidence limits
@@ -22,10 +22,10 @@
 #'
 #' @examples
 #' # d to f
-#' esc_d2f(d = 0.2, se = .1, totaln = 50)
+#' convert_d2f(d = 0.2, se = .1, totaln = 50)
 #'
 #' @export
-esc_d2f <- function(d, se, v, totaln, info = NULL, study = NULL) {
+convert_d2f <- function(d, se, v, totaln, info = NULL, study = NULL) {
   # compute effect size f
   es <- d / 2
 
@@ -36,11 +36,11 @@ esc_d2f <- function(d, se, v, totaln, info = NULL, study = NULL) {
   }
 
   # do we have se?
-  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se ^ 2
+  if (!missing(se) && !is.null(se) && !is.na(se)) v <- se^2
 
   # return effect size f
   structure(
-    class = c("esc", "esc_d2f"),
+    class = c("esc", "convert_d2f"),
     list(
       es = es,
       se = sqrt(v),
@@ -55,4 +55,3 @@ esc_d2f <- function(d, se, v, totaln, info = NULL, study = NULL) {
     )
   )
 }
-

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute effect size from Point-Biserial Correlation — esc_rpb • esc</title>
+<title>Convert effect size d into correlation — esc_d2r • esc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Compute effect size from Point-Biserial Correlation — esc_rpb" />
+<meta property="og:title" content="Convert effect size d into correlation — esc_d2r" />
 
-<meta property="og:description" content="Compute effect size from Point-Biserial Correlation." />
+<meta property="og:description" content="Compute effect size correlation from effect size d." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,35 +104,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute effect size from Point-Biserial Correlation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/esc_rpb.R'><code>R/esc_rpb.R</code></a></small>
-    <div class="hidden name"><code>esc_rpb.Rd</code></div>
+    <h1>Convert effect size d into correlation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/Deprecated.R'><code>R/Deprecated.R</code></a>, <a href='https://github.com/strengejacke/esc/blob/master/R/convert_d2r.R'><code>R/convert_d2r.R</code></a></small>
+    <div class="hidden name"><code>convert_d2r.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute effect size from Point-Biserial Correlation.</p>
+    <p>Compute effect size correlation from effect size <code>d</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>esc_rpb</span>(<span class='no'>r</span>, <span class='no'>p</span>, <span class='no'>totaln</span>, <span class='no'>grp1n</span>, <span class='no'>grp2n</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"d"</span>, <span class='st'>"g"</span>, <span class='st'>"or"</span>, <span class='st'>"logit"</span>,
-  <span class='st'>"f"</span>, <span class='st'>"eta"</span>, <span class='st'>"cox.or"</span>, <span class='st'>"cox.log"</span>), <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>esc_d2r</span>(<span class='no'>d</span>, <span class='no'>se</span>, <span class='no'>v</span>, <span class='no'>grp1n</span>, <span class='no'>grp2n</span>, <span class='kw'>info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>convert_d2r</span>(<span class='no'>d</span>, <span class='no'>se</span>, <span class='no'>v</span>, <span class='no'>grp1n</span>, <span class='no'>grp2n</span>, <span class='kw'>info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>r</th>
-      <td><p>The point-biserial r-value. One of <code>r</code> or <code>p</code> must be specified.</p></td>
+      <th>d</th>
+      <td><p>The effect size <code>d</code>.</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>The p-value of the point-biserial correlation. One of <code>r</code> or <code>p</code> must be specified.</p></td>
+      <th>se</th>
+      <td><p>The standard error of <code>d</code>. One of <code>se</code> or <code>v</code>
+must be specified.</p></td>
     </tr>
     <tr>
-      <th>totaln</th>
-      <td><p>Total sample size. Either <code>totaln</code>, or <code>grp1n</code> and
-<code>grp2n</code> must be specified.</p></td>
+      <th>v</th>
+      <td><p>The variance of <code>d</code>. One of <code>se</code> or <code>v</code> must be
+specified.</p></td>
     </tr>
     <tr>
       <th>grp1n</th>
@@ -143,18 +145,9 @@
       <td><p>Control group sample size.</p></td>
     </tr>
     <tr>
-      <th>es.type</th>
-      <td><p>Type of effect size that should be returned.</p><dl class='dl-horizontal'>
-  <dt><code>"d"</code></dt><dd><p>returns standardized mean difference effect size <code>d</code></p></dd>
-  <dt><code>"f"</code></dt><dd><p>returns effect size Cohen's <code>f</code></p></dd>
-  <dt><code>"g"</code></dt><dd><p>returns adjusted standardized mean difference effect size Hedges' <code>g</code></p></dd>
-  <dt><code>"or"</code></dt><dd><p>returns effect size as odds ratio</p></dd>
-  <dt><code>"cox.or"</code></dt><dd><p>returns effect size as Cox-odds ratio (see <code><a href='convert_d2or.html'>convert_d2or</a></code> for details)</p></dd>
-  <dt><code>"logit"</code></dt><dd><p>returns effect size as log odds</p></dd>
-  <dt><code>"cox.log"</code></dt><dd><p>returns effect size as Cox-log odds (see <code><a href='convert_d2logit.html'>convert_d2logit</a></code> for details)</p></dd>
-  <dt><code>"r"</code></dt><dd><p>returns correlation effect size <code>r</code></p></dd>
-  <dt><code>"eta"</code></dt><dd><p>returns effect size eta squared</p></dd>
-</dl></td>
+      <th>info</th>
+      <td><p>String with information on the transformation. Used for the
+print-method. Usually, this argument can be ignored</p></td>
     </tr>
     <tr>
       <th>study</th>
@@ -169,7 +162,8 @@ in the returned data frame.</p></td>
     <p>The effect size <code>es</code>, the standard error <code>se</code>, the variance
         of the effect size <code>var</code>, the lower and upper confidence limits
         <code>ci.lo</code> and <code>ci.hi</code>, the weight factor <code>w</code> and the
-        total sample size <code>totaln</code>.</p>
+        total sample size <code>totaln</code>. Furthermore, Fisher's z and
+        confidence intervals are returned.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -179,50 +173,19 @@ in the returned data frame.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># unequal sample size</span>
-<span class='fu'>esc_rpb</span>(<span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>.3</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>150</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>convert_d2r</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>70</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>80</span>)</div><div class='output co'>#&gt; 
 #&gt; Effect Size Calculation for Meta Analysis
 #&gt; 
-#&gt;      Conversion: point-biserial r to effect size d
-#&gt;     Effect Size:   0.6419
-#&gt;  Standard Error:   0.1323
-#&gt;        Variance:   0.0175
-#&gt;        Lower CI:   0.3827
-#&gt;        Upper CI:   0.9012
-#&gt;          Weight:  57.1728</div><div class='input'>
-<span class='co'># equal sample size</span>
-<span class='fu'>esc_rpb</span>(<span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>.3</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: point-biserial r to effect size d
-#&gt;     Effect Size:   0.6290
-#&gt;  Standard Error:   0.1449
-#&gt;        Variance:   0.0210
-#&gt;        Lower CI:   0.3450
-#&gt;        Upper CI:   0.9129
-#&gt;          Weight:  47.6440</div><div class='input'>
-<span class='co'># unequal sample size, with p-value</span>
-<span class='fu'>esc_rpb</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.03</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>150</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: point-biserial r to effect size d
-#&gt;     Effect Size:   0.2818
-#&gt;  Standard Error:   0.1297
-#&gt;        Variance:   0.0168
-#&gt;        Lower CI:   0.0275
-#&gt;        Upper CI:   0.5360
-#&gt;          Weight:  59.4337</div><div class='input'>
-<span class='co'># equal sample size, with p-value</span>
-<span class='fu'>esc_rpb</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.03</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='output co'>#&gt; 
-#&gt; Effect Size Calculation for Meta Analysis
-#&gt; 
-#&gt;      Conversion: point-biserial r to effect size d
-#&gt;     Effect Size:   0.3091
-#&gt;  Standard Error:   0.1423
-#&gt;        Variance:   0.0202
-#&gt;        Lower CI:   0.0303
-#&gt;        Upper CI:   0.5880
-#&gt;          Weight:  49.4098</div><div class='input'>
+#&gt;      Conversion: effect size d to effect size correlation
+#&gt;     Effect Size:   0.3297
+#&gt;  Standard Error:   0.2420
+#&gt;        Variance:   0.0586
+#&gt;        Lower CI:  -0.1311
+#&gt;        Upper CI:   0.6734
+#&gt;          Weight:  17.0714
+#&gt;      Fisher's z:   0.3425
+#&gt;       Lower CIz:  -0.1319
+#&gt;       Upper CIz:   0.8169</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

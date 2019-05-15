@@ -23,7 +23,7 @@ print.esc <- function(x, ...) {
 as.data.frame.esc <- function(x, ...) {
   if (is.null(x$study)) x$study <- ""
 
-  if (any(class(x) == "esc_d2r")) {
+  if (any(class(x) == "convert_d2r")) {
     return(data.frame(study = x$study, es = x$es, weight = x$w, sample.size = x$totaln, se = x$se,
                       var = x$var, ci.lo = x$ci.lo, ci.hi = x$ci.hi, fishers.z = x$zr,
                       ci.lo.z = x$ci.lo.zr, ci.hi.z = x$ci.hi.zr, measure = x$measure))

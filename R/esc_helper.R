@@ -20,7 +20,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as odds ratio
 
   if (es.type == "or")
-    return(esc_d2or(
+    return(convert_d2or(
       d = es,
       v = v,
       totaln = totaln,
@@ -33,7 +33,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as cox odds ratio
 
   if (es.type == "cox.or")
-    return(esc_d2or(
+    return(convert_d2or(
       d = es,
       v = v,
       totaln = totaln,
@@ -46,7 +46,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as f
 
   if (es.type == "f")
-    return(esc_d2f(
+    return(convert_d2f(
       d = es,
       v = v,
       totaln = totaln,
@@ -58,7 +58,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as eta squared
 
   if (es.type == "eta")
-    return(esc_d2etasq(
+    return(convert_d2etasq(
       d = es,
       v = v,
       grp1n = grp1n,
@@ -71,7 +71,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as log odds
 
   if (es.type == "logit")
-    return(esc_d2logit(
+    return(convert_d2logit(
       d = es,
       v = v,
       totaln = totaln,
@@ -84,7 +84,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as cox log odds
 
   if (es.type == "cox.log")
-    return(esc_d2logit(
+    return(convert_d2logit(
       d = es,
       v = v,
       totaln = totaln,
@@ -97,7 +97,7 @@ esc_generic <- function(es, v, grp1n, grp2n, es.type, info, study) {
   # return effect size as correlation
 
   if (es.type == "r")
-    return(esc_d2r(
+    return(convert_d2r(
       d = es,
       v = v,
       grp1n = grp1n,

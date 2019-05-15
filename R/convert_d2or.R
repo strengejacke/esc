@@ -1,15 +1,27 @@
-#' @title Convert effect size d into log odds
-#' @name esc_d2logit
+#' @title Convert effect size d into OR
+#' @name convert_d2or
 #'
-#' @description Compute effect size \code{log odds} from effect size \code{d}.
+#' @description Compute effect size \code{OR} from effect size \code{d}.
 #'
-#' @inheritParams esc_d2or
+#' @param d The effect size \code{d}.
+#' @param se The standard error of \code{d}. One of \code{se} or \code{v}
+#'        must be specified.
+#' @param v The variance of \code{d}. One of \code{se} or \code{v} must be
+#'        specified.
+#' @param es.type Type of effect size odds ratio that should be returned.
+#'        May be \code{es.type = "logit"} or \code{es.type = "cox"}
+#'        (see 'Details').
+#' @param info String with information on the transformation. Used for the
+#'        print-method. Usually, this argument can be ignored
+#'
 #' @inheritParams esc_beta
 #' @inheritParams hedges_g
 #'
-#' @note Effect size, variance, standard error and confidence intervals are
-#'       returned on the log-scale. To get the odds ratios and exponentiated
-#'       confidence intervals, use \code{\link{esc_d2or}}.
+#' @note Effect size is returned as \code{exp(log_values)} (odds ratio),
+#'       confidence intervals are also exponentiated. To get the log-values,
+#'       use \code{\link{convert_d2logit}}.
+#'       \strong{However}, variance and standard error of this function
+#'       are returned on the log-scale!
 #'
 #' @details Conversion from \code{d} to odds ratios can be done with two
 #'          methods:
@@ -32,19 +44,19 @@
 #'             Cox DR. 1970. Analysis of binary data. New York: Chapman & Hall/CRC
 #'             \cr \cr
 #'             Hasselblad V, Hedges LV. 1995. Meta-analysis of screening and diagnostic tests. Psychological Bulletin 117(1): 167–178. \doi{10.1037/0033-2909.117.1.167}
+#'             \cr \cr
+#'             Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. 2009. Introduction to Meta-Analysis. Chichester, West Sussex, UK: Wiley
 #'
 #' @examples
-#' # to logits
-#' esc_d2logit(0.7, se = 0.5)
-#'
-#' # to Cox-logits
-#' esc_d2logit(0.7, v = 0.25, es.type = "cox")
+#' # d to odds ratio
+#' convert_d2or(0.7, se = 0.5)
+#' # odds ratio to d
+#' convert_or2d(3.56, se = 0.91)
 #'
 #' @export
-esc_d2logit <- function(d, se, v, totaln,
-                        es.type = c("logit", "cox"),
-                        info = NULL,
-                        study = NULL) {
+convert_d2or <- function(d, se, v, totaln,
+                     es.type = c("logit", "cox"),
+                     info = NULL, study = NULL) {
   # match  arguments
   es.type <- match.arg(es.type)
 
@@ -62,7 +74,7 @@ esc_d2logit <- function(d, se, v, totaln,
 
   # do we have a separate info string?
   if (is.null(info)) {
-    info <- "effect size d to effect size logit"
+    info <- "effect size d to effect size OR"
     if (es.type == "cox") info <- paste0(info, "(Cox)")
   }
 
@@ -70,19 +82,28 @@ esc_d2logit <- function(d, se, v, totaln,
     # Hasselblad and Hedges logit
     es <- pi / sqrt(3) * d
     v <- (pi  ^ 2) / 3 * v
-    measure <- "logit"
+    measure <- "or"
   } else {
     # Cox logit
     es <- d * 1.65
     v <- v / .367
-    measure <- "cox-logit"
+    measure <- "cox-or"
   }
 
   # return effect size d
-  return(structure(
-    class = c("esc", "esc_d2logit"),
-    list(es = es, se = sqrt(v), var = v, ci.lo = lower_d(es, v),
-         ci.hi = upper_d(es, v), w = 1 / v, totaln = totaln,
-         measure = measure, info = info, study = study)
-  ))
+  structure(
+    class = c("esc", "convert_d2or"),
+    list(
+      es = exp(es),
+      se = sqrt(v),
+      var = v,
+      ci.lo = exp(lower_d(es, v)),
+      ci.hi = exp(upper_d(es, v)),
+      w = 1 / v,
+      totaln = totaln,
+      measure = measure,
+      info = info,
+      study = study
+    )
+  )
 }
