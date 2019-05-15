@@ -6,8 +6,8 @@
 \usage{
 esc_mean_gain(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean,
   gain1sd, grp1r, pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean,
-  gain2sd, grp2r, es.type = c("d", "g", "or", "logit", "r", "f", "eta",
-  "cox.or", "cox.log"), study = NULL)
+  gain2sd, grp2r, r, es.type = c("d", "g", "or", "logit", "r", "f",
+  "eta", "cox.or", "cox.log"), study = NULL)
 }
 \arguments{
 \item{pre1mean}{The mean of the first group at pre-test.}
@@ -45,6 +45,8 @@ group.}
 
 \item{grp2r}{The (estimated) correlation of pre-post scores for the second
 group.}
+
+\item{r}{Correlation for within-subject designs (paired samples, repeated measures).}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{

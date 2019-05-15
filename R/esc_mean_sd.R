@@ -68,14 +68,14 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
   # compute pooled standard deviation.
   if (!missing(totalsd) && !is.null(totalsd)) {
     # pooled sd from full sample sd, formula from book
-    sdp <- ((totalsd ^ 2 * (totaln - 1) - ((dm ^ 2 * grp1n * grp2n) / totaln)) / (totaln - 1))
+    sdp <- ((totalsd^2 * (totaln - 1) - ((dm^2 * grp1n * grp2n) / totaln)) / (totaln - 1))
 
     # pooled sd from full sample sd, formula from unpublished manuscript. formulas vary,
     # email-correspondence with author suggests that book-formula should be correct
     # however, in some case value might be negative, so sqrt is not possible, use
     # alternative formula then
     if (sdp < 0)
-      sdp <- (totalsd ^ 2 * (totaln - 1) - ((grp1m ^ 2 + grp2m ^ 2 - 2 * grp1m * grp2m) / totaln)) / totaln
+      sdp <- (totalsd^2 * (totaln - 1) - ((grp1m^2 + grp2m^2 - 2 * grp1m * grp2m) / totaln)) / totaln
 
     sd_pooled <- sqrt(sdp)
   } else if (!missing(r)) {
@@ -84,7 +84,7 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
     info <- "mean and sd (within-subject)"
   } else {
     # pooled sd from group sd's
-    sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
+    sd_pooled <- sqrt((grp1sd^2 * (grp1n - 1) + grp2sd^2 * (grp2n - 1)) / (grp1n + grp2n - 2))
   }
 
   # compute effect size
@@ -131,18 +131,34 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
 #'             grp2m = 9, grp2se = 1.8, grp2n = 60, es.type = "or")
 #'
 #' @export
-esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n,
+esc_mean_se <- function(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n, r,
                         es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
   grp1sd <- grp1se * sqrt(grp1n - 1)
   grp2sd <- grp2se * sqrt(grp2n - 1)
 
-  sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
+  info <- "mean and se"
+
+  if (!missing(r)) {
+    # pooled sd, within-subject
+    sd_pooled <- sqrt(grp1sd^2 + grp2sd^2 - (2 * r * grp1sd * grp2sd))
+    info <- "mean and se (within-subject)"
+  } else {
+    sd_pooled <- sqrt((grp1sd^2 * (grp1n - 1) + grp2sd^2 * (grp2n - 1)) / (grp1n + grp2n - 2))
+  }
+
   es <- (grp1m - grp2m) / sd_pooled
   v <- esc.vd(es, grp1n, grp2n)
 
   # return effect size
-  return(esc_generic(es = es, v = v, es.type = es.type, grp1n = grp1n, grp2n = grp2n,
-                     info = "mean and se", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    es.type = es.type,
+    grp1n = grp1n,
+    grp2n = grp2n,
+    info = info,
+    study = study
+  )
 }

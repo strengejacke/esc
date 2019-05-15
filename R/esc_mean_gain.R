@@ -26,6 +26,7 @@
 #'   group.
 #'
 #' @inheritParams esc_beta
+#' @inheritParams esc_mean_sd
 #'
 #' @return The effect size \code{es}, the standard error \code{se}, the variance
 #'         of the effect size \code{var}, the lower and upper confidence limits
@@ -70,7 +71,7 @@
 #'
 #' @export
 esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean, gain1sd, grp1r,
-                          pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r,
+                          pre2mean, pre2sd, post2mean, post2sd, grp2n, gain2mean, gain2sd, grp2r, r,
                           es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
@@ -133,7 +134,7 @@ esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean
     # compute t-value
     tgrp1 <- esc_compute_t(pre1mean, post1mean, pre1sd, post1sd, grp1n)
     # compute correlation
-    grp1r <- ((pre1sd ^ 2 * tgrp1 ^ 2 + post1sd ^ 2 * tgrp1 ^ 2) - (post1mean - pre1mean) ^ 2 * grp1n) / (2 * pre1sd * post1sd * tgrp1 ^ 2)
+    grp1r <- ((pre1sd^2 * tgrp1^2 + post1sd^2 * tgrp1^2) - (post1mean - pre1mean)^2 * grp1n) / (2 * pre1sd * post1sd * tgrp1^2)
   }
 
   # compute r for group 2, based on t-test
@@ -141,43 +142,57 @@ esc_mean_gain <- function(pre1mean, pre1sd, post1mean, post1sd, grp1n, gain1mean
     # compute t-value
     tgrp2 <- esc_compute_t(pre2mean, post2mean, pre2sd, post2sd, grp2n)
     # compute correlation
-    grp2r <- ((pre2sd ^ 2 * tgrp2 ^ 2 + post2sd ^ 2 * tgrp2 ^ 2) - (post2mean - pre2mean) ^ 2 * grp2n) / (2 * pre2sd * post2sd * tgrp2 ^ 2)
+    grp2r <- ((pre2sd^2 * tgrp2^2 + post2sd^2 * tgrp2^2) - (post2mean - pre2mean)^2 * grp2n) / (2 * pre2sd * post2sd * tgrp2^2)
   }
 
   # compute sd for group 1
   if (missing(pre1sd) || missing(post1sd) || is.null(pre1sd) || is.null(post1sd))
     grp1sd <- gain1sd / sqrt(2 * (1 - grp1r))
   else
-    grp1sd <- sqrt((pre1sd ^ 2 + post1sd ^ 2) / 2)
+    grp1sd <- sqrt((pre1sd^2 + post1sd^2) / 2)
 
   # compute sd for group 2
   if (missing(pre2sd) || missing(post2sd) || is.null(pre2sd) || is.null(post2sd))
     grp2sd <- gain2sd / sqrt(2 * (1 - grp2r))
   else
-    grp2sd <- sqrt((pre2sd ^ 2 + post2sd ^ 2) / 2)
+    grp2sd <- sqrt((pre2sd^2 + post2sd^2) / 2)
 
 
   # compute mean gain scores for groups 1 and 2
   if (missing(gain1mean)) gain1mean <- pre1mean - post1mean
   if (missing(gain2mean)) gain2mean <- pre2mean - post2mean
 
+  info = "mean gain score"
+
   # compute pooled standard deviation
-  sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
+  if (!missing(r)) {
+    # pooled sd, within-subject
+    sd_pooled <- sqrt(grp1sd^2 + grp2sd^2 - (2 * r * grp1sd * grp2sd))
+    info = "mean gain score (within-subject)"
+  } else {
+    sd_pooled <- sqrt((grp1sd^2 * (grp1n - 1) + grp2sd^2 * (grp2n - 1)) / (grp1n + grp2n - 2))
+  }
 
   # compute effect size d
   es <- (gain1mean - gain2mean) / sd_pooled
 
   # compute variance
-  v <- (2 * (1 - grp1r)) / grp1n + (2 * (1 - grp2r)) / grp2n + es ^ 2 / (2 * (grp1n + grp2n))
+  v <- (2 * (1 - grp1r)) / grp1n + (2 * (1 - grp2r)) / grp2n + es^2 / (2 * (grp1n + grp2n))
 
   # return effect size
-  return(esc_generic(es = es, v = v, grp1n = grp1n, grp2n = grp2n,
-                     es.type = es.type, info = "mean gain score", study = study))
+  esc_generic(
+    es = es,
+    v = v,
+    grp1n = grp1n,
+    grp2n = grp2n,
+    es.type = es.type,
+    info = info,
+    study = study
+  )
 }
 
 
 esc_compute_t <- function(m1, m2, s1, s2, n) {
-  se <- sqrt((s1 ^ 2 / (n / 2)) + (s2 ^ 2 / (n / 2)))
-  t <- (m1 - m2) / se
-  return(t)
+  se <- sqrt((s1^2 / (n / 2)) + (s2^2 / (n / 2)))
+  (m1 - m2) / se
 }

@@ -2,7 +2,7 @@
 
 ## Changes to functions
 
-* `esc_mean_sd()` can now calculate effect-sizes for within-subject-designs, when argument `r` is given.
+* `esc_mean_sd()`, `esc_mean_se()` and `esc_mean_gain()` can now calculate effect-sizes for within-subject-designs, when argument `r` is given.
 
 # esc 0.4.1
 
