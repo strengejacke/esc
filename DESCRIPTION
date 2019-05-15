@@ -17,12 +17,7 @@ Depends:
     R (>= 3.2),
     stats
 Imports:
-    dplyr,
-    purrr,
-    readr,
-    sjmisc (>= 2.7.4),
-    tibble,
     utils
-URL: https://github.com/strengejacke/esc
+URL: https://strengejacke.github.io/esc
 BugReports: https://github.com/strengejacke/esc/issues
 RoxygenNote: 6.1.1

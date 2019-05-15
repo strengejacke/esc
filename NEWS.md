@@ -2,6 +2,7 @@
 
 ## General
 
+* Reduce package dependencies.
 * Function that convert from one effect size into another are now prefixed with `convert_*()`, instead of `esc_*()` (e.g. `convert_d2r()` instead of `esc_d2r()`).
 
 ## Changes to functions

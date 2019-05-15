@@ -88,9 +88,6 @@
 #'              study = studyname, fun = "chisq")
 #'
 #'
-#' @importFrom tibble as_tibble
-#' @importFrom dplyr slice
-#' @importFrom purrr map_df
 #' @export
 effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log")) {
   es.type <- match.arg(es.type)
@@ -107,12 +104,14 @@ effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r
   # make sure all numerics are numeric! and, only
   # return necessary data rows
   data <- suppressWarnings(
-    purrr::map_df(data[, cols], function(x) {
-      if (!is.factor(x) && !all(is.na(as.numeric(x))))
-        as.numeric(x)
-      else
-        x
-    })
+    as.data.frame(
+      lapply(data[, cols], function(x) {
+        if (!is.factor(x) && !all(is.na(as.numeric(x))))
+          as.numeric(x)
+        else
+          x
+      })
+    )
   )
 
   results <- list()
@@ -133,7 +132,7 @@ effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r
   }
 
   # returned results as combined tibble
-  results <- suppressWarnings(purrr::map_df(results, function(x) tibble::as_tibble(x)))
+  results <- suppressWarnings(do.call(rbind, lapply(results, function(x) as.data.frame(x, stringsAsFactors = FALSE))))
 
   # do we have any missing effect sizes?
   if (anyNA(results$es) || any(is.infinite(results$es))) {
@@ -146,8 +145,8 @@ effect_sizes <- function(data, ..., fun, es.type = c("d", "g", "or", "logit", "r
     ),
     call. = F)
     # remove missings
-    results <- dplyr::slice(results, !! -mes)
+    results <- results[-mes, ]
   }
 
-  purrr::map_df(results, function(x) if (is.factor(x)) as.character(x) else x)
+  as.data.frame(lapply(results, function(x) if (is.factor(x)) as.character(x) else x))
 }

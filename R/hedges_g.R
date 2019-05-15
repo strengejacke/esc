@@ -34,9 +34,11 @@
 #' hedges_g(c(0.75, .3), c(50, 70))
 #' cohens_f(r = c(.1, .2, .3))
 #'
-#' @importFrom purrr map2_dbl
 #' @export
-hedges_g <- function(d, totaln) purrr::map2_dbl(d, totaln, ~ .x * sssbc(.y))
+hedges_g <- function(d, totaln) {
+  mapply(function(.x, .y) .x * sssbc(.y), d, totaln)
+}
+
 
 #' @rdname hedges_g
 #' @export
@@ -45,6 +47,7 @@ eta_squared <- function(d, r, f, or, logit) {
   (d^2 / (1 + d^2)) / 2
 }
 
+
 #' @rdname hedges_g
 #' @export
 cohens_f <- function(d, r, eta, or, logit) {
@@ -52,11 +55,13 @@ cohens_f <- function(d, r, eta, or, logit) {
   d / 2
 }
 
+
 #' @rdname hedges_g
 #' @export
 cohens_d <- function(f, r, eta, or, logit) {
   convert_to_d(r = r, eta = eta, f = f, or = or, logit = logit)
 }
+
 
 #' @rdname hedges_g
 #' @export
@@ -65,12 +70,14 @@ pearsons_r <- function(d, eta, f, or, logit) {
   sqrt(d^2 / (d^2 + 4))
 }
 
+
 #' @rdname hedges_g
 #' @export
 log_odds <- function(d, eta, f, or, r) {
   d <- convert_to_d(d = d, eta = eta, f = f, or = or, r = r)
   d * pi / sqrt(3)
 }
+
 
 #' @rdname hedges_g
 #' @export

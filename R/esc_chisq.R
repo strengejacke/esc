@@ -45,13 +45,13 @@ esc_chisq <- function(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r"
 
   # if we have no phi-value, compute it from p.
   # divide p by two, because two-tailed.
-  if (missing(chisq) || is.null(chisq) || is.na(chisq)) chisq <- stats::qnorm(p / 2, lower.tail = F) ^ 2
+  if (missing(chisq) || is.null(chisq) || is.na(chisq)) chisq <- stats::qnorm(p / 2, lower.tail = F)^2
 
   # compute effect size
   es <- 2 * sqrt(chisq / (totaln - chisq))
 
   # compute variancr
-  v <- es ^ 2 / chisq
+  v <- es^2 / chisq
 
   # return effect size
   return(esc_generic(es = es, v = v, es.type = es.type, grp1n = totaln / 2, grp2n = totaln / 2,
@@ -107,13 +107,13 @@ esc_phi <- function(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f
   if (missing(phi) || is.null(phi)) return(esc_chisq(p = p, totaln = totaln, es.type = es.type, study = study))
 
   # compute effect size
-  es <- (2 * phi ) / sqrt(1 - phi ^ 2)
+  es <- (2 * phi ) / sqrt(1 - phi^2)
 
   # compute chi-squared
-  chisq <- phi ^ 2 * totaln
+  chisq <- phi^2 * totaln
 
   # compute variance
-  v = es ^ 2 / chisq
+  v = es^2 / chisq
 
   # return effect size
   esc_generic(
