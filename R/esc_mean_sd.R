@@ -10,6 +10,7 @@
 #' @param grp2m The mean of the second group.
 #' @param grp2sd The standard deviation of the second group.
 #' @param grp2n The sample size of the second group.
+#' @param r Correlation for within-subject designs (paired samples, repeated measures).
 #' @param totalsd The full sample standard deviation. Either \code{grp1sd} and
 #'        \code{grp2sd}, or \code{totalsd} must be specified.
 #'
@@ -29,14 +30,23 @@
 #'
 #' @examples
 #' # with standard deviations for each group
-#' esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50,
-#'             grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")
+#' esc_mean_sd(
+#'   grp1m = 7, grp1sd = 2, grp1n = 50,
+#'   grp2m = 9, grp2sd = 3, grp2n = 60,
+#'   es.type = "logit"
+#' )
+#'
+#' # effect-size d, within-subjects design
+#' esc_mean_sd(
+#'   grp1m = 7, grp1sd = 2, grp1n = 50,
+#'   grp2m = 9, grp2sd = 3, grp2n = 60, r = .7
+#' )
 #'
 #' # with full sample standard deviations
 #' esc_mean_sd(grp1m = 7, grp1n = 50, grp2m = 9, grp2n = 60, totalsd = 4)
 #'
 #' @export
-esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
+esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
                         es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"), study = NULL) {
   es.type <- match.arg(es.type)
 
@@ -53,10 +63,10 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
 
   # compute mean difference
   dm <- grp1m - grp2m
+  info <- "mean and sd"
 
   # compute pooled standard deviation.
   if (!missing(totalsd) && !is.null(totalsd)) {
-
     # pooled sd from full sample sd, formula from book
     sdp <- ((totalsd ^ 2 * (totaln - 1) - ((dm ^ 2 * grp1n * grp2n) / totaln)) / (totaln - 1))
 
@@ -68,7 +78,10 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
       sdp <- (totalsd ^ 2 * (totaln - 1) - ((grp1m ^ 2 + grp2m ^ 2 - 2 * grp1m * grp2m) / totaln)) / totaln
 
     sd_pooled <- sqrt(sdp)
-
+  } else if (!missing(r)) {
+    # pooled sd, within-subject
+    sd_pooled <- sqrt(grp1sd^2 + grp2sd^2 - (2 * r * grp1sd * grp2sd))
+    info <- "mean and sd (within-subject)"
   } else {
     # pooled sd from group sd's
     sd_pooled <- sqrt((grp1sd ^ 2 * (grp1n - 1) + grp2sd ^ 2 * (grp2n - 1)) / (grp1n + grp2n - 2))
@@ -86,7 +99,7 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
     es.type = es.type,
     grp1n = grp1n,
     grp2n = grp2n,
-    info = "mean and sd",
+    info = info,
     study = study
   )
 }

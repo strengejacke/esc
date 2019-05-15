@@ -4,7 +4,7 @@
 \alias{esc_mean_sd}
 \title{Compute effect size from Mean and Standard Deviation}
 \usage{
-esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
+esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
   es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
   study = NULL)
 }
@@ -23,6 +23,8 @@ esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd,
 
 \item{totalsd}{The full sample standard deviation. Either \code{grp1sd} and
 \code{grp2sd}, or \code{totalsd} must be specified.}
+
+\item{r}{Correlation for within-subject designs (paired samples, repeated measures).}
 
 \item{es.type}{Type of effect size that should be returned.
 \describe{
@@ -57,8 +59,17 @@ If \code{es.type = "r"}, Fisher's transformation for the effect size
 }
 \examples{
 # with standard deviations for each group
-esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50,
-            grp2m = 9, grp2sd = 3, grp2n = 60, es.type = "logit")
+esc_mean_sd(
+  grp1m = 7, grp1sd = 2, grp1n = 50,
+  grp2m = 9, grp2sd = 3, grp2n = 60,
+  es.type = "logit"
+)
+
+# effect-size d, within-subjects design
+esc_mean_sd(
+  grp1m = 7, grp1sd = 2, grp1n = 50,
+  grp2m = 9, grp2sd = 3, grp2n = 60, r = .7
+)
 
 # with full sample standard deviations
 esc_mean_sd(grp1m = 7, grp1n = 50, grp2m = 9, grp2n = 60, totalsd = 4)

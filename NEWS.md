@@ -1,3 +1,9 @@
+# esc 0.4.2
+
+## Changes to functions
+
+* `esc_mean_sd()` can now calculate effect-sizes for within-subject-designs, when argument `r` is given.
+
 # esc 0.4.1
 
 ## Bug fixes

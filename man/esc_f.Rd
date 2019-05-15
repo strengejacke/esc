@@ -4,8 +4,8 @@
 \alias{esc_f}
 \title{Compute effect size from One-way Anova}
 \usage{
-esc_f(f, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r", "f",
-  "eta", "cox.or", "cox.log"), study = NULL)
+esc_f(f, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
+  "f", "eta", "cox.or", "cox.log"), study = NULL)
 }
 \arguments{
 \item{f}{The F-value of the F-test.}

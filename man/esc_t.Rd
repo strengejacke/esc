@@ -4,8 +4,8 @@
 \alias{esc_t}
 \title{Compute effect size from Student's t-test}
 \usage{
-esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
-  "f", "eta", "cox.or", "cox.log"), study = NULL, ...)
+esc_t(t, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit",
+  "r", "f", "eta", "cox.or", "cox.log"), study = NULL, ...)
 }
 \arguments{
 \item{t}{The t-value of the t-test. One of \code{t} or \code{p} must be specified.}

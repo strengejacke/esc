@@ -2,8 +2,8 @@ Package: esc
 Type: Package
 Encoding: UTF-8
 Title: Effect Size Computation for Meta Analysis
-Version: 0.4.1
-Date: 2018-05-06
+Version: 0.4.1.9000
+Date: 2019-05-15
 Author: Daniel Lüdecke <d.luedecke@uke.de>
 Authors@R: person("Daniel", "Lüdecke", role = c("aut", "cre"), email = "d.luedecke@uke.de", comment = c(ORCID = "0000-0002-8895-3206"))
 Maintainer: Daniel Lüdecke <d.luedecke@uke.de>
@@ -25,4 +25,4 @@ Imports:
     utils
 URL: https://github.com/strengejacke/esc
 BugReports: https://github.com/strengejacke/esc/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

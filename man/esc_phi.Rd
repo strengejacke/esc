@@ -4,8 +4,8 @@
 \alias{esc_phi}
 \title{Compute effect size from Phi coefficient}
 \usage{
-esc_phi(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f", "eta",
-  "cox.or", "cox.log"), study = NULL)
+esc_phi(phi, p, totaln, es.type = c("d", "g", "or", "logit", "r", "f",
+  "eta", "cox.or", "cox.log"), study = NULL)
 }
 \arguments{
 \item{phi}{The phi value. One of \code{phi} or \code{p} must be reported.}

@@ -4,8 +4,9 @@
 \alias{esc_mean_se}
 \title{Compute effect size from Mean and Standard Error}
 \usage{
-esc_mean_se(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n, es.type = c("d", "g",
-  "or", "logit", "r", "f", "eta", "cox.or", "cox.log"), study = NULL)
+esc_mean_se(grp1m, grp1se, grp1n, grp2m, grp2se, grp2n, es.type = c("d",
+  "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
+  study = NULL)
 }
 \arguments{
 \item{grp1m}{The mean of the first group.}

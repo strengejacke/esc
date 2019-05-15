@@ -4,8 +4,8 @@
 \alias{esc_2x2}
 \title{Compute effect size from 2 by 2 Contingency Table}
 \usage{
-esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g", "or",
-  "r", "f", "eta", "cox.d"), study = NULL, ...)
+esc_2x2(grp1yes, grp1no, grp2yes, grp2no, es.type = c("logit", "d", "g",
+  "or", "r", "f", "eta", "cox.d"), study = NULL, ...)
 }
 \arguments{
 \item{grp1yes}{Size of treatment group with successes (outcome = yes).}

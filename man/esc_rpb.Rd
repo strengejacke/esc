@@ -4,8 +4,8 @@
 \alias{esc_rpb}
 \title{Compute effect size from Point-Biserial Correlation}
 \usage{
-esc_rpb(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "f",
-  "eta", "cox.or", "cox.log"), study = NULL)
+esc_rpb(r, p, totaln, grp1n, grp2n, es.type = c("d", "g", "or", "logit",
+  "f", "eta", "cox.or", "cox.log"), study = NULL)
 }
 \arguments{
 \item{r}{The point-biserial r-value. One of \code{r} or \code{p} must be specified.}
