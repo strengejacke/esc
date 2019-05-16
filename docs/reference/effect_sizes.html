@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">esc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -89,12 +89,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/strengejacke/esc">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,7 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generate effect size data frame from other data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/esc.R'><code>R/esc.R</code></a></small>
+    
     <div class="hidden name"><code>effect_sizes.Rd</code></div>
     </div>
 
@@ -191,12 +186,14 @@ in <code>...</code> are passed to. May either be the full function name
   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>200</span>, <span class='fl'>210</span>),
   <span class='kw'>studyname</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Study 1"</span>, <span class='st'>"Study 2"</span>, <span class='st'>"Study 3"</span>)
 )
-<span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='no'>tvalue</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_t"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 9</span><span>
-#&gt;   study      es weight sample.size    se    var  ci.lo ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Study 1 0.417   61.2         250 0.128 0.016</span><span style='text-decoration: underline;'>3</span><span> 0.167  0.668 d      
-#&gt; </span><span style='color: #555555;'>2</span><span> Study 2 0.410   49.0         200 0.143 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.130  0.690 d      
-#&gt; </span><span style='color: #555555;'>3</span><span> Study 3 0.317   51.8         210 0.139 0.019</span><span style='text-decoration: underline;'>3</span><span> 0.045</span><span style='text-decoration: underline;'>2</span><span> 0.590 d      </div><div class='input'>
+<span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='no'>tvalue</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_t"</span>)</div><div class='output co'>#&gt;     study        es   weight sample.size        se        var      ci.lo
+#&gt; 1 Study 1 0.4174207 61.16777         250 0.1278612 0.01634848 0.16681735
+#&gt; 2 Study 2 0.4101219 48.97040         200 0.1429003 0.02042050 0.13004246
+#&gt; 3 Study 3 0.3174302 51.84698         210 0.1388795 0.01928753 0.04523125
+#&gt;       ci.hi measure
+#&gt; 1 0.6680239       d
+#&gt; 2 0.6902014       d
+#&gt; 3 0.5896291       d</div><div class='input'>
 <span class='co'># missing effect size results are dropped,</span>
 <span class='co'># shorter function name, calls "esc_t()"</span>
 <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
@@ -204,12 +201,14 @@ in <code>...</code> are passed to. May either be the full function name
   <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>200</span>, <span class='fl'>210</span>, <span class='fl'>210</span>),
   <span class='kw'>studyname</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Study 1"</span>, <span class='st'>"Study 2"</span>, <span class='fl'>NA</span>, <span class='st'>"Study 4"</span>)
 )
-<span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='no'>tvalue</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 3 in `data` had missing values and were removed.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
-#&gt;   study      es weight sample.size    se    var  ci.lo ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Study 1 0.417   61.2         250 0.128 0.016</span><span style='text-decoration: underline;'>3</span><span> 0.167  0.668 d      
-#&gt; </span><span style='color: #555555;'>2</span><span> Study 2 0.410   49.0         200 0.143 0.020</span><span style='text-decoration: underline;'>4</span><span> 0.130  0.690 d      
-#&gt; </span><span style='color: #555555;'>3</span><span> Study 4 0.317   51.8         210 0.139 0.019</span><span style='text-decoration: underline;'>3</span><span> 0.045</span><span style='text-decoration: underline;'>2</span><span> 0.590 d      </div><div class='input'>
+<span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='no'>tvalue</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 3 in `data` had missing values and were removed.</span></div><div class='output co'>#&gt;     study        es   weight sample.size        se        var      ci.lo
+#&gt; 1 Study 1 0.4174207 61.16777         250 0.1278612 0.01634848 0.16681735
+#&gt; 2 Study 2 0.4101219 48.97040         200 0.1429003 0.02042050 0.13004246
+#&gt; 3 Study 4 0.3174302 51.84698         210 0.1388795 0.01928753 0.04523125
+#&gt;       ci.hi measure
+#&gt; 1 0.6680239       d
+#&gt; 2 0.6902014       d
+#&gt; 3 0.5896291       d</div><div class='input'>
 
 <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
   <span class='kw'>coefficient</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.4</span>, <span class='fl'>0.2</span>, <span class='fl'>0.6</span>),
@@ -219,12 +218,14 @@ in <code>...</code> are passed to. May either be the full function name
   <span class='kw'>author</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Smith 2000"</span>, <span class='st'>"Smith 2010 2"</span>, <span class='st'>"Smith 2012"</span>)
 )
 <span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>coefficient</span>, <span class='kw'>sdy</span> <span class='kw'>=</span> <span class='no'>se</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='no'>treat</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='no'>cntrl</span>,
-    <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>author</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_beta"</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"or"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 9</span><span>
-#&gt;   study           es weight sample.size    se   var ci.lo ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Smith 2000    4.80   6.59          95 0.390 0.152  2.24 10.3  or     
-#&gt; </span><span style='color: #555555;'>2</span><span> Smith 2010 2  2.09   9.62         130 0.322 0.104  1.11  3.93 or     
-#&gt; </span><span style='color: #555555;'>3</span><span> Smith 2012   15.0    5.30          90 0.434 0.189  6.40 35.1  or     </div><div class='input'>
+    <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>author</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_beta"</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"or"</span>)</div><div class='output co'>#&gt;          study        es   weight sample.size        se       var    ci.lo
+#&gt; 1   Smith 2000  4.800087 6.585180          95 0.3896872 0.1518561 2.236386
+#&gt; 2 Smith 2010 2  2.089544 9.622967         130 0.3223632 0.1039181 1.110850
+#&gt; 3   Smith 2012 14.985175 5.297840          90 0.4344608 0.1887562 6.395111
+#&gt;       ci.hi measure
+#&gt; 1 10.302709      or
+#&gt; 2  3.930499      or
+#&gt; 3 35.113613      or</div><div class='input'>
 <span class='co'># the "esc_chisq" function requires *either* the chisq-argument *or*</span>
 <span class='co'># the pval-argument. If at least one of these values is present,</span>
 <span class='co'># effect size can be calculated. You can specify both arguments,</span>
@@ -236,14 +237,18 @@ in <code>...</code> are passed to. May either be the full function name
   <span class='kw'>studyname</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Study 1"</span>, <span class='st'>"Study 2"</span>, <span class='st'>"Study 3"</span>, <span class='st'>"Study 4"</span>, <span class='st'>"Study 5"</span>)
 )
 <span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>chisq</span> <span class='kw'>=</span> <span class='no'>chisqquared</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='no'>pval</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>,
-             <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_chisq"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
-#&gt;   study      es weight sample.size    se    var     ci.lo ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Study 1 0.382   60.3         250 0.129 0.016</span><span style='text-decoration: underline;'>6</span><span>  1.30</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span> 0.635 d      
-#&gt; </span><span style='color: #555555;'>2</span><span> Study 2 0.280   49.0         200 0.143 0.020</span><span style='text-decoration: underline;'>4</span><span>  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-17</span><span> 0.560 d      
-#&gt; </span><span style='color: #555555;'>3</span><span> Study 3 0.253   51.7         210 0.139 0.019</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>1.99</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> 0.525 d      
-#&gt; </span><span style='color: #555555;'>4</span><span> Study 4 0.256   36.9         150 0.165 0.027</span><span style='text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>6.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> 0.579 d      
-#&gt; </span><span style='color: #555555;'>5</span><span> Study 5 0.256   44.3         180 0.150 0.022</span><span style='text-decoration: underline;'>6</span><span> -</span><span style='color: #BB0000;'>3.86</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> 0.550 d      </div><div class='input'>
+             <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"esc_chisq"</span>)</div><div class='output co'>#&gt;     study        es   weight sample.size        se        var         ci.lo
+#&gt; 1 Study 1 0.3821850 60.29813         250 0.1287799 0.01658426  1.297810e-01
+#&gt; 2 Study 2 0.2798817 49.03964         200 0.1427994 0.02039167  5.551115e-17
+#&gt; 3 Study 3 0.2527067 51.67500         210 0.1391105 0.01935172 -1.994479e-02
+#&gt; 4 Study 4 0.2559643 36.89567         150 0.1646313 0.02710345 -6.670700e-02
+#&gt; 5 Study 5 0.2559291 44.27500         180 0.1502868 0.02258611 -3.862751e-02
+#&gt;       ci.hi measure
+#&gt; 1 0.6345889       d
+#&gt; 2 0.5597634       d
+#&gt; 3 0.5253582       d
+#&gt; 4 0.5786357       d
+#&gt; 5 0.5504858       d</div><div class='input'>
 <span class='co'># if all required information are missing, data will be removed</span>
 <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
   <span class='kw'>chisqquared</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>3.3</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
@@ -252,15 +257,18 @@ in <code>...</code> are passed to. May either be the full function name
   <span class='kw'>studyname</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Study 1"</span>, <span class='st'>"Study 2"</span>, <span class='st'>"Study 3"</span>, <span class='st'>"Study 4"</span>, <span class='st'>"Study 5"</span>)
 )
 <span class='fu'>effect_sizes</span>(<span class='no'>tmp</span>, <span class='kw'>chisq</span> <span class='kw'>=</span> <span class='no'>chisqquared</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='no'>pval</span>, <span class='kw'>totaln</span> <span class='kw'>=</span> <span class='no'>n</span>,
-             <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"chisq"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 5 in `data` had missing values and were removed.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 9</span><span>
-#&gt;   study      es weight sample.size    se    var     ci.lo ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Study 1 0.382   60.3         250 0.129 0.016</span><span style='text-decoration: underline;'>6</span><span>  1.30</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 1</span><span> 0.635 d      
-#&gt; </span><span style='color: #555555;'>2</span><span> Study 2 0.280   49.0         200 0.143 0.020</span><span style='text-decoration: underline;'>4</span><span>  5.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-17</span><span> 0.560 d      
-#&gt; </span><span style='color: #555555;'>3</span><span> Study 3 0.253   51.7         210 0.139 0.019</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>1.99</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> 0.525 d      
-#&gt; </span><span style='color: #555555;'>4</span><span> Study 4 0.256   36.9         150 0.165 0.027</span><span style='text-decoration: underline;'>1</span><span> -</span><span style='color: #BB0000;'>6.67</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span> 0.579 d      </div><div class='input'>
+             <span class='kw'>study</span> <span class='kw'>=</span> <span class='no'>studyname</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"chisq"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Row(s) 5 in `data` had missing values and were removed.</span></div><div class='output co'>#&gt;     study        es   weight sample.size        se        var         ci.lo
+#&gt; 1 Study 1 0.3821850 60.29813         250 0.1287799 0.01658426  1.297810e-01
+#&gt; 2 Study 2 0.2798817 49.03964         200 0.1427994 0.02039167  5.551115e-17
+#&gt; 3 Study 3 0.2527067 51.67500         210 0.1391105 0.01935172 -1.994479e-02
+#&gt; 4 Study 4 0.2559643 36.89567         150 0.1646313 0.02710345 -6.670700e-02
+#&gt;       ci.hi measure
+#&gt; 1 0.6345889       d
+#&gt; 2 0.5597634       d
+#&gt; 3 0.5253582       d
+#&gt; 4 0.5786357       d</div><div class='input'>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">esc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -87,12 +87,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/strengejacke/esc">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -106,7 +101,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Write one or more 'esc' objects into an Excel csv-file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/combine_esc.R'><code>R/combine_esc.R</code></a></small>
+    
     <div class="hidden name"><code>write_esc.Rd</code></div>
     </div>
 
@@ -148,7 +143,7 @@ separator string in Excel is a comma.</p></td>
     <p>For Western European locales, the <code>sep</code>-argument probably needs to
       be set to semicolon (<code>sep = ";"</code>), so Excel reads the csv-file properly.
       If <code>sep = ";"</code>, <code><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.csv2</a></code> is used to write the
-      file. Else, <code><a href='https://readr.tidyverse.org/reference/write_delim.html'>write_excel_csv</a></code> is used.</p>
+      file. Else, <code><a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>write.csv</a></code> is used.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

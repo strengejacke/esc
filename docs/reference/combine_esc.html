@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">esc</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -90,12 +90,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/strengejacke/esc">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -109,7 +104,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Combine one or more 'esc' objects into a data frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/strengejacke/esc/blob/master/R/combine_esc.R'><code>R/combine_esc.R</code></a></small>
+    
     <div class="hidden name"><code>combine_esc.Rd</code></div>
     </div>
 
@@ -153,14 +148,17 @@
 <span class='no'>e4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='esc_mean_sd.html'>esc_mean_sd</a></span>(<span class='kw'>grp1m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>grp1sd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>grp2m</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>grp2sd</span> <span class='kw'>=</span> <span class='fl'>3</span>,
                   <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"logit"</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='st'>"Study 4"</span>)
 
-<span class='fu'>combine_esc</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='no'>e3</span>, <span class='no'>e4</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 9</span><span>
-#&gt;   study       es weight sample.size    se    var   ci.lo  ci.hi measure
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
-#&gt; </span><span style='color: #555555;'>1</span><span> Study 1 -</span><span style='color: #BB0000;'>0.393</span><span>   9.94         165 0.317 0.101  -</span><span style='color: #BB0000;'>1.01</span><span>    0.228 logit  
-#&gt; </span><span style='color: #555555;'>2</span><span> Study 2  0.675   9.94         165 0.317 0.101   0.363   1.26  or     
-#&gt; </span><span style='color: #555555;'>3</span><span> Study 3  0.282  59.4          250 0.130 0.016</span><span style='text-decoration: underline;'>8</span><span>  0.027</span><span style='text-decoration: underline;'>5</span><span>  0.536 d      
-#&gt; </span><span style='color: #555555;'>4</span><span> Study 4 -</span><span style='color: #BB0000;'>1.40</span><span>    7.72         110 0.360 0.130  -</span><span style='color: #BB0000;'>2.10</span><span>   -</span><span style='color: #BB0000;'>0.693</span><span> logit  </div><div class='input'>
-</div></span></pre>
+<span class='fu'>combine_esc</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='no'>e3</span>, <span class='no'>e4</span>)</div><div class='output co'>#&gt;     study         es    weight sample.size        se        var       ci.lo
+#&gt; 1 Study 1 -0.3930426  9.944751         165 0.3171050 0.10055556 -1.01455689
+#&gt; 2 Study 2  0.6750000  9.944751         165 0.3171050 0.10055556  0.36256305
+#&gt; 3 Study 3  0.2817789 59.433720         250 0.1297130 0.01682547  0.02754605
+#&gt; 4 Study 4 -1.3981827  7.721145         110 0.3598812 0.12951447 -2.10353685
+#&gt;        ci.hi measure
+#&gt; 1  0.2284717   logit
+#&gt; 2  1.2566780      or
+#&gt; 3  0.5360117       d
+#&gt; 4 -0.6928285   logit</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
