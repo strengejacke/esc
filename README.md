@@ -66,7 +66,7 @@ library(githubinstall)
 githubinstall::githubinstall("esc")
 ```
 
-### Officiale, stable release
+### Official, stable release
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/esc)](https://cran.r-project.org/package=esc)
 &#160;&#160;
