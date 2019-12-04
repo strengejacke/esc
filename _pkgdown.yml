@@ -1,0 +1,32 @@
+authors:
+  Daniel Lüdecke:
+    href: https://github.com/strengejacke
+
+template:
+  params:
+    bootswatch: cosmo
+
+reference:
+- title: "Effect Size Conversion"
+  contents:
+  - cohens_d
+
+- title: "Calculating Effect Sizes"
+  contents:
+  - effect_sizes
+  - esc_2x2
+  - esc_B
+  - esc_beta
+  - esc_bin_prop
+  - esc_chisq
+  - esc_f
+  - esc_mean_gain
+  - esc_mean_sd
+  - esc_mean_se
+  - esc_phi
+  - esc_rpb
+  - esc_t
+
+- title: "Import and Export"
+  contents:
+  - write_esc
