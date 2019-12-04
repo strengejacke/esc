@@ -9,6 +9,17 @@ template:
 reference:
 - title: "Effect Size Conversion"
   contents:
+  - convert_d2etasq
+  - convert_d2f
+  - convert_d2logit
+  - convert_d2or
+  - convert_d2r
+  - convert_or2d
+  - convert_r2z
+  - convert_z2r
+
+- title: "Getting Specific Effect Sizes"
+  contents:
   - cohens_d
 
 - title: "Calculating Effect Sizes"
@@ -29,4 +40,5 @@ reference:
 
 - title: "Import and Export"
   contents:
+  - combine_esc
   - write_esc
