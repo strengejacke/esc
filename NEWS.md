@@ -1,3 +1,9 @@
+# esc 0.5.1
+
+## General
+
+* Deprecated functions have been removed.
+
 # esc 0.5.0
 
 ## General

@@ -19,4 +19,4 @@ Imports:
     utils
 URL: https://strengejacke.github.io/esc
 BugReports: https://github.com/strengejacke/esc/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

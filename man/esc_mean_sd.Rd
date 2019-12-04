@@ -4,9 +4,18 @@
 \alias{esc_mean_sd}
 \title{Compute effect size from Mean and Standard Deviation}
 \usage{
-esc_mean_sd(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
+esc_mean_sd(
+  grp1m,
+  grp1sd,
+  grp1n,
+  grp2m,
+  grp2sd,
+  grp2n,
+  totalsd,
+  r,
   es.type = c("d", "g", "or", "logit", "r", "cox.or", "cox.log"),
-  study = NULL)
+  study = NULL
+)
 }
 \arguments{
 \item{grp1m}{The mean of the first group.}

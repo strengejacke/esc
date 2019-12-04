@@ -4,8 +4,14 @@
 \alias{esc_bin_prop}
 \title{Compute effect size from binary proportions}
 \usage{
-esc_bin_prop(prop1event, grp1n, prop2event, grp2n, es.type = c("logit",
-  "d", "g", "or", "r", "f", "eta", "cox.d"), study = NULL)
+esc_bin_prop(
+  prop1event,
+  grp1n,
+  prop2event,
+  grp2n,
+  es.type = c("logit", "d", "g", "or", "r", "f", "eta", "cox.d"),
+  study = NULL
+)
 }
 \arguments{
 \item{prop1event}{Proportion of successes in treatment group (proportion of outcome = yes).}

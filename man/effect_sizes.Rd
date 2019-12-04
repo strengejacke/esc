@@ -4,8 +4,12 @@
 \alias{effect_sizes}
 \title{Generate effect size data frame from other data}
 \usage{
-effect_sizes(data, ..., fun, es.type = c("d", "g", "or", "logit", "r",
-  "f", "eta", "cox.or", "cox.log"))
+effect_sizes(
+  data,
+  ...,
+  fun,
+  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log")
+)
 }
 \arguments{
 \item{data}{A data frame with columns that contain the values that are passed

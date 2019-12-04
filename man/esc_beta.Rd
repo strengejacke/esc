@@ -4,8 +4,14 @@
 \alias{esc_beta}
 \title{Compute effect size from Standardized Regression Coefficient}
 \usage{
-esc_beta(beta, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit",
-  "r", "f", "eta", "cox.or", "cox.log"), study = NULL)
+esc_beta(
+  beta,
+  sdy,
+  grp1n,
+  grp2n,
+  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
+  study = NULL
+)
 }
 \arguments{
 \item{beta}{The standardized beta coefficient.}

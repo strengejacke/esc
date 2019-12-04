@@ -4,8 +4,14 @@
 \alias{esc_B}
 \title{Compute effect size from Unstandardized Regression Coefficient}
 \usage{
-esc_B(b, sdy, grp1n, grp2n, es.type = c("d", "g", "or", "logit", "r",
-  "f", "eta", "cox.or", "cox.log"), study = NULL)
+esc_B(
+  b,
+  sdy,
+  grp1n,
+  grp2n,
+  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
+  study = NULL
+)
 }
 \arguments{
 \item{b}{The unstandardized coefficient B.}

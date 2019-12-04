@@ -4,8 +4,13 @@
 \alias{esc_chisq}
 \title{Compute effect size from Chi-Square coefficient}
 \usage{
-esc_chisq(chisq, p, totaln, es.type = c("d", "g", "or", "logit", "r",
-  "f", "eta", "cox.or", "cox.log"), study = NULL)
+esc_chisq(
+  chisq,
+  p,
+  totaln,
+  es.type = c("d", "g", "or", "logit", "r", "f", "eta", "cox.or", "cox.log"),
+  study = NULL
+)
 }
 \arguments{
 \item{chisq}{The chi-squared value. One of \code{chisq} or \code{p} must be reported.}
