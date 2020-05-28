@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -72,21 +76,19 @@ Correlation Effect Size
   a esc-class attribute. The combine_esc-function takes one or more
   of these esc-objects and combines them into a data.frame that can be
   used as argument for further use, for instance with the rma-function.
-    e1 &amp;lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40,
+    e1 &amp;amp;lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40,
                   grp2no = 45, study = &quot;Study 1&quot;)
-    e2 &amp;lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45,
+    e2 &amp;amp;lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45,
                   es.type = &quot;or&quot;, study = &quot;Study 2&quot;)
-    e3 &amp;lt;- esc_t(p = 0.03, grp1n = 100, grp2n = 150, study = &quot;Study 3&quot;)
-    e4 &amp;lt;- esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50, grp2m = 9, grp2sd = 3,
+    e3 &amp;amp;lt;- esc_t(p = 0.03, grp1n = 100, grp2n = 150, study = &quot;Study 3&quot;)
+    e4 &amp;amp;lt;- esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50, grp2m = 9, grp2sd = 3,
                       grp2n = 60, es.type = &quot;logit&quot;, study = &quot;Study 4&quot;)
 
-    mydat &amp;lt;- combine_esc(e1, e2, e3, e4)
+    mydat &amp;amp;lt;- combine_esc(e1, e2, e3, e4)
 
     metafor::rma(yi = es, sei = se, method = &quot;REML&quot;, data = mydat)
-  
 " />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -104,7 +106,7 @@ Correlation Effect Size
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -138,7 +140,12 @@ Correlation Effect Size
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/strengejacke/esc/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -187,18 +194,17 @@ Correlation Effect Size
   a <code>esc</code>-class attribute. The <code><a href='combine_esc.html'>combine_esc</a></code>-function takes one or more
   of these <code>esc</code>-objects and combines them into a <code>data.frame</code> that can be
   used as argument for further use, for instance with the <code><a href='https://rdrr.io/pkg/metafor/man/rma.uni.html'>rma</a></code>-function.</p><pre>
-    e1 &lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40,
-                  grp2no = 45, study = "Study 1")
-    e2 &lt;- esc_2x2(grp1yes = 30, grp1no = 50, grp2yes = 40, grp2no = 45,
-                  es.type = "or", study = "Study 2")
-    e3 &lt;- esc_t(p = 0.03, grp1n = 100, grp2n = 150, study = "Study 3")
-    e4 &lt;- esc_mean_sd(grp1m = 7, grp1sd = 2, grp1n = 50, grp2m = 9, grp2sd = 3,
-                      grp2n = 60, es.type = "logit", study = "Study 4")
+    <span class='no'>e1</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='esc_2x2.html'>esc_2x2</a></span>(<span class='kw'>grp1yes</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>grp1no</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>grp2yes</span> <span class='kw'>=</span> <span class='fl'>40</span>,
+                  <span class='kw'>grp2no</span> <span class='kw'>=</span> <span class='fl'>45</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='st'>"Study 1"</span>)
+    <span class='no'>e2</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='esc_2x2.html'>esc_2x2</a></span>(<span class='kw'>grp1yes</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>grp1no</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>grp2yes</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>grp2no</span> <span class='kw'>=</span> <span class='fl'>45</span>,
+                  <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"or"</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='st'>"Study 2"</span>)
+    <span class='no'>e3</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='esc_t.html'>esc_t</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.03</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>150</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='st'>"Study 3"</span>)
+    <span class='no'>e4</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='esc_mean_sd.html'>esc_mean_sd</a></span>(<span class='kw'>grp1m</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>grp1sd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>grp1n</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>grp2m</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>grp2sd</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                      <span class='kw'>grp2n</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>es.type</span> <span class='kw'>=</span> <span class='st'>"logit"</span>, <span class='kw'>study</span> <span class='kw'>=</span> <span class='st'>"Study 4"</span>)
 
-    mydat &lt;- combine_esc(e1, e2, e3, e4)
+    <span class='no'>mydat</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='combine_esc.html'>combine_esc</a></span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='no'>e3</span>, <span class='no'>e4</span>)
 
-    metafor::rma(yi = es, sei = se, method = "REML", data = mydat)
-  </pre>
+    <span class='kw pkg'>metafor</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/metafor/man/rma.uni.html'>rma</a></span>(<span class='kw'>yi</span> <span class='kw'>=</span> <span class='no'>es</span>, <span class='kw'>sei</span> <span class='kw'>=</span> <span class='no'>se</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"REML"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mydat</span>)</pre>
 
     </div>
 
@@ -206,11 +212,10 @@ Correlation Effect Size
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -221,7 +226,7 @@ Correlation Effect Size
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

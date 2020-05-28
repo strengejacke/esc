@@ -2,9 +2,9 @@
 ^pkgdown$
 ^doc$
 ^Meta$
+^.git$
 ^.github$
 ^.*\.Rproj$
-
 ^\.Rproj\.user$
 ^README.rmd
 ^_pkgdown\.yml$
