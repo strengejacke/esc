@@ -1,3 +1,7 @@
+# esc 0.5.2
+
+* Fixed issue is `esc_mean_sd()` when arguments contained missing values.
+
 # esc 0.5.1
 
 ## General

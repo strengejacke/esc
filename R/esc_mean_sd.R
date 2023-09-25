@@ -51,10 +51,10 @@ esc_mean_sd <- function(grp1m, grp1sd, grp1n, grp2m, grp2sd, grp2n, totalsd, r,
   es.type <- match.arg(es.type)
 
   # check if parameter are complete
-  if ((missing(totalsd) || is.null(totalsd) || is.na(totalsd)) &&
-      ((missing(grp1sd) || is.null(grp1sd) || is.na(grp1sd)) ||
-       (missing(grp2sd) || is.null(grp2sd) || is.na(grp2sd)))) {
-    warning("Either `totalsd` or both `grp1sd` and `grp2sd` must be specified.", call. = F)
+  if ((missing(totalsd) || is.null(totalsd) || anyNA(totalsd)) &&
+      ((missing(grp1sd) || is.null(grp1sd) || anyNA(grp1sd)) ||
+       (missing(grp2sd) || is.null(grp2sd) || anyNA(grp2sd)))) {
+    warning("Either `totalsd` or both `grp1sd` and `grp2sd` must be specified and are not allowed to have missing values.", call. = FALSE)
     return(esc_generic(es = NA, v = NA, es.type = es.type, grp1n = NA, grp2n = NA, info = NA, study = NA))
   }
 
